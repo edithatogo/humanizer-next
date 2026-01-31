@@ -16,5 +16,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 ---
 
 ## Archived Tracks
-## [x] Track: Build multi-agent Humanizer adapters (Codex CLI, Gemini CLI, Google Antigravity, VS Code) while keeping SKILL.md canonical and unchanged
+## [x] Track: Build multi-agent Humanizer adapters (Codex CLI, Gemini CLI, Google Antigravity, VS Code) while keeping SKILL.md canonical and unchanged (e2c47dc)
 *Link: [./conductor/tracks/humanizer-adapters_20260125/](./conductor/tracks/humanizer-adapters_20260125/)*
