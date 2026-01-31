@@ -1,25 +1,45 @@
 Category,Feature,Description,Source,Context,Detection Method/Metric
-Linguistic,Significance Inflation,Overuse of words like "testament", "pivotal", "underscores",Wikipedia / Pattern 1,General Text,Keyword Frequency
-Linguistic,Superficial -ing Analysis,Weak participle phrases ("highlighting", "emphasizing") to fake depth,Wikipedia / Pattern 3,General Text,Syntactic Analysis
-Linguistic,Promotional Language,Ad-speak like "nestled", "vibrant", "breathtaking",Wikipedia / Desaire,Marketing / Travel,Sentiment / Tone Analysis
-Linguistic,N-gram Repetition,High frequency of repetitive 5-7 gram sequences,Terçon / Originality.ai,Academic / General,N-gram Analysis
-Linguistic,Nominalization,High frequency of nouns/determiners; low adjectives/adverbs,Terçon et al.,Academic Attributes,POS Tagging
-Linguistic,Function Words,Specific distribution of "although", "however" vs "others", "researchers",Desaire et al.,Scientific Writing,Lexical Frequency Analysis
-Linguistic,Low Lexical Diversity,Limited vocabulary range (Type-Token Ratio),Terçon / André,General Text,TTR (Type-Token Ratio)
-Stylistic,Sentence Length Consistency,Low variance in sentence length (low burstiness),Desaire / GPTZero,General Text,Standard Deviation of Length
-Stylistic,Paragraph Structure,Uniform paragraph lengths and sentence counts,Desaire et al.,Scientific Writing,Structural Analysis
-Stylistic,Formal/Impersonal Tone,Lack of personal voice; overly neutral sentiment,Terçon / Wiki,General Text,Sentiment Analysis
-Stylistic,Refusal/Disclaimer Artifacts,"As an AI language model", "I cannot fulfill",GPTZero / Wiki,Chatbot Output,Keyword Matching
-Stylistic,Em Dash Overuse,Mechanical use of em dashes for emphasis,Wikipedia / Pattern 13,General Text,Punctuation Analysis
-Stylistic,Title Case Headings,Capitalizing Every Word In A Heading,Wikipedia / Pattern 16,General Text,Formatting Analysis
-Statistical,Low Perplexity,Text is statistically predictable to an LLM,GPTZero / Originality,General Text,Perplexity Score (LLM)
-Statistical,Uniform Burstiness,Lack of "spikes" in perplexity or sentence structure,GPTZero,General Text,Burstiness Score
-Statistical,Entropy,Probability distribution of word choices,Originality.ai,General Text,Entropy Calculation
-Code Quality,Cyclomatic Complexity,Measure of independent paths; AI can be high or low,SonarQube,Code Analysis,Static Analysis
-Code Quality,Cognitive Complexity,Difficulty for humans to understand control flow,SonarQube,Code Analysis,Static Analysis
-Code Quality,Code Churn/Duplication,High rate of copy-pasted or reverted code (DRY violations),GitClear / GitHub,Software Dev,Version Control Metrics
-Code Quality,Readability,readability improvements (variable naming, formatting),GitHub Research,Software Dev,Linter/Human Review
-Code Quality,Test Coverage,Pass rate of unit tests (often higher for AI code),GitHub Research,Software Dev,CI/CD Metrics
-Code Quality,Maintainability,Modularity and comments (can be improved or degraded),SonarQube / GitHub,Software Dev,Static Analysis
-Governance,Trustworthiness,Valid, Reliable, Safe, Secure, Accountable, Explainable,NIST AI RMF,AI Systems,Qualitative Assessment
-Governance,Data Quality,Accuracy, precision, consistency of training data,ISO 25058/5259,AI Data,Data Audit
+Linguistic,Significance Inflation (Pattern 1),Overuse of "testament", "pivotal", "underscores",Wikipedia,General Text,Keyword Frequency
+Linguistic,Notability Puffery (Pattern 2),Name-dropping media outlets or "leading experts" without substance,Wikipedia,General Text,Named Entity Recognition
+Linguistic,Superficial -ing Analysis (Pattern 3),Weak participle phrases ("highlighting", "emphasizing") to fake depth,Wikipedia,General Text,Syntactic Analysis
+Linguistic,Promotional Language (Pattern 4),Ad-speak: "nestled", "vibrant", "breathtaking",Wikipedia / Desaire,Marketing,Sentiment Analysis
+Linguistic,Vague Attributions (Pattern 5),Weasel words: "Experts argue", "Observers note",Wikipedia,General Text,Phrase Matching
+Linguistic,Formulaic Challenges (Pattern 6),Standardized "Despite challenges..." sections,Wikipedia,General Text,Structural Matching
+Linguistic,AI Vocabulary (Pattern 7),Overuse of "delve", "tapestry", "landscape", "nuance",Wikipedia / Terçon,General Text,Lexical Frequency
+Linguistic,Copula Avoidance (Pattern 8),Using "serves as", "stands as" instead of "is",Wikipedia,General Text,Dependency Parsing
+Linguistic,Negative Parallelisms (Pattern 9),"It's not just X, it's Y" constructions,Wikipedia,General Text,Syntactic Pattern
+Linguistic,Rule of Three (Pattern 10),Forcing ideas into triplets for rhythm,Wikipedia,General Text,N-gram / Structure
+Linguistic,Synonym Cycling (Pattern 11),Elegant variation to avoid repetition (e.g. "The hero... the protagonist..."),Wikipedia / Originality,General Text,Semantic Similarity
+Linguistic,False Ranges (Pattern 12),"From X to Y" where X and Y are unrelated,Wikipedia,General Text,Semantic Analysis
+Linguistic,Filler Phrases (Pattern 22),"In order to", "It is important to note",Wikipedia / Originality,General Text,Stopword Analysis
+Linguistic,N-gram Repetition,High frequency of repetitive 5-7 gram sequences,Terçon / Originality,Academic,N-gram Analysis
+Linguistic,Nominalization,High noun density, low adjective/adverb,Terçon et al.,Academic,POS Tagging
+Linguistic,Function Words,Specific distribution of "however" vs "others",Desaire et al.,Scientific,Lexical Frequency
+Linguistic,Low Lexical Diversity,Limited vocabulary range (Type-Token Ratio),Terçon / André,General Text,TTR Score
+Stylistic,Em Dash Overuse (Pattern 13),Mechanical use of em dashes for emphasis,Wikipedia,General Text,Punctuation Count
+Stylistic,Boldface Overuse (Pattern 14),Bolding terms mechanically,Wikipedia,General Text,Formatting Analysis
+Stylistic,Inline-Header Lists (Pattern 15),Bulleted lists with "**Header:** Description" format,Wikipedia,General Text,Formatting Analysis
+Stylistic,Title Case Headings (Pattern 16),Capitalizing Every Word In Headings,Wikipedia,General Text,Casing Analysis
+Stylistic,Emojis (Pattern 17),Use of rocket/lightbulb emojis in professional text,Wikipedia,General Text,Character Analysis
+Stylistic,Curly Quotes (Pattern 18),Using curly “ ” instead of straight " ",Wikipedia,General Text,Character Analysis
+Stylistic,Over-Structuring (Pattern 26),Unnecessary tables or bullet points for simple text,Wikipedia / Copyleaks,General Text,Structural Analysis
+Stylistic,Sentence Length Consistency,Low variance in sentence length (low burstiness),Desaire / GPTZero,General Text,Std Dev of Length
+Stylistic,Paragraph Structure,Uniform paragraph lengths,Desaire et al.,Scientific,Structure Metrics
+Communication,Chatbot Artifacts (Pattern 19),"I hope this helps", "As an AI",Wikipedia / GPTZero,Chat Output,Keyword Matching
+Communication,Knowledge Cutoff (Pattern 20),"As of my last update...",Wikipedia,Chat Output,Keyword Matching
+Communication,Sycophantic Tone (Pattern 21),Overly positive/agreeable ("Great question!"),Wikipedia / Copyleaks,Chat Output,Sentiment Analysis
+Communication,Excessive Hedging (Pattern 23),"Potentially possibly might",Wikipedia,General Text,Hedge Word Count
+Communication,Generic Conclusions (Pattern 24),"The future looks bright...",Wikipedia,General Text,Sentiment/Cliché Check
+Communication,Formal/Impersonal Tone,Lack of personal voice, neutral sentiment,Terçon,General Text,Sentiment Analysis
+Statistical,Low Perplexity,Text is statistically predictable,GPTZero / Originality,General Text,Perplexity Score
+Statistical,Uniform Burstiness,Lack of rhythm spikes,GPTZero,General Text,Burstiness Score
+Statistical,Entropy,Probability distribution of choices,Originality.ai,General Text,Entropy
+Code,AI Signatures in Code (Pattern 25),"// Generated by ChatGPT" comments,Wikipedia,Code,Regex Matching
+Code,Cyclomatic Complexity,Measure of logical paths,SonarQube,Code,Static Analysis
+Code,Cognitive Complexity,Understandability metric,SonarQube,Code,Static Analysis
+Code,Code Churn/Duplication,Copy-paste rates,GitClear,Code,Version Control
+Code,Readability,Naming and formatting,GitHub Research,Code,Linter
+Code,Test Coverage,Unit test pass rates,GitHub Research,Code,CI/CD
+Code,Maintainability,Modularity scores,SonarQube,Code,Static Analysis
+Governance,Trustworthiness,Valid/Reliable/Safe metrics,NIST AI RMF,AI Systems,Qualitative
+Governance,Data Quality,Accuracy/Precision of training data,ISO Standards,AI Data,Audit
