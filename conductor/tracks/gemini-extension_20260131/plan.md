@@ -9,7 +9,7 @@
 ## Phase 2: Implement extension files
 - [x] Task: Add Gemini extension manifest and entrypoint (4f78e6a)
 - [x] Task: Add GEMINI.md or required context file (e84d275)
-- [~] Task: Wire commands or instructions to apply Humanizer
+- [x] Task: Wire commands or instructions to apply Humanizer (52c0176)
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Implement extension files' (Protocol in workflow.md)
 
 ## Phase 3: Validation and documentation
