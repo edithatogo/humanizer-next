@@ -10,8 +10,8 @@
 - [ ] Task: Conductor - Agent Verification 'Phase 1: Python Migration & Infrastructure'
 
 ## Phase 2: Testing & Coverage
-- [ ] Task: Set up `pytest` and `pytest-cov`
-- [ ] Task: Write tests for all Python scripts to achieve 100% coverage
+- [x] Task: Set up `pytest` and `pytest-cov` (2d5fb45)
+- [x] Task: Write tests for all Python scripts to achieve 100% coverage (2d5fb45)
 - [ ] Task: Conductor - Agent Verification 'Phase 2: Testing & Coverage'
 
 ## Phase 3: Pre-commit & Prose Linting
