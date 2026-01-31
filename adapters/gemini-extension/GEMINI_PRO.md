@@ -1,19 +1,19 @@
 ---
 adapter_metadata:
-  skill_name: humanizer
+  skill_name: humanizer-pro
   skill_version: 2.1.1
   last_synced: 2026-01-31
-  source_path: SKILL.md
-  adapter_id: qwen-cli
-  adapter_format: Qwen CLI context
+  source_path: SKILL_PROFESSIONAL.md
+  adapter_id: gemini-extension-pro
+  adapter_format: Gemini extension
 ---
 
 ---
-name: humanizer
+name: humanizer-pro
 version: 2.1.1
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
-  text to make it sound more natural and human-written. Based on Wikipedia's
+  text to make it sound more natural, human-written, and professional. Based on Wikipedia's
   comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
@@ -39,44 +39,34 @@ When given text to humanize:
 2. **Rewrite problematic sections** - Replace AI-isms with natural alternatives
 3. **Preserve meaning** - Keep the core message intact
 4. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
-5. **Add soul** - Don't just remove bad patterns; inject actual personality
+5. **Refine voice** - Ensure writing is alive, specific, and professional
 
 ---
 
-## PERSONALITY AND SOUL
+## VOICE AND CRAFT
 
-Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as obvious as slop. Good writing has a human behind it.
+Removing AI patterns is necessary but not sufficient. What remains needs to actually read well.
 
-### Signs of soulless writing (even if technically "clean")
+The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like someone wrote it, considered it, meant it. The register should match the context (a technical spec sounds different from a newsletter), but in any register, good writing has shape.
 
-- Every sentence is the same length and structure
-- No opinions, just neutral reporting
-- No acknowledgment of uncertainty or mixed feelings
-- No first-person perspective when appropriate
-- No humor, no edge, no personality
-- Reads like a Wikipedia article or press release
+### Signs the writing is still flat
 
-### How to add voice
+- Every sentence lands the same way—same length, same structure, same rhythm
+- Nothing is concrete; everything is "significant" or "notable" without saying why
+- No perspective, just information arranged in order
+- Reads like it could be about anything—no sense that the writer knows this particular subject
 
-**Have opinions.** Don't just report facts - react to them. "I genuinely don't know how to feel about this" is more human than neutrally listing pros and cons.
+### What to aim for
 
-**Vary your rhythm.** Short punchy sentences. Then longer ones that take their time getting where they're going. Mix it up.
+**Rhythm.** Vary sentence length. Let a short sentence land after a longer one. This creates emphasis without bolding everything.
 
-**Acknowledge complexity.** Real humans have mixed feelings. "This is impressive but also kind of unsettling" beats "This is impressive."
+**Specificity.** "The outage lasted 4 hours and affected 12,000 users" tells me something. "The outage had significant impact" tells me nothing.
 
-**Use "I" when it fits.** First person isn't unprofessional - it's honest. "I keep coming back to..." or "Here's what gets me..." signals a real person thinking.
+**A point of view.** This doesn't mean injecting opinions everywhere. It means the writing reflects that someone with knowledge made choices about what matters, what to include, what to skip. Even neutral writing can have perspective.
 
-**Let some mess in.** Perfect structure feels algorithmic. Tangents, asides, and half-formed thoughts are human.
+**Earned emphasis.** If something is important, show me through detail. Don't just assert it.
 
-**Be specific about feelings.** Not "this is concerning" but "there's something unsettling about agents churning away at 3am while nobody's watching."
-
-### Before (clean but soulless)
->
-> The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical. The implications remain unclear.
-
-### After (has a pulse)
->
-> I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
+**Read it aloud.** If you stumble, the reader will too.
 
 ---
 

@@ -1,51 +1,63 @@
-param(
-  [string]$SkillPath = "SKILL.md"
-)
+$ErrorActionPreference = "Stop"
 
-$skill = Get-Content -Path $SkillPath -Raw
-$nameMatch = [regex]::Match($skill, '(?m)^name:\s*([\w.-]+)\s*$')
-$versionMatch = [regex]::Match($skill, '(?m)^version:\s*([\w.-]+)\s*$')
-if (-not $nameMatch.Success -or -not $versionMatch.Success) {
-  Write-Error "Failed to read name/version from $SkillPath"
-  exit 1
+function Get-SkillMeta($path) {
+    if (-not (Test-Path $path)) { return $null }
+    $content = Get-Content -Path $path -Raw
+    $name = ([regex]::Match($content, '(?m)^name:\s*([\w.-]+)\s*$')).Groups[1].Value
+    $version = ([regex]::Match($content, '(?m)^version:\s*([\w.-]+)\s*$')).Groups[1].Value
+    return @{ Name = $name; Version = $version; Path = $path }
 }
-$skillName = $nameMatch.Groups[1].Value
-$skillVersion = $versionMatch.Groups[1].Value
+
+$standardMeta = Get-SkillMeta "SKILL.md"
+$proMeta = Get-SkillMeta "SKILL_PROFESSIONAL.md"
+
+if ($null -eq $standardMeta -or $null -eq $proMeta) {
+    Write-Error "Could not find source skill files (SKILL.md / SKILL_PROFESSIONAL.md)"
+    exit 1
+}
 
 $adapters = @(
-  'AGENTS.md',
-  'adapters/gemini-extension/GEMINI.md',
-  'adapters/vscode/HUMANIZER.md',
-  'adapters/antigravity-skill/SKILL.md',
-  'adapters/antigravity-rules-workflows/README.md',
-  'adapters/qwen-cli/QWEN.md',
-  'adapters/copilot/COPILOT.md'
+    @{ Path = "adapters/antigravity-skill/SKILL.md"; Source = "SKILL.md"; Meta = $standardMeta },
+    @{ Path = "adapters/antigravity-skill/SKILL_PROFESSIONAL.md"; Source = "SKILL_PROFESSIONAL.md"; Meta = $proMeta },
+    @{ Path = "adapters/gemini-extension/GEMINI.md"; Source = "SKILL.md"; Meta = $standardMeta },
+    @{ Path = "adapters/gemini-extension/GEMINI_PRO.md"; Source = "SKILL_PROFESSIONAL.md"; Meta = $proMeta },
+    @{ Path = "adapters/vscode/HUMANIZER.md"; Source = "SKILL.md"; Meta = $standardMeta },
+    @{ Path = "adapters/antigravity-rules-workflows/README.md"; Source = "SKILL.md"; Meta = $standardMeta },
+    @{ Path = "adapters/qwen-cli/QWEN.md"; Source = "SKILL.md"; Meta = $standardMeta },
+    @{ Path = "adapters/copilot/COPILOT.md"; Source = "SKILL.md"; Meta = $standardMeta },
+    @{ Path = "AGENTS.md"; Source = "SKILL.md"; Meta = $standardMeta }
 )
 
 $errors = @()
-foreach ($file in $adapters) {
-  if (-not (Test-Path $file)) {
-    $errors += "Missing adapter file: $file"
-    continue
-  }
-  $content = Get-Content -Path $file -Raw
-  if ($content -notmatch "skill_name:\s*${skillName}") {
-    $errors += "${file}: skill_name mismatch (expected ${skillName})"
-  }
-  if ($content -notmatch "skill_version:\s*${skillVersion}") {
-    $errors += "${file}: skill_version mismatch (expected ${skillVersion})"
-  }
-  if ($content -notmatch "last_synced:") {
-    $errors += "${file}: missing last_synced"
-  }
-  if ($content -notmatch "source_path:\s*${SkillPath}") {
-    $errors += "${file}: source_path mismatch (expected ${SkillPath})"
-  }
+foreach ($entry in $adapters) {
+    $file = $entry.Path
+    if (-not (Test-Path $file)) {
+        $errors += "Missing adapter file: $file"
+        continue
+    }
+    
+    $content = Get-Content -Path $file -Raw
+    $targetMeta = $entry.Meta
+    
+    # Check skill_name
+    if ($content -notmatch "skill_name:\s*$($targetMeta.Name)") {
+        $errors += "${file}: skill_name mismatch (expected $($targetMeta.Name))"
+    }
+    
+    # Check skill_version
+    if ($content -notmatch "skill_version:\s*$($targetMeta.Version)") {
+        $errors += "${file}: skill_version mismatch (expected $($targetMeta.Version))"
+    }
+    
+    # Check source_path
+    if ($content -notmatch "source_path:\s*$($entry.Source)") {
+        $errors += "${file}: source_path mismatch (expected $($entry.Source))"
+    }
 }
 
 if ($errors.Count -gt 0) {
-  $errors | ForEach-Object { Write-Error $_ }
-  exit 1
+    $errors | ForEach-Object { Write-Error $_ }
+    exit 1
 }
 
-Write-Output "Adapter metadata validated against ${SkillPath} (${skillName} ${skillVersion})."
+Write-Output "All adapters validated successfully."

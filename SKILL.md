@@ -15,7 +15,7 @@ allowed-tools:
   - Grep
   - Glob
   - AskUserQuestion
----
+
 
 # Humanizer: Remove AI Writing Patterns
 
@@ -69,6 +69,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 > I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
 
 ---
+
 
 ## CONTENT PATTERNS
 
@@ -265,10 +266,10 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 **Problem:** AI outputs lists where items start with bolded headers followed by colons.
 
 **Before:**
->
-> - **User Experience:** The user experience has been significantly improved with a new interface.
-> - **Performance:** Performance has been enhanced through optimized algorithms.
-> - **Security:** Security has been strengthened with end-to-end encryption.
+
+- **User Experience:** The user experience has been significantly improved with a new interface.
+- **Performance:** Performance has been enhanced through optimized algorithms.
+- **Security:** Security has been strengthened with end-to-end encryption.
 
 **After:**
 > The update improves the interface, speeds up load times through optimized algorithms, and adds end-to-end encryption.

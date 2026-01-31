@@ -11,31 +11,36 @@ mkdir -p ~/.claude/skills
 git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer
 ```
 
-### Manual install/update (only the skill file)
+### Manual install/update
 
-If you already have this repo cloned (or you downloaded `SKILL.md`), copy the skill file into Claude Code’s skills directory:
+Copy the desired skill file into Claude Code’s skills directory:
 
+**Standard Version (Human):**
 ```bash
-mkdir -p ~/.claude/skills/humanizer
-cp SKILL.md ~/.claude/skills/humanizer/
+cp SKILL.md ~/.claude/skills/humanizer/SKILL.md
+```
+
+**Professional Version (Pro):**
+```bash
+cp SKILL_PROFESSIONAL.md ~/.claude/skills/humanizer/SKILL_PROFESSIONAL.md
 ```
 
 ## Usage
 
 ### Claude Code
 
-In Claude Code, invoke the skill:
+Invoke the desired skill:
 
+**Standard:**
 ```text
 /humanizer
-
 [paste your text here]
 ```
 
-Or ask Claude to humanize text directly:
-
+**Professional:**
 ```text
-Please humanize this text: [your text]
+/humanizer-pro
+[paste your text here]
 ```
 
 ### Gemini CLI
@@ -78,13 +83,11 @@ Copy the content of `adapters/copilot/COPILOT.md` to your Copilot custom instruc
 
 ### Sync Process
 
-When `SKILL.md` is updated, run the sync script to propagate changes to all adapters:
+When sources in `src/` are updated, run the sync script to assemble variants and propagate changes to all adapters:
 
 1. **Sync:**
-    - Python: `python scripts/sync_adapters.py`
     - PowerShell: `scripts/sync-adapters.ps1`
-    - CMD: `scripts/sync-adapters.cmd`
-    *(This copies the core skill content to the Antigravity adapter and updates version metadata files)*
+    - *(This compiles fragments from `src/` into `SKILL.md` and `SKILL_PROFESSIONAL.md`, then updates all metadata in `adapters/`)*
 
 2. **Validate:**
     - Python: `python scripts/validate_adapters.py`

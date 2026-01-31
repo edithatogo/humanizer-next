@@ -42,6 +42,7 @@ Write-Host "Installed to: $geminiExtensions"
 
 # 3. Google Antigravity (Workspace)
 Install-File -Source "$RepoRoot\adapters\antigravity-skill\SKILL.md" -DestDir "$RepoRoot\.agent\skills\humanizer" -DestName "SKILL.md"
+Install-File -Source "$RepoRoot\adapters\antigravity-skill\SKILL_PROFESSIONAL.md" -DestDir "$RepoRoot\.agent\skills\humanizer" -DestName "SKILL_PROFESSIONAL.md"
 Install-File -Source "$RepoRoot\adapters\antigravity-skill\README.md" -DestDir "$RepoRoot\.agent\skills\humanizer" -DestName "README.md"
 Install-File -Source "$RepoRoot\adapters\antigravity-rules-workflows\rules\humanizer.md" -DestDir "$RepoRoot\.agent\rules" -DestName "humanizer.md"
 Install-File -Source "$RepoRoot\adapters\antigravity-rules-workflows\workflows\humanize.md" -DestDir "$RepoRoot\.agent\workflows" -DestName "humanize.md"
