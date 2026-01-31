@@ -1,0 +1,11 @@
+title:	Makes regular non-ai generated text flagged as ai on GPTZERO
+state:	OPEN
+author:	Doctordefector
+labels:	
+comments:	2
+assignees:	
+projects:	
+milestone:	
+number:	2
+--
+Hey! Love the project, I wanted to leave some feedback, the skill itself is great and keepts the writing and tone relatively verbatim but the changes it does make immediatly flags a human project to be 100% on both the basic and advanced scan of GPTZero, could be worth looking into or trying this skill on other models to see if its just a claude thing, Looking forward to updates and improvements! Cheers

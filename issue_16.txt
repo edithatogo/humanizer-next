@@ -1,0 +1,11 @@
+title:	fix: address AI-signatures in code (issue #12)
+state:	OPEN
+author:	edithatogo
+labels:	
+comments:	0
+assignees:	
+projects:	
+milestone:	
+number:	16
+--
+Closes #12. This PR adds Pattern #25 to detect and remove AI-generated signatures and redundant comments in code blocks.

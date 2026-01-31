@@ -1,0 +1,13 @@
+title:	how to install on Android?
+state:	OPEN
+author:	black1linkin
+labels:	
+comments:	0
+assignees:	
+projects:	
+milestone:	
+number:	13
+--
+[Image](https://github.com/user-attachments/assets/401186c9-16b5-4c06-870d-cfe851521fbc)
+hi! how to use this script on Android?
+get network error

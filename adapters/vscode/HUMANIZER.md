@@ -396,6 +396,23 @@ function add(a, b) {
 
 ---
 
+### 26. Non-Text AI Patterns (Over-structuring)
+
+**Words to watch:** In summary, Table 1:, Breakdown:, Key takeaways: (when used with mechanical lists)
+
+**Problem:** AI-generated text often uses rigid, non-human formatting (like unnecessary tables or bulleted lists) to present simple information that a human would describe narratively.
+
+**Before:**
+> **Performance Comparison:**
+> - **Speed:** High
+> - **Stability:** Excellent
+> - **Memory:** Low
+
+**After:**
+> The system is fast and stable with low memory overhead.
+
+---
+
 ## FILLER AND HEDGING
 
 ### 22. Filler Phrases

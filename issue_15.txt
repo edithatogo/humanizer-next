@@ -1,0 +1,17 @@
+title:	feat: modular skill fragments and professional variant
+state:	OPEN
+author:	edithatogo
+labels:	
+comments:	0
+assignees:	
+projects:	
+milestone:	
+number:	15
+--
+This PR refactors the skill into modular fragments and introduces the Humanizer Pro variant. 
+
+Key changes:
+- Modular source fragments in src/ to prevent duplication of core patterns.
+- Build system in sync-adapters.ps1 to assemble variants.
+- Professional variant focused on 'Voice and Craft'.
+- Updated all adapters and documentation.

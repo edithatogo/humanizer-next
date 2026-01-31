@@ -1,0 +1,88 @@
+title:	Add explanations on how to integrate it in other agent frameworks.
+state:	OPEN
+author:	speedyk-005
+labels:	
+comments:	2
+assignees:	
+projects:	
+milestone:	
+number:	10
+--
+Thanks for this great skill repo. can you update readme to mention how to use it in other agent systems like gemini cli, codex, opencode or more...
+
+Exemples
+
+# 🔧 Using the Humanizer Skill in Other Agent Frameworks
+
+The Humanizer Skill follows the open Agent Skills specification, so it works with most AI coding assistants and CLI tools. The easiest way to manage it is with the npm-agentskills package, which bridges npm and your agent's config.
+
+### 📦 Recommended: Automated Installation
+
+Use npm-agentskills to automatically discover, install, and sync this skill to your environment:
+
+```bash
+# Install the utility
+npm install -g npm-agentskills
+
+# Export to your specific agent
+npx agentskills export --target claude   # For Claude Code
+npx agentskills export --target gemini   # For Gemini CLI / Google SDK
+npx agentskills export --target opencode # For OpenCode
+npx agentskills export --target cursor   # For Cursor IDE
+```
+
+### Manual Integration Examples
+
+#### 🤖 Gemini CLI & Google AI SDK
+
+If you're using the gemini-cli-skillz MCP server or standard Google AI CLI:
+
+```bash
+# Create the skills directory
+mkdir -p ~/.gemini/skills
+
+# Copy the Humanizer skill
+cp -r ./humanizer-skill ~/.gemini/skills/
+
+# Usage:
+# "gemini> @humanizer please make this text sound less robotic"
+```
+
+#### 💻 Claude Code & OpenCode
+
+Claude Code and OpenCode support the Agent Skills filesystem structure:
+
+```bash
+# Install globally via npm-agentskills
+npx agentskills install humanizer
+
+# Or place manually
+git clone https://github.com/some-repo/humanizer ~/.claude/skills/humanizer
+
+# Usage:
+# "Claude, use your humanizer skill to improve this documentation."
+```
+
+#### 🖱️ Cursor / Windsurf / IDEs
+
+For IDE-based agents, put the skill in your project config or global skill store:
+
+```bash
+# Project-specific use
+mkdir -p .cursor/skills/
+cp -r /path/to/humanizer-skill .cursor/skills/
+
+# Global use
+mkdir -p ~/.cursor/skills/
+cp -r /path/to/humanizer-skill ~/.cursor/skills/
+```
+
+#### ⚡ VibeKit CLI
+
+```bash
+# Install and use with vibekit
+vibekit install humanizer
+vibekit claude "Use the humanizer skill to improve this text"
+```
+
+The Humanizer skill follows the standard Agent Skills specification, ensuring consistent functionality across all compatible frameworks while maintaining the same ability to remove AI writing patterns.

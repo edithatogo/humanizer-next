@@ -8,9 +8,10 @@ $humanHeaderPath = Join-Path $srcDir "human_header.md"
 $proHeaderPath = Join-Path $srcDir "pro_header.md"
 
 # 2. Helper to Compile Skill
-function Compile-Skill($headerPath) {
-    if (-not (Test-Path $headerPath)) { throw "Header not found: $headerPath" }
-    $header = Get-Content $headerPath -Raw
+function Invoke-CompileSkill {
+    param($Path)
+    if (-not (Test-Path $Path)) { throw "Header not found: $Path" }
+    $header = Get-Content $Path -Raw
     $coreFM = Get-Content $coreFrontmatterPath -Raw
     $corePatterns = Get-Content $corePatternsPath -Raw
     
@@ -21,12 +22,12 @@ function Compile-Skill($headerPath) {
 
 # 3. Compile Standard and Professional
 Write-Host "Compiling Standard Humanizer..."
-$standardContent = Compile-Skill $humanHeaderPath
-Set-Content -Path "SKILL.md" -Value $standardContent -NoNewline
+$standardContent = Invoke-CompileSkill -Path $humanHeaderPath
+Set-Content -Path "SKILL.md" -Value $standardContent -Encoding utf8 -NoNewline
 
 Write-Host "Compiling Humanizer Pro..."
-$proContent = Compile-Skill $proHeaderPath
-Set-Content -Path "SKILL_PROFESSIONAL.md" -Value $proContent -NoNewline
+$proContent = Invoke-CompileSkill -Path $proHeaderPath
+Set-Content -Path "SKILL_PROFESSIONAL.md" -Value $proContent -Encoding utf8 -NoNewline
 
 # Parse Versions
 $vStandard = ([regex]::Match($standardContent, '(?m)^version:\s*([\w.-]+)\s*$')).Groups[1].Value
@@ -53,6 +54,8 @@ foreach ($adapter in $adapters) {
     $skillName = ([regex]::Match($adapter.Source, '(?m)^name:\s*([\w.-]+)\s*$')).Groups[1].Value
     $skillVersion = ([regex]::Match($adapter.Source, '(?m)^version:\s*([\w.-]+)\s*$')).Groups[1].Value
     
+    if (-not $skillName) { throw "Could not find skill_name for $($adapter.Path)" }
+
     $metaBlock = @"
 ---
 adapter_metadata:
@@ -66,7 +69,7 @@ adapter_metadata:
 
 "@
     $newContent = $metaBlock + "`n" + $adapter.Source
-    Set-Content -Path $adapter.Path -Value $newContent -NoNewline
+    Set-Content -Path $adapter.Path -Value $newContent -Encoding utf8 -NoNewline
 }
 
-Write-Host "Sync Complete."
+Write-Host "`nSync Complete. All adapters updated from local source fragments."
