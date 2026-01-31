@@ -7,7 +7,10 @@ on:
 
 jobs:
   validate-skill:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,6 +31,7 @@ jobs:
         run: npm test
 
       - name: Run skill validation script
+        shell: bash
         run: |
           chmod +x scripts/validate-skill.sh
           ./scripts/validate-skill.sh
