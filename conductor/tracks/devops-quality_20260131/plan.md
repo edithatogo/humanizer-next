@@ -9,10 +9,10 @@
 - [ ] Task: Port `install-adapters.ps1` to `scripts/install_adapters.py`
 - [ ] Task: Conductor - Agent Verification 'Phase 1: Python Migration & Infrastructure'
 
-## Phase 2: Testing & Coverage
+## Phase 2: Testing & Coverage [checkpoint: f2806c8]
 - [x] Task: Set up `pytest` and `pytest-cov` (2d5fb45)
 - [x] Task: Write tests for all Python scripts to achieve 100% coverage (2d5fb45)
-- [ ] Task: Conductor - Agent Verification 'Phase 2: Testing & Coverage'
+- [x] Task: Conductor - Agent Verification 'Phase 2: Testing & Coverage' (f2806c8)
 
 ## Phase 3: Pre-commit & Prose Linting
 - [ ] Task: Configure `.pre-commit-config.yaml` with Ruff, Mypy, and Markdownlint
