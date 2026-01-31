@@ -41,3 +41,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 ## [ ] Track: Add Skillshare distribution + AIX validation (skill-distribution_20260131)
 
 *Link: [./conductor/tracks/skill-distribution_20260131/](./conductor/tracks/skill-distribution_20260131/)*
+
+## [x] Track: Skill Expansion & Portable Compilation
+
+*Link: [./conductor/tracks/skill-expansion_20260201/](./conductor/tracks/skill-expansion_20260201/)*
