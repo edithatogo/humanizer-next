@@ -7,7 +7,7 @@
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Define adapter architecture' (Protocol in workflow.md)
 
 ## Phase 2: Implement adapters
-- [~] Task: Add Codex CLI adapter (AGENTS.md/workflow instructions)
+- [x] Task: Add Codex CLI adapter (AGENTS.md/workflow instructions) (d240d65)
 - [ ] Task: Add Gemini CLI adapter (prompt/workflow wrapper)
 - [ ] Task: Add VS Code adapter (workspace instructions/snippets)
 - [ ] Task: Add Google Antigravity adapter (workflow wrapper)
