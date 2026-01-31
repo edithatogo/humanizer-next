@@ -6,7 +6,7 @@
 - [x] Task: Draft shared adapter core text (references SKILL.md) (1e8dfc9)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Define adapter architecture' (Protocol in workflow.md)
 
-## Phase 2: Implement adapters
+## Phase 2: Implement adapters [checkpoint: 39ef58b]
 - [x] Task: Add Codex CLI adapter (AGENTS.md/workflow instructions) (d240d65)
 - [x] Task: Add Gemini CLI adapter (prompt/workflow wrapper) (c7945c6)
 - [x] Task: Add VS Code adapter (workspace instructions/snippets) (0fb8fd0)
