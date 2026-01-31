@@ -3,7 +3,7 @@
 ## Phase 1: Define adapter architecture
 - [x] Task: Inventory target environments and adapter formats (afea8e8)
 - [x] Task: Define adapter metadata contract (version + last synced) (b412925)
-- [ ] Task: Draft shared adapter core text (references SKILL.md)
+- [~] Task: Draft shared adapter core text (references SKILL.md)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Define adapter architecture' (Protocol in workflow.md)
 
 ## Phase 2: Implement adapters
