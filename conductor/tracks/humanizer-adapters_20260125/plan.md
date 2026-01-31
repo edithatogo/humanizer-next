@@ -1,6 +1,6 @@
 # Plan: Build multi-agent Humanizer adapters
 
-## Phase 1: Define adapter architecture
+## Phase 1: Define adapter architecture [checkpoint: 4b15a2b]
 - [x] Task: Inventory target environments and adapter formats (afea8e8)
 - [x] Task: Define adapter metadata contract (version + last synced) (b412925)
 - [x] Task: Draft shared adapter core text (references SKILL.md) (1e8dfc9)
