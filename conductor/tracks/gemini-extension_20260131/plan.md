@@ -7,7 +7,7 @@
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Define extension structure' (Protocol in workflow.md)
 
 ## Phase 2: Implement extension files
-- [ ] Task: Add Gemini extension manifest and entrypoint
+- [~] Task: Add Gemini extension manifest and entrypoint
 - [ ] Task: Add GEMINI.md or required context file
 - [ ] Task: Wire commands or instructions to apply Humanizer
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Implement extension files' (Protocol in workflow.md)
