@@ -86,41 +86,17 @@ All tasks follow a strict lifecycle:
     -   Execute the announced command.
     -   If tests fail, you **must** inform the user and begin debugging. You may attempt to propose a fix a **maximum of two times**. If the tests still fail after your second proposed fix, you **must stop**, report the persistent failure, and ask the user for guidance.
 
-4.  **Propose a Detailed, Actionable Manual Verification Plan:**
-    -   **CRITICAL:** To generate the plan, first analyze `product.md`, `product-guidelines.md`, and `plan.md` to determine the user-facing goals of the completed phase.
-    -   You **must** generate a step-by-step plan that walks the user through the verification process, including any necessary commands and specific, expected outcomes.
-    -   The plan you present to the user **must** follow this format:
-
-        **For a Frontend Change:**
-        ```
-        The automated tests have passed. For manual verification, please follow these steps:
-
-        **Manual Verification Steps:**
-        1.  **Start the development server with the command:** `npm run dev`
-        2.  **Open your browser to:** `http://localhost:3000`
-        3.  **Confirm that you see:** The new user profile page, with the user's name and email displayed correctly.
-        ```
-
-        **For a Backend Change:**
-        ```
-        The automated tests have passed. For manual verification, please follow these steps:
-
-        **Manual Verification Steps:**
-        1.  **Ensure the server is running.**
-        2.  **Execute the following command in your terminal:** `curl -X POST http://localhost:8080/api/v1/users -d '{"name": "test"}'`
-        3.  **Confirm that you receive:** A JSON response with a status of `201 Created`.
-        ```
-
-5.  **Await Explicit User Feedback:**
-    -   After presenting the detailed plan, ask the user for confirmation: "**Does this meet your expectations? Please confirm with yes or provide feedback on what needs to be changed.**"
-    -   **PAUSE** and await the user's response. Do not proceed without an explicit yes or confirmation.
+4.  **Automated Verification Instead of Manual Steps:**
+    -   **CRITICAL:** Analyze `product.md`, `product-guidelines.md`, and `plan.md` to determine the user-facing goals of the completed phase.
+    -   Design and run automated verification steps that cover the user-facing goals (e.g., CLI checks, scriptable smoke tests, snapshot validation).
+    -   If a verification step cannot be automated, the phase cannot be marked complete. Document the gap and stop for user guidance.
 
 6.  **Create Checkpoint Commit:**
     -   Stage all changes. If no changes occurred in this step, proceed with an empty commit.
     -   Perform the commit with a clear and concise message (e.g., `conductor(checkpoint): Checkpoint end of Phase X`).
 
 7.  **Attach Auditable Verification Report using Git Notes:**
-    -   **Step 7.1: Draft Note Content:** Create a detailed verification report including the automated test command, the manual verification steps, and the user's confirmation.
+    -   **Step 7.1: Draft Note Content:** Create a detailed verification report including the automated test command(s), the automated verification steps executed, and their results.
     -   **Step 7.2: Attach Note:** Use the `git notes` command and the full commit hash from the previous step to attach the full report to the checkpoint commit.
 
 8.  **Get and Record Phase Checkpoint SHA:**
@@ -133,6 +109,31 @@ All tasks follow a strict lifecycle:
     - **Action:** Commit this change with a descriptive message following the format `conductor(plan): Mark phase '<PHASE NAME>' as complete`.
 
 10.  **Announce Completion:** Inform the user that the phase is complete and the checkpoint has been created, with the detailed verification report attached as a git note.
+
+### Track Completion, Archiving, and Sequencing Protocol
+
+**Trigger:** This protocol runs after all phases in a track's `plan.md` are completed.
+
+1. **Finalize Track Status:**
+   - Update the track's `metadata.json` status to `archived`.
+   - Append the completion date to the metadata `updated_at`.
+
+2. **Archive in `conductor/tracks.md`:**
+   - Move the track entry from the active list to a new `Archived Tracks` section.
+   - Mark it as completed with `[x]` and append the 7-char commit SHA of the archive commit.
+
+3. **Create an Archive Commit:**
+   - Stage changes (metadata + `tracks.md`).
+   - Commit with a message like `conductor(archive): Archive <track_id>`.
+
+4. **Proceed to Next Sequential Track:**
+   - Select the next track in order from `conductor/tracks.md`.
+   - Mark its first pending task as `[~]` and begin execution.
+
+### Commit Enforcement
+
+- Every task completion must have a commit.
+- No task or phase may be marked complete without a corresponding commit SHA.
 
 ### Quality Gates
 
