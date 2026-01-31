@@ -57,7 +57,7 @@ def validate_adapter(
 
 
 def main() -> None:
-    """Main entry point for the validation script."""
+    """Run the validation script."""
     parser = argparse.ArgumentParser(description="Validate Humanizer adapters.")
     parser.add_argument(
         "--source",

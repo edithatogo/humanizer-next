@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def install_file(source: Path, dest_dir: Path, dest_name: str) -> None:
-    """Helper for creating directories and copying a file."""
+    """Create directories if needed and copy a file."""
     if not source.exists():
         logger.warning("Source not found: %s", source)
         return
@@ -26,7 +26,7 @@ def install_file(source: Path, dest_dir: Path, dest_name: str) -> None:
 
 
 def main() -> None:
-    """Main entry point for the installation script."""
+    """Run the installation script."""
     parser = argparse.ArgumentParser(description="Install Humanizer adapters.")
     parser.add_argument(
         "--skip-validation",

@@ -1,4 +1,6 @@
 # ruff: noqa: S101, PLR2004, PLR0913
+"""Tests for the install_adapters script."""
+
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -11,6 +13,7 @@ from scripts.install_adapters import (
 
 
 def test_install_file_success(tmp_path: Path) -> None:
+    """Verify that a file is correctly copied to the destination."""
     source = tmp_path / "source.txt"
     source.write_text("content", encoding="utf-8")
     dest_dir = tmp_path / "dest"
@@ -25,6 +28,7 @@ def test_install_file_success(tmp_path: Path) -> None:
 def test_install_file_source_missing(
     caplog: pytest.LogCaptureFixture, tmp_path: Path
 ) -> None:
+    """Verify that a warning is logged when the source file is missing."""
     caplog.set_level("WARNING")
     install_file(Path("missing.txt"), tmp_path / "dest", "dest.txt")
     assert "Source not found: missing.txt" in caplog.text
@@ -45,6 +49,7 @@ def test_main_success(
     mock_run: MagicMock,
     tmp_path: Path,
 ) -> None:
+    """Verify the main installation flow with successful validation."""
     mock_home.return_value = tmp_path / "home"
     mock_run.return_value = MagicMock(returncode=0)
 
@@ -88,6 +93,7 @@ def test_main_validation_success(
     mock_run: MagicMock,
     tmp_path: Path,
 ) -> None:
+    """Verify that validation runs and succeeds before installation."""
     mock_home.return_value = tmp_path / "home"
     mock_run.return_value = MagicMock(returncode=0)
     mock_exists.return_value = True
@@ -109,6 +115,7 @@ def test_main_gemini_missing(
     caplog: pytest.LogCaptureFixture,
     tmp_path: Path,
 ) -> None:
+    """Verify that a warning is logged if the Gemini source adapter is missing."""
     caplog.set_level("WARNING")
     mock_home.return_value = tmp_path / "home"
     # Return False for source_gemini.exists()
@@ -127,6 +134,7 @@ def test_main_gemini_missing(
 def test_main_validation_fails(
     mock_run: MagicMock, caplog: pytest.LogCaptureFixture
 ) -> None:
+    """Verify that installation aborts if validation fails."""
     mock_run.return_value = MagicMock(returncode=1, stderr="Some error")
 
     with patch("sys.argv", ["install_adapters.py"]):

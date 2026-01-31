@@ -54,6 +54,9 @@ select = [
     "TRY",  # tryceratops
     "FLY",  # flynt
     "RUF",  # Ruff-specific rules
+    "D",    # pydocstyle
+    "PERF", # Perflint
+    "LOG",  # flake8-logging
 ]
 ignore = [
     "ANN101", # Missing type annotation for self in method

@@ -1,4 +1,6 @@
 # ruff: noqa: S101, PLR2004
+"""Tests for the validate_adapters script."""
+
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -13,23 +15,27 @@ from scripts.validate_adapters import (
 
 @pytest.fixture
 def mock_skill_file(tmp_path: Path) -> Path:
+    """Create a temporary SKILL.md file with metadata."""
     skill_file = tmp_path / "SKILL.md"
     skill_file.write_text("name: humanizer\nversion: 1.2.3\n", encoding="utf-8")
     return skill_file
 
 
 def test_get_skill_metadata_success(mock_skill_file: Path) -> None:
+    """Verify that name and version are correctly extracted from the skill file."""
     name, version = get_skill_metadata(mock_skill_file)
     assert name == "humanizer"
     assert version == "1.2.3"
 
 
 def test_get_skill_metadata_not_found() -> None:
+    """Verify that FileNotFoundError is raised when the skill file is missing."""
     with pytest.raises(FileNotFoundError, match=r"Source file .* not found!"):
         get_skill_metadata(Path("nonexistent.md"))
 
 
 def test_get_skill_metadata_missing_fields(tmp_path: Path) -> None:
+    """Verify that ValueError is raised when required metadata fields are missing."""
     skill_file = tmp_path / "SKILL_bad.md"
     skill_file.write_text("nothing here", encoding="utf-8")
     with pytest.raises(ValueError, match="Failed to read name/version from"):
@@ -37,6 +43,7 @@ def test_get_skill_metadata_missing_fields(tmp_path: Path) -> None:
 
 
 def test_validate_adapter_success(tmp_path: Path) -> None:
+    """Verify that a valid adapter file returns no errors."""
     adapter = tmp_path / "ADAPTER.md"
     adapter_content = (
         "skill_name: humanizer\n"
@@ -50,6 +57,7 @@ def test_validate_adapter_success(tmp_path: Path) -> None:
 
 
 def test_validate_adapter_failures(tmp_path: Path) -> None:
+    """Verify that an invalid adapter file returns all expected errors."""
     adapter = tmp_path / "ADAPTER.md"
     adapter.write_text(
         "skill_name: wrong\nskill_version: 0.0.0\nsource_path: WRONG.md",
@@ -64,6 +72,7 @@ def test_validate_adapter_failures(tmp_path: Path) -> None:
 
 
 def test_validate_adapter_missing() -> None:
+    """Verify that a missing adapter file returns an error."""
     errors = validate_adapter(Path("missing.md"), "n", "v", "s")
     assert errors == ["Missing adapter file: missing.md"]
 
@@ -75,6 +84,7 @@ def test_main_success(
     mock_get_meta: MagicMock,
     caplog: pytest.LogCaptureFixture,
 ) -> None:
+    """Verify the main validation flow with successful validation."""
     caplog.set_level("INFO")
     mock_get_meta.return_value = ("humanizer", "1.2.3")
     mock_validate.return_value = []
@@ -97,6 +107,7 @@ def test_main_failure(
     mock_get_meta: MagicMock,
     caplog: pytest.LogCaptureFixture,
 ) -> None:
+    """Verify that validation failures exit with code 1."""
     mock_get_meta.return_value = ("humanizer", "1.2.3")
     mock_validate.return_value = ["Error 1", "Error 2"]
 
@@ -117,6 +128,7 @@ def test_main_source_not_found(
     mock_get_meta: MagicMock,
     caplog: pytest.LogCaptureFixture,
 ) -> None:
+    """Verify that missing source file logs an error and exits with code 1."""
     mock_get_meta.side_effect = FileNotFoundError("Missing file")
 
     with patch(

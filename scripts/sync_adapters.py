@@ -66,7 +66,7 @@ def update_metadata(dest_path: Path, version: str, today: str) -> None:
 
 
 def main() -> None:
-    """Main entry point for the sync script."""
+    """Run the sync script."""
     parser = argparse.ArgumentParser(description="Sync Humanizer adapters.")
     parser.add_argument(
         "--source",

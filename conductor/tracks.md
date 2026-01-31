@@ -6,17 +6,11 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Archived Tracks
 
-
-
 ## [x] Track: DevOps and Quality Engineering (da248f2)
 
 *Link: [./conductor/tracks/devops-quality_20260131/](./conductor/tracks/devops-quality_20260131/)*
 
-
-
 ## [x] Track: Universal Automated Adapters
-
-
 
 *Link: [./conductor/tracks/universal-automated-adapters_20260131/](./conductor/tracks/universal-automated-adapters_20260131/)*
 
