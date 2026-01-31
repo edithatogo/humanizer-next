@@ -4,7 +4,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Create a Gemini CLI extension adapter for Humanizer
+## [~] Track: Create a Gemini CLI extension adapter for Humanizer
 *Link: [./conductor/tracks/gemini-extension_20260131/](./conductor/tracks/gemini-extension_20260131/)*
 
 ## [ ] Track: Create a Google Antigravity skill adapter for Humanizer
