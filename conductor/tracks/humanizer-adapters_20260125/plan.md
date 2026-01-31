@@ -15,7 +15,7 @@
 
 ## Phase 3: Drift control and validation
 - [x] Task: Write a validation script to check adapter metadata matches SKILL.md version (c471faa)
-- [~] Task: Add CI-friendly command to run validation
+- [x] Task: Add CI-friendly command to run validation (8598be2)
 - [ ] Task: Update README to document adapters and sync process
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Drift control and validation' (Protocol in workflow.md)
 
