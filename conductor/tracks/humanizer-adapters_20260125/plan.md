@@ -20,6 +20,6 @@
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Drift control and validation' (Protocol in workflow.md)
 
 ## Phase 4: Release readiness
-- [ ] Task: Run validation and verify no changes to SKILL.md
+- [~] Task: Run validation and verify no changes to SKILL.md
 - [ ] Task: Tag/record adapter pack versioning approach (doc-only)
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Release readiness' (Protocol in workflow.md)
