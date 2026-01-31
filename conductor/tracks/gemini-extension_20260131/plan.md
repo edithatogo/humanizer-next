@@ -1,7 +1,7 @@
 # Plan: Create a Gemini CLI extension adapter for Humanizer
 
 ## Phase 1: Define extension structure
-- [~] Task: Extract Gemini CLI extension requirements from the reference URL
+- [x] Task: Extract Gemini CLI extension requirements from the reference URL (b011e1d)
 - [ ] Task: Decide extension folder layout and naming
 - [ ] Task: Define adapter metadata contract (version + last synced)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Define extension structure' (Protocol in workflow.md)
