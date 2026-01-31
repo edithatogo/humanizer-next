@@ -7,3 +7,6 @@
 
 ## Context File
 - `adapters/gemini-extension/GEMINI.md` contains adapter metadata and core Humanizer instructions.
+
+## Commands
+- `adapters/gemini-extension/commands/humanizer/humanize.toml` provides the saved prompt to run Humanizer.
