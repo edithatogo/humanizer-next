@@ -1,6 +1,6 @@
 # Plan: Create a Gemini CLI extension adapter for Humanizer
 
-## Phase 1: Define extension structure
+## Phase 1: Define extension structure [checkpoint: 99c6113]
 - [x] Task: Extract Gemini CLI extension requirements from the reference URL (b011e1d)
 - [x] Task: Decide extension folder layout and naming (9d802a2)
 - [x] Task: Define adapter metadata contract (version + last synced) (750d465)
