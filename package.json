@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "lint:all": "npm run lint && npm run lint:js && npm run typecheck && npm run format:check",
     "test": "node --test test/*.test.js && node scripts/run-tests.js",
-    "build": "node scripts/compile-skill.js"
+    "build": "node scripts/compile-skill.js",
+    "install:adapters": "node scripts/install-adapters.js"
   },
   "keywords": [],
   "author": "",

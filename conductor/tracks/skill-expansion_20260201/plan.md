@@ -18,3 +18,8 @@
 - [x] Run `npm test` successfully
 - [x] Verify `dist/humanizer-pro.bundled.md` content
 - [x] Ensure routing logic triggers are present
+
+## Phase 4: Adapter Reconfiguration (User Request)
+- [ ] Research & Fix Qwen CLI Installation (Target `~/.qwen/extensions`)
+- [ ] Scaffold/Install Codex Adapter (if missing)
+- [ ] Verify VS Code Global Installation (Snippets)
