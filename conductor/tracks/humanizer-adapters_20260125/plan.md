@@ -21,5 +21,5 @@
 
 ## Phase 4: Release readiness
 - [x] Task: Run validation and verify no changes to SKILL.md (7a37c65)
-- [~] Task: Tag/record adapter pack versioning approach (doc-only)
+- [x] Task: Tag/record adapter pack versioning approach (doc-only) (e3c81c9)
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Release readiness' (Protocol in workflow.md)
