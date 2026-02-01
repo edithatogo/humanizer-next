@@ -83,7 +83,8 @@ def main() -> None:
         logger.error("Error: %s", e)  # noqa: TRY400
         return
 
-    today = datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
+    # Use UTC date to match JS sync behavior (ISO YYYY-MM-DD).
+    today = datetime.now(tz=timezone.utc).date().isoformat()
 
     logger.info("Detected Version: %s", version)
     logger.info("Sync Date: %s", today)

@@ -28,6 +28,7 @@ fs.writeFileSync('SKILL_PROFESSIONAL.md', proContent, 'utf8');
 
 const vStandard = standardContent.match(/^version:\s*([\w.-]+)\s*$/m)?.[1];
 const vPro = proContent.match(/^version:\s*([\w.-]+)\s*$/m)?.[1];
+// UTC date to match Python sync behavior.
 const today = new Date().toISOString().split('T')[0];
 
 console.log(`Standard Version: ${vStandard}`);

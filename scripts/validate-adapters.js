@@ -1,5 +1,4 @@
 import fs from 'fs';
-import path from 'path';
 
 const adapters = [
   { path: 'adapters/antigravity-skill/SKILL.md', base: 'SKILL.md' },
