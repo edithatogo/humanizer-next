@@ -1,9 +1,20 @@
 ---
-name: humanizer
-version: 2.2.1
+adapter_metadata:
+  skill_name: humanizer-pro
+  skill_version: 2.2.0
+  last_synced: 2026-02-02
+  source_path: SKILL_PROFESSIONAL.md
+  adapter_id: antigravity-skill-pro
+  adapter_format: Antigravity skill
+---
+
+
+---
+name: humanizer-pro
+version: 2.2.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
-  text to make it sound more natural and human-written. Based on Wikipedia's
+  text to make it sound more natural, human-written, and professional. Based on Wikipedia's
   comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
@@ -30,36 +41,42 @@ When given text to humanize:
 2. **Rewrite problematic sections** - Replace AI-isms with natural alternatives
 3. **Preserve meaning** - Keep the core message intact
 4. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
-5. **Add soul** - Don't just remove bad patterns; inject actual personality
+5. **Refine voice** - Ensure writing is alive, specific, and professional
 
 ---
 
-## PERSONALITY AND SOUL
+## VOICE AND CRAFT
 
-Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as obvious as slop. Good writing has a human behind it.
+Removing AI patterns is necessary but not sufficient. What remains needs to actually read well.
 
-### Signs of soulless writing (even if technically "clean")
+The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like someone wrote it, considered it, meant it. The register should match the context (a technical spec sounds different from a newsletter), but in any register, good writing has shape.
 
-- Every sentence is the same length and structure
-- No opinions, just neutral reporting
-- No acknowledgment of uncertainty or mixed feelings
-- No first-person perspective when appropriate
-- No humor, no edge, no personality
-- Reads like a Wikipedia article or press release
+### Signs the writing is still flat
 
-### How to add voice
+- Every sentence lands the same way—same length, same structure, same rhythm
+- Nothing is concrete; everything is "significant" or "notable" without saying why
+- No perspective, just information arranged in order
+- Reads like it could be about anything—no sense that the writer knows this particular subject
 
-Have opinions and react to facts. Vary sentence rhythm with short and long lines. Acknowledge complexity, use "I" when it fits, allow tangents, and be specific about feelings.
+### What to aim for
 
-### Before (clean but soulless)
->
-> The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical. The implications remain unclear.
+**Rhythm.** Vary sentence length. Let a short sentence land after a longer one. This creates emphasis without bolding everything.
 
-### After (has a pulse)
->
-> I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
+**Specificity.** "The outage lasted 4 hours and affected 12,000 users" tells me something. "The outage had significant impact" tells me nothing.
+
+**A point of view.** This doesn't mean injecting opinions everywhere. It means the writing reflects that someone with knowledge made choices about what matters, what to include, what to skip. Even neutral writing can have perspective.
+
+**Earned emphasis.** If something is important, show me through detail. Don't just assert it.
+
+**Read it aloud.** If you stumble, the reader will too.
 
 ---
+
+**Clarity over filler.** Use simple active verbs (`is`, `has`, `shows`) instead of filler phrases (`stands as a testament to`).
+
+### Technical Nuance
+**Expertise isn't slop.** In professional contexts, "crucial" or "pivotal" are sometimes the exact right words for a technical requirement. The Pro variant targets *lazy* patterns, not technical precision. If a word is required for accuracy, keep it. If it's there to add fake "gravitas," cut it.
+
 
 ## CONTENT PATTERNS
 
@@ -227,7 +244,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ## STYLE PATTERNS
 
-### 13. Em dash overuse
+### 13. Em Dash Overuse
 
 **Problem:** LLMs use em dashes (—) more than humans, mimicking "punchy" sales writing.
 
@@ -239,7 +256,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 14. Overuse of boldface
+### 14. Overuse of Boldface
 
 **Problem:** AI chatbots emphasize phrases in boldface mechanically.
 
@@ -251,7 +268,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 15. Inline-header vertical lists
+### 15. Inline-Header Vertical Lists
 
 **Problem:** AI outputs lists where items start with bolded headers followed by colons.
 
@@ -266,7 +283,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 16. Title case in headings
+### 16. Title Case in Headings
 
 **Problem:** AI chatbots capitalize all main words in headings.
 
@@ -294,25 +311,21 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 18. Quotation mark issues
+### 18. Curly Quotation Marks
 
-**Problem:** AI models make two common quotation mistakes:
-1. Using curly quotes (“...”) instead of straight quotes ("...")
-2. Using single quotes ('...') as primary delimiters in prose (from code training)
+**Problem:** ChatGPT uses curly quotes (“...”) instead of straight quotes ("...").
 
 **Before:**
 > He said “the project is on track” but others disagreed.
-> She stated, 'This is the final version.'
 
 **After:**
 > He said "the project is on track" but others disagreed.
-> She stated, "This is the final version."
 
 ---
 
 ## COMMUNICATION PATTERNS
 
-### 19. Collaborative communication artifacts
+### 19. Collaborative Communication Artifacts
 
 **Words to watch:** I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
 
@@ -326,7 +339,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 20. Knowledge-cutoff disclaimers
+### 20. Knowledge-Cutoff Disclaimers
 
 **Words to watch:** as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information...
 
@@ -340,7 +353,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 21. Sycophantic/servile tone
+### 21. Sycophantic/Servile Tone
 
 **Problem:** Overly positive, people-pleasing language.
 
@@ -354,7 +367,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ## FILLER AND HEDGING
 
-### 22. Filler phrases
+### 22. Filler Phrases
 
 **Before → After:**
 
@@ -367,7 +380,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 23. Excessive hedging
+### 23. Excessive Hedging
 
 **Problem:** Over-qualifying statements.
 
@@ -379,7 +392,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 24. Generic positive conclusions
+### 24. Generic Positive Conclusions
 
 **Problem:** Vague upbeat endings.
 
@@ -391,7 +404,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 
 ---
 
-### 25. AI signatures in code
+### 25. AI Signatures in Code
 
 **Words to watch:** `// Generated by`, `Produced by`, `Created with [AI Model]`, `/* AI-generated */`, `// Here is the refactored code:`
 
@@ -417,7 +430,7 @@ function add(a, b) {
 
 ---
 
-### 26. Non-text AI patterns (over-structuring)
+### 26. Non-Text AI Patterns (Over-structuring)
 
 **Words to watch:** In summary, Table 1:, Breakdown:, Key takeaways: (when used with mechanical lists)
 
@@ -441,32 +454,32 @@ function add(a, b) {
 
 Patterns are ranked by how strongly they signal AI-generated text:
 
-### Critical (immediate AI detection)
+### Critical (Immediate AI Detection)
 These patterns alone can identify AI-generated text:
-- **Pattern 19:** Collaborative communication artifacts ("I hope this helps!", "Let me know if...")
-- **Pattern 20:** Knowledge-cutoff disclaimers ("As of my last training...")
-- **Pattern 21:** Sycophantic tone ("Great question!", "You're absolutely right!")
-- **Pattern 25:** AI signatures in code ("// Generated by ChatGPT")
+- **Pattern 19:** Collaborative Communication Artifacts ("I hope this helps!", "Let me know if...")
+- **Pattern 20:** Knowledge-Cutoff Disclaimers ("As of my last training...")
+- **Pattern 21:** Sycophantic Tone ("Great question!", "You're absolutely right!")
+- **Pattern 25:** AI Signatures in Code ("// Generated by ChatGPT")
 
-### High (strong AI indicators)
+### High (Strong AI Indicators)
 Multiple occurrences strongly suggest AI:
-- **Pattern 1:** Significance inflation ("testament", "pivotal moment", "evolving landscape")
-- **Pattern 7:** AI vocabulary words ("delve", "underscore", "tapestry", "interplay")
-- **Pattern 3:** Superficial -ing analyses ("highlighting", "underscoring", "showcasing")
-- **Pattern 8:** Copula avoidance ("serves as", "stands as", "functions as")
+- **Pattern 1:** Significance Inflation ("testament", "pivotal moment", "evolving landscape")
+- **Pattern 7:** AI Vocabulary Words ("delve", "underscore", "tapestry", "interplay")
+- **Pattern 3:** Superficial -ing Analyses ("highlighting", "underscoring", "showcasing")
+- **Pattern 8:** Copula Avoidance ("serves as", "stands as", "functions as")
 
-### Medium (moderate signals)
+### Medium (Moderate Signals)
 Common in AI but also in some human writing:
-- **Pattern 13:** Em dash overuse
-- **Pattern 10:** Rule of three
-- **Pattern 9:** Negative parallelisms ("It's not just X; it's Y")
-- **Pattern 4:** Promotional language ("nestled", "vibrant", "renowned")
+- **Pattern 13:** Em Dash Overuse
+- **Pattern 10:** Rule of Three
+- **Pattern 9:** Negative Parallelisms ("It's not just X; it's Y")
+- **Pattern 4:** Promotional Language ("nestled", "vibrant", "renowned")
 
-### Low (subtle tells)
+### Low (Subtle Tells)
 Minor indicators, fix if other patterns present:
-- **Pattern 18:** Quotation mark issues
-- **Pattern 16:** Title case in headings
-- **Pattern 14:** Overuse of boldface
+- **Pattern 18:** Curly Quotation Marks
+- **Pattern 16:** Title Case in Headings
+- **Pattern 14:** Overuse of Boldface
 
 ---
 
@@ -619,7 +632,8 @@ Provide:
 
 This skill is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup. The patterns documented there come from observations of thousands of instances of AI-generated text on Wikipedia.
 
-Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the mostො statistically likely result that applies to the widest variety of cases."
+Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+
 
 ## RESEARCH AND EXTERNAL SOURCES
 

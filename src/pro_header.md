@@ -1,6 +1,6 @@
 ---
 name: humanizer-pro
-version: 2.2.0
+version: 2.2.1
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural, human-written, and professional. Based on Wikipedia's
@@ -42,15 +42,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ### What to aim for
 
-**Rhythm.** Vary sentence length. Let a short sentence land after a longer one. This creates emphasis without bolding everything.
-
-**Specificity.** "The outage lasted 4 hours and affected 12,000 users" tells me something. "The outage had significant impact" tells me nothing.
-
-**A point of view.** This doesn't mean injecting opinions everywhere. It means the writing reflects that someone with knowledge made choices about what matters, what to include, what to skip. Even neutral writing can have perspective.
-
-**Earned emphasis.** If something is important, show me through detail. Don't just assert it.
-
-**Read it aloud.** If you stumble, the reader will too.
+Vary sentence rhythm by mixing short and long lines. Use specific details instead of vague assertions. Ensure the writing reflects a clear point of view and earned emphasis through detail. Always read it aloud to check for natural flow.
 
 ---
 

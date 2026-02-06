@@ -1,7 +1,8 @@
 # Spec: Migrate WARP.md to Agents.md
 
 ## Context
-The repository currently uses `WARP.md` to provide repository context and instructions to the Warp AI terminal. The user wishes to migrate this to the open `Agents.md` standard (https://agents.md) to improve interoperability and standardization.
+
+The repository currently uses `WARP.md` to provide repository context and instructions to the Warp AI terminal. The user wishes to migrate this to the open [Agents.md](https://agents.md) standard to improve interoperability and standardization.
 
 ## Requirements
 1.  **Issue Tracking:** Create a formal GitHub issue to track this migration before proceeding with the PR.
@@ -15,8 +16,9 @@ The repository currently uses `WARP.md` to provide repository context and instru
 8.  **Cleanup:** Delete `WARP.md` and update all relative links in `README.md`.
 
 ## Acceptance Criteria
+
 - GitHub Issue created and referenced in the PR.
 - `WARP.md` is removed.
 - `AGENTS.md` contains sections: `About`, `Structure`, `Development`, `Interoperability`.
-- `README.md` and `WARP.md` references are eliminated/updated.
-- `scripts/sync-adapters.ps1` works without issue.
+- References to `WARP.md` in `README.md` are updated to point to `AGENTS.md`.
+- `scripts/sync-adapters.js` works without issue.

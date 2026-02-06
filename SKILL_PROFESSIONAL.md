@@ -1,6 +1,6 @@
 ---
 name: humanizer-pro
-version: 2.2.0
+version: 2.2.1
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural, human-written, and professional. Based on Wikipedia's
@@ -49,15 +49,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ### What to aim for
 
-**Rhythm.** Vary sentence length. Let a short sentence land after a longer one. This creates emphasis without bolding everything.
-
-**Specificity.** "The outage lasted 4 hours and affected 12,000 users" tells me something. "The outage had significant impact" tells me nothing.
-
-**A point of view.** This doesn't mean injecting opinions everywhere. It means the writing reflects that someone with knowledge made choices about what matters, what to include, what to skip. Even neutral writing can have perspective.
-
-**Earned emphasis.** If something is important, show me through detail. Don't just assert it.
-
-**Read it aloud.** If you stumble, the reader will too.
+Vary sentence rhythm by mixing short and long lines. Use specific details instead of vague assertions. Ensure the writing reflects a clear point of view and earned emphasis through detail. Always read it aloud to check for natural flow.
 
 ---
 
@@ -65,7 +57,6 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ### Technical Nuance
 **Expertise isn't slop.** In professional contexts, "crucial" or "pivotal" are sometimes the exact right words for a technical requirement. The Pro variant targets *lazy* patterns, not technical precision. If a word is required for accuracy, keep it. If it's there to add fake "gravitas," cut it.
-
 
 ## CONTENT PATTERNS
 
@@ -233,7 +224,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ## STYLE PATTERNS
 
-### 13. Em Dash Overuse
+### 13. Em dash overuse
 
 **Problem:** LLMs use em dashes (—) more than humans, mimicking "punchy" sales writing.
 
@@ -245,7 +236,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 14. Overuse of Boldface
+### 14. Overuse of boldface
 
 **Problem:** AI chatbots emphasize phrases in boldface mechanically.
 
@@ -257,7 +248,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 15. Inline-Header Vertical Lists
+### 15. Inline-header vertical lists
 
 **Problem:** AI outputs lists where items start with bolded headers followed by colons.
 
@@ -272,7 +263,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 16. Title Case in Headings
+### 16. Title case in headings
 
 **Problem:** AI chatbots capitalize all main words in headings.
 
@@ -300,11 +291,11 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 18. Quotation Mark Issues
+### 18. Quotation mark issues
 
 **Problem:** AI models make two common quotation mistakes:
 1. Using curly quotes (“...”) instead of straight quotes ("...")
-2. Using single quotes ('...') as primary delimiters (from code training)
+2. Using single quotes ('...') as primary delimiters in prose (from code training)
 
 **Before:**
 > He said “the project is on track” but others disagreed.
@@ -318,7 +309,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ## COMMUNICATION PATTERNS
 
-### 19. Collaborative Communication Artifacts
+### 19. Collaborative communication artifacts
 
 **Words to watch:** I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
 
@@ -332,7 +323,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 20. Knowledge-Cutoff Disclaimers
+### 20. Knowledge-cutoff disclaimers
 
 **Words to watch:** as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information...
 
@@ -346,7 +337,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 21. Sycophantic/Servile Tone
+### 21. Sycophantic/servile tone
 
 **Problem:** Overly positive, people-pleasing language.
 
@@ -360,7 +351,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ## FILLER AND HEDGING
 
-### 22. Filler Phrases
+### 22. Filler phrases
 
 **Before → After:**
 
@@ -373,7 +364,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 23. Excessive Hedging
+### 23. Excessive hedging
 
 **Problem:** Over-qualifying statements.
 
@@ -385,7 +376,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 24. Generic Positive Conclusions
+### 24. Generic positive conclusions
 
 **Problem:** Vague upbeat endings.
 
@@ -397,7 +388,7 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 25. AI Signatures in Code
+### 25. AI signatures in code
 
 **Words to watch:** `// Generated by`, `Produced by`, `Created with [AI Model]`, `/* AI-generated */`, `// Here is the refactored code:`
 
@@ -423,7 +414,7 @@ function add(a, b) {
 
 ---
 
-### 26. Non-Text AI Patterns (Over-structuring)
+### 26. Non-text AI patterns (over-structuring)
 
 **Words to watch:** In summary, Table 1:, Breakdown:, Key takeaways: (when used with mechanical lists)
 
@@ -447,32 +438,32 @@ function add(a, b) {
 
 Patterns are ranked by how strongly they signal AI-generated text:
 
-### Critical (Immediate AI Detection)
+### Critical (immediate AI detection)
 These patterns alone can identify AI-generated text:
-- **Pattern 19:** Collaborative Communication Artifacts ("I hope this helps!", "Let me know if...")
-- **Pattern 20:** Knowledge-Cutoff Disclaimers ("As of my last training...")
-- **Pattern 21:** Sycophantic Tone ("Great question!", "You're absolutely right!")
-- **Pattern 25:** AI Signatures in Code ("// Generated by ChatGPT")
+- **Pattern 19:** Collaborative communication artifacts ("I hope this helps!", "Let me know if...")
+- **Pattern 20:** Knowledge-cutoff disclaimers ("As of my last training...")
+- **Pattern 21:** Sycophantic tone ("Great question!", "You're absolutely right!")
+- **Pattern 25:** AI signatures in code ("// Generated by ChatGPT")
 
-### High (Strong AI Indicators)
+### High (strong AI indicators)
 Multiple occurrences strongly suggest AI:
-- **Pattern 1:** Significance Inflation ("testament", "pivotal moment", "evolving landscape")
-- **Pattern 7:** AI Vocabulary Words ("delve", "underscore", "tapestry", "interplay")
-- **Pattern 3:** Superficial -ing Analyses ("highlighting", "underscoring", "showcasing")
-- **Pattern 8:** Copula Avoidance ("serves as", "stands as", "functions as")
+- **Pattern 1:** Significance inflation ("testament", "pivotal moment", "evolving landscape")
+- **Pattern 7:** AI vocabulary words ("delve", "underscore", "tapestry", "interplay")
+- **Pattern 3:** Superficial -ing analyses ("highlighting", "underscoring", "showcasing")
+- **Pattern 8:** Copula avoidance ("serves as", "stands as", "functions as")
 
-### Medium (Moderate Signals)
+### Medium (moderate signals)
 Common in AI but also in some human writing:
-- **Pattern 13:** Em Dash Overuse
-- **Pattern 10:** Rule of Three
-- **Pattern 9:** Negative Parallelisms ("It's not just X; it's Y")
-- **Pattern 4:** Promotional Language ("nestled", "vibrant", "renowned")
+- **Pattern 13:** Em dash overuse
+- **Pattern 10:** Rule of three
+- **Pattern 9:** Negative parallelisms ("It's not just X; it's Y")
+- **Pattern 4:** Promotional language ("nestled", "vibrant", "renowned")
 
-### Low (Subtle Tells)
+### Low (subtle tells)
 Minor indicators, fix if other patterns present:
-- **Pattern 18:** Quotation Mark Issues
-- **Pattern 16:** Title Case in Headings
-- **Pattern 14:** Overuse of Boldface
+- **Pattern 18:** Quotation mark issues
+- **Pattern 16:** Title case in headings
+- **Pattern 14:** Overuse of boldface
 
 ---
 
@@ -625,8 +616,7 @@ Provide:
 
 This skill is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup. The patterns documented there come from observations of thousands of instances of AI-generated text on Wikipedia.
 
-Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
-
+Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the mostො statistically likely result that applies to the widest variety of cases."
 
 ## RESEARCH AND EXTERNAL SOURCES
 

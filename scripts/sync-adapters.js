@@ -63,6 +63,22 @@ console.log(`Pro Version: ${vPro}`);
 
 const adapters = [
   {
+    name: 'Internal Antigravity Skill Standard',
+    path: path.join(REPO_ROOT, '.agent', 'skills', 'humanizer', 'SKILL.md'),
+    source: standardContent,
+    id: 'humanizer',
+    format: 'Antigravity skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Internal Antigravity Skill Pro',
+    path: path.join(REPO_ROOT, '.agent', 'skills', 'humanizer', 'SKILL_PROFESSIONAL.md'),
+    source: proContent,
+    id: 'humanizer-pro',
+    format: 'Antigravity skill',
+    base: 'SKILL_PROFESSIONAL.md',
+  },
+  {
     name: 'Antigravity Skill Standard',
     path: path.join(REPO_ROOT, 'adapters', 'antigravity-skill', 'SKILL.md'),
     source: standardContent,
@@ -146,6 +162,22 @@ adapters.forEach((adapter) => {
   const dir = path.dirname(adapter.path);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(adapter.path, newContent, 'utf8');
+});
+
+// Update root manifests that only need metadata sync
+const rootManifests = [
+  { name: 'Agents manifest', path: path.join(REPO_ROOT, 'AGENTS.md') },
+  { name: 'README manifest', path: path.join(REPO_ROOT, 'README.md') },
+];
+
+rootManifests.forEach((manifest) => {
+  if (fs.existsSync(manifest.path)) {
+    console.log(`Updating metadata in ${manifest.name}...`);
+    let content = fs.readFileSync(manifest.path, 'utf8');
+    content = content.replace(/^( {2}skill_version:).*/m, `$1 ${vStandard}`);
+    content = content.replace(/^( {2}last_synced:).*/m, `$1 ${today}`);
+    fs.writeFileSync(manifest.path, content, 'utf8');
+  }
 });
 
 console.log('\nSync Complete. All adapters updated from local source fragments.');

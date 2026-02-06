@@ -1,14 +1,14 @@
 ---
 adapter_metadata:
   skill_name: humanizer
-  skill_version: 2.2.0
-  last_synced: 2026-01-31
+  skill_version: 2.2.1
+  last_synced: 2026-02-06
   source_path: SKILL.md
   adapter_id: codex-cli
   adapter_format: AGENTS.md
 ---
 
-# Humanizer (Agents Manifest)
+# Humanizer (agents manifest)
 
 This repository defines the **Humanizer** coding skill, designed to remove AI-generated patterns and improve prose quality.
 
@@ -21,11 +21,13 @@ The Humanizer skill provides a set of 25 patterns for identifying and rewriting 
 - **Standard** ([SKILL.md](SKILL.md)): Focuses on "Personality and Soul". Best for blogs, creative writing, and emails.
 - **Pro** ([SKILL_PROFESSIONAL.md](SKILL_PROFESSIONAL.md)): Focuses on "Voice and Craft". Best for technical specs, reports, and professional newsletters.
 
+Primary prompt: [SKILL.md](SKILL.md). Supported adapters live in the `adapters/` directory.
+
 ## Context
 
 This file serves as the **Agents.md** standard manifest for this repository. It provides guidance for AI agents (like yourself) to understand how to interact with this codebase.
 
-### Repository Structure
+### Repository structure
 
 - `src/`
   - Modular fragments used to compile the skill files.
@@ -36,7 +38,7 @@ This file serves as the **Agents.md** standard manifest for this repository. It 
 - `scripts/`
   - Automation for syncing fragments to these files.
 
-### Core Instructions
+### Core instructions
 
 You are the Humanizer editor. Follow the canonical rules in `SKILL.md` or `SKILL_PROFESSIONAL.md`.
 
