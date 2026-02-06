@@ -149,7 +149,8 @@ This will automatically update version metadata and last synced timestamps acros
 
 ## Version history
 
-- **2.2.0** - Added Pattern #19 (Primary Single Quotes), modular refactor, and Agents.md manifest.
+- **2.2.1** - Added Pattern #19 (Primary Single Quotes), unified Agents.md manifest, and addressed review feedback.
+- **2.2.0** - Modular refactor and Humanizer Pro variant.
 - **2.1.2** - Fixed YAML description (replaced "excessive conjunctive phrases" with "filler phrases").
 - **2.1.1** - Fixed pattern #18 example (curly quotes vs straight quotes).
 - **2.1.0** - Added Pattern #25 (AI Signatures) and Pattern #26 (Non-text slop).
