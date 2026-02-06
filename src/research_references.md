@@ -17,3 +17,8 @@ While Wikipedia's "Signs of AI writing" remains a primary community-maintained s
 
 ### 4. Overused "Tells" (Collective Community Observations)
 - High-frequency occurrences of: "delve", "tapestry", "landscape", "at its core", "not only... but also", "in summary", "moreover", "furthermore".
+- **2024-2025 Updates:** Recent analysis of computer science papers and academic journals identifies an explosion in the use of "intricate," "commendable," and "meticulous."
+
+### 5. Structural and Emotional Cues
+- **Lack of "Punchy" Rhythm:** Humans frequently use one-sentence paragraphs for emphasis or to break up dense sections. AI tends toward uniform paragraph and sentence lengths.
+- **Sentiment Flatness:** LLMs are trained to be helpful and harmless, which often results in a "sentiment-neutral" tone that lacks the emotional spikes or strong personal opinions found in human prose.
