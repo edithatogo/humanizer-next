@@ -3,7 +3,7 @@
 ## Current State (Brownfield)
 
 - **Primary artifact:** Markdown (`SKILL.md`) containing the canonical Humanizer instructions.
-- **Repository type:** Documentation-only; no runtime language, package manifests, or build tooling detected.
+- **Repository type:** Documentation-first with a lightweight automation toolchain (Node.js scripts, Python helpers, pre-commit, CI).
 - **Consumption model:** Agent tools read prompt/instruction files (e.g., skills/workflow instructions).
 
 ## Target Integrations (Planned)

@@ -13,7 +13,7 @@ This track packages the existing Humanizer skill so it can be used across multip
   - Google Antigravity
   - VS Code
 - Adapters must:
-  - Reference the SKILL.md ersion: they are derived from.
+- Reference the SKILL.md version: they are derived from.
   - Include a last synced marker (date).
   - Specify output format: rewritten text + short bullet change summary.
   - Preserve technical literals (inline code, fenced code blocks, URLs, paths, identifiers).

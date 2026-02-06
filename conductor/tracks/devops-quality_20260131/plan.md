@@ -7,8 +7,6 @@
 - [x] Task: Port `validate-adapters.ps1` to `scripts/validate_adapters.py` (2c382aa)
 - [x] Task: Port `install-adapters.ps1` to `scripts/install_adapters.py` (13225d5)
 - [x] Task: Conductor - Agent Verification 'Phase 1: Python Migration & Infrastructure' (799280f)
-- [ ] Task: Port `install-adapters.ps1` to `scripts/install_adapters.py`
-- [ ] Task: Conductor - Agent Verification 'Phase 1: Python Migration & Infrastructure'
 
 ## Phase 2: Testing & Coverage [checkpoint: f2806c8]
 

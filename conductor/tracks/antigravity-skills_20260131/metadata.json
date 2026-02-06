@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-01-31T00:00:00Z",
   "created_at": "2026-01-31T00:00:00Z",
   "description": "Create a Google Antigravity skill adapter for Humanizer",
   "type": "feature",
-  "status": "new",
-  "track_id": "antigravity-skills_20260131"
+  "status": "archived",
+  "track_id": "antigravity-skills_20260131",
+  "updated_at": "2026-01-31"
 }

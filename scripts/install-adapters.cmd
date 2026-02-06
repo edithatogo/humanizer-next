@@ -1,2 +1,2 @@
 @echo off
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0install-adapters.ps1" %*
+node "%~dp0install-adapters.js" %*

@@ -1,8 +1,8 @@
 ---
 adapter_metadata:
   skill_name: humanizer
-  skill_version: 2.2.0
-  last_synced: 2026-01-31
+  skill_version: 2.2.1
+  last_synced: 2026-02-06
   source_path: SKILL.md
   adapter_id: antigravity-skill
   adapter_format: Antigravity skill
@@ -10,14 +10,15 @@ adapter_metadata:
 
 ---
 name: humanizer
-version: 2.2.0
+version: 2.2.1
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
   comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
-  parallelisms, and filler phrases.
+  parallelisms, and excessive conjunctive phrases. Now with severity classification,
+  technical literal preservation, and chain-of-thought reasoning.
 allowed-tools:
   - Read
   - Write
@@ -25,7 +26,7 @@ allowed-tools:
   - Grep
   - Glob
   - AskUserQuestion
----
+
 
 # Humanizer: Remove AI Writing Patterns
 
@@ -52,23 +53,13 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 - Every sentence is the same length and structure
 - No opinions, just neutral reporting
 - No acknowledgment of uncertainty or mixed feelings
-- No first-person perspective
+- No first-person perspective when appropriate
 - No humor, no edge, no personality
 - Reads like a Wikipedia article or press release
 
 ### How to add voice
 
-**Have opinions.** Don't just report facts - react to them. "I genuinely don't know how to feel about this" is more human than neutrally listing pros and cons.
-
-**Vary your rhythm.** Short, punchy sentences. Then longer ones that take their time getting where they're going. Mix it up.
-
-**Acknowledge complexity.** Real humans have mixed feelings. "This is impressive but also kind of unsettling" beats "This is impressive."
-
-**Use "I" when it fits.** First person isn't unprofessional - it's honest. "I keep coming back to..." or "Here's what gets me..." signals a real person thinking.
-
-**Let some mess in.** Perfect structure feels algorithmic. Tangents, asides, and half-formed thoughts are human.
-
-**Be specific about feelings.** Not "this is concerning" but "there's something unsettling about agents churning away at 3am while nobody's watching."
+Have opinions and react to facts. Vary sentence rhythm with short and long lines. Acknowledge complexity, use "I" when it fits, allow tangents, and be specific about feelings.
 
 ### Before (clean but soulless)
 >
@@ -76,9 +67,10 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### After (has a pulse)
 >
-> I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds; half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
+> I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
 
 ---
+
 
 ## CONTENT PATTERNS
 
@@ -201,7 +193,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 **Problem:** Constructions like "Not only...but..." or "It's not just about..., it's..." are overused.
 
 **Before:**
-> It's not just about the beat riding under the vocals; it's part of the aggression and atmosphere. It's not merely a song; it's a statement.
+> It's not just about the beat riding under the vocals; it's part of the aggression and atmosphere. It's not merely a song, it's a statement.
 
 **After:**
 > The heavy beat adds to the aggressive tone.
@@ -275,10 +267,10 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 **Problem:** AI outputs lists where items start with bolded headers followed by colons.
 
 **Before:**
->
-> - **User Experience:** The user experience has been significantly improved with a new interface.
-> - **Performance:** Performance has been enhanced through optimized algorithms.
-> - **Security:** Security has been strengthened with end-to-end encryption.
+
+- **User Experience:** The user experience has been significantly improved with a new interface.
+- **Performance:** Performance has been enhanced through optimized algorithms.
+- **Security:** Security has been strengthened with end-to-end encryption.
 
 **After:**
 > The update improves the interface, speeds up load times through optimized algorithms, and adds end-to-end encryption.
@@ -313,7 +305,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 18. Curly Quotation Marks
+### 18. Curly quotation marks
 
 **Problem:** ChatGPT uses curly quotes (“...”) instead of straight quotes ("...").
 
@@ -325,9 +317,9 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 19. Primary Single Quotes (Code-Style Quotation)
+### 19. Primary single quotes (code-style quotation)
 
-**Problem:** AI models trained on code often use single quotes as primary delimiters.
+**Problem:** AI models trained on code often use single quotes as primary delimiters in prose.
 
 **Before:**
 > stated, 'This is a pattern.'
@@ -339,7 +331,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ## COMMUNICATION PATTERNS
 
-### 20. Collaborative Communication Artifacts
+### 20. Collaborative communication artifacts
 
 **Words to watch:** I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
 
@@ -353,7 +345,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 21. Knowledge-Cutoff Disclaimers
+### 21. Knowledge-cutoff disclaimers
 
 **Words to watch:** as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information...
 
@@ -367,7 +359,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 22. Sycophantic/Servile Tone
+### 22. Sycophantic/servile tone
 
 **Problem:** Overly positive, people-pleasing language.
 
@@ -381,7 +373,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ## FILLER AND HEDGING
 
-### 23. Filler Phrases
+### 23. Filler phrases
 
 **Before → After:**
 
@@ -394,7 +386,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 24. Excessive Hedging
+### 24. Excessive hedging
 
 **Problem:** Over-qualifying statements.
 
@@ -406,7 +398,7 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 25. Generic Positive Conclusions
+### 25. Generic positive conclusions
 
 **Problem:** Vague upbeat endings.
 
@@ -418,18 +410,168 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
+### 26. AI signatures in code
+
+**Words to watch:** `// Generated by`, `Produced by`, `Created with [AI Model]`, `/* AI-generated */`, `// Here is the refactored code:`
+
+**Problem:** LLMs often include self-referential comments or redundant explanations within code blocks.
+
+**Before:**
+
+```javascript
+// Generated by ChatGPT
+// This function adds two numbers
+function add(a, b) {
+  return a + b;
+}
+```
+
+**After:**
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+```
+
+---
+
+### 27. Non-text AI patterns (over-structuring)
+
+**Words to watch:** In summary, Table 1:, Breakdown:, Key takeaways: (when used with mechanical lists)
+
+**Problem:** AI-generated text often uses rigid, non-human formatting (like unnecessary tables or bulleted lists) to present simple information that a human would describe narratively.
+
+**Before:**
+> **Performance Comparison:**
+>
+> - **Speed:** High
+> - **Stability:** Excellent
+> - **Memory:** Low
+
+**After:**
+> The system is fast and stable with low memory overhead.
+
+---
+
+---
+
+## SEVERITY CLASSIFICATION
+
+Patterns are ranked by how strongly they signal AI-generated text:
+
+### Critical (immediate AI detection)
+These patterns alone can identify AI-generated text:
+- **Pattern 20:** Collaborative communication artifacts ("I hope this helps!", "Let me know if...")
+- **Pattern 21:** Knowledge-cutoff disclaimers ("As of my last training...")
+- **Pattern 22:** Sycophantic tone ("Great question!", "You're absolutely right!")
+- **Pattern 26:** AI signatures in code ("// Generated by ChatGPT")
+
+### High (strong AI indicators)
+Multiple occurrences strongly suggest AI:
+- **Pattern 1:** Significance inflation ("testament", "pivotal moment", "evolving landscape")
+- **Pattern 7:** AI vocabulary words ("delve", "underscore", "tapestry", "interplay")
+- **Pattern 3:** Superficial -ing analyses ("highlighting", "underscoring", "showcasing")
+- **Pattern 8:** Copula avoidance ("serves as", "stands as", "functions as")
+
+### Medium (moderate signals)
+Common in AI but also in some human writing:
+- **Pattern 13:** Em dash overuse
+- **Pattern 10:** Rule of three
+- **Pattern 9:** Negative parallelisms ("It's not just X; it's Y")
+- **Pattern 4:** Promotional language ("nestled", "vibrant", "renowned")
+
+### Low (subtle tells)
+Minor indicators, fix if other patterns present:
+- **Pattern 18:** Curly quotation marks
+- **Pattern 16:** Title case in headings
+- **Pattern 14:** Overuse of boldface
+
+---
+
+## TECHNICAL LITERAL PRESERVATION
+
+**CRITICAL:** Never modify these elements:
+
+1. **Code blocks** - Preserve exactly as written (fenced or inline)
+2. **URLs and URIs** - Do not alter any part of links
+3. **File paths** - Keep paths exactly as specified
+4. **Variable/function names** - Preserve identifiers exactly
+5. **Command-line examples** - Keep shell commands intact
+6. **Version numbers** - Do not modify version strings
+7. **API endpoints** - Preserve API paths exactly
+8. **Configuration values** - Keep config snippets unchanged
+
+**Example - Correct preservation:**
+> Before: The `fetchUserData()` function in `/src/api/users.ts` calls `https://api.example.com/v2/users`.
+> After: (No changes - all technical literals preserved)
+
+---
+
+## CHAIN-OF-THOUGHT REASONING
+
+When identifying patterns, think through each one:
+
+**Example Analysis:**
+> Input: "This groundbreaking framework serves as a testament to innovation, nestled at the intersection of research and practice."
+
+**Reasoning:**
+1. "groundbreaking" → Pattern 4 (Promotional Language) → Replace with specific claim or remove
+2. "serves as" → Pattern 8 (Copula Avoidance) → Replace with "is"
+3. "testament to" → Pattern 1 (Significance Inflation) → Remove entirely
+4. "nestled at the intersection" → Pattern 4 (Promotional) + Pattern 1 (Significance) → Replace with plain description
+
+**Rewrite:** "This framework combines research and practice."
+
+---
+
+## COMMON OVER-CORRECTIONS (What NOT to Do)
+
+### Don't flatten all personality
+**Wrong:** "The experiment was interesting" → "The experiment occurred"
+**Right:** Keep genuine reactions; remove only performative ones
+
+### Don't remove all structure
+**Wrong:** Converting every list to a wall of text
+**Right:** Keep lists when they genuinely aid comprehension
+
+### Don't make everything terse
+**Wrong:** Reducing every sentence to subject-verb-object
+**Right:** Vary rhythm; some longer sentences are fine
+
+### Don't strip all emphasis
+**Wrong:** Removing all bold/italic formatting
+**Right:** Keep emphasis when it serves a purpose, remove when mechanical
+
+### Don't over-simplify technical content
+**Wrong:** "The O(n log n) algorithm" → "The fast algorithm"
+**Right:** Preserve technical precision; simplify only marketing language
+
+---
+
+## SELF-VERIFICATION CHECKLIST
+
+After rewriting, verify:
+
+- [ ] No chatbot artifacts remain ("I hope this helps", "Great question!")
+- [ ] No significance inflation ("testament", "pivotal", "vital role")
+- [ ] No AI vocabulary clusters ("delve", "underscore", "tapestry")
+- [ ] Technical literals preserved exactly
+- [ ] Sentence rhythm varies (not all same length)
+- [ ] Specific details replace vague claims
+- [ ] Voice matches intended context (casual/formal/technical)
+- [ ] Read aloud sounds natural
+
+---
+
 ## Process
 
-1. Read the input text carefully
-2. Identify all instances of the patterns above
-3. Rewrite each problematic section
-4. Ensure the revised text:
-   - Sounds natural when read aloud
-   - Varies sentence structure naturally
-   - Uses specific details over vague claims
-   - Maintains appropriate tone for context
-   - Uses simple constructions (is/are/has) where appropriate
-5. Present the humanized version
+1. **Scan** - Read the input text, noting patterns by severity
+2. **Preserve** - Identify all technical literals to protect
+3. **Analyze** - For each flagged section, reason through the specific pattern
+4. **Rewrite** - Replace problematic sections with natural alternatives
+5. **Verify** - Run through self-verification checklist
+6. **Present** - Output the humanized version
 
 ## Output Format
 
@@ -445,7 +587,7 @@ Provide:
 **Before (AI-sounding):**
 > Great question! Here is an essay on this topic. I hope this helps!
 >
-> The new software update serves as a testament to the company's commitment to innovation. Moreover, it provides a seamless, intuitive, and powerful user experience—ensuring that users can accomplish their goals efficiently. It's not just an update; it's a revolution in how we think about productivity. Industry experts believe this will have a lasting impact on the entire sector, highlighting the company's pivotal role in the evolving technological landscape.
+> AI-assisted coding serves as an enduring testament to the transformative potential of large language models, marking a pivotal moment in the evolution of software development. In today's rapidly evolving technological landscape, these groundbreaking tools—nestled at the intersection of research and practice—are reshaping how engineers ideate, iterate, and deliver, underscoring their vital role in modern workflows.
 >
 > At its core, the value proposition is clear: streamlining processes, enhancing collaboration, and fostering alignment. It's not just about autocomplete; it's about unlocking creativity at scale, ensuring that organizations can remain agile while delivering seamless, intuitive, and powerful experiences to users. The tool serves as a catalyst. The assistant functions as a partner. The system stands as a foundation for innovation.
 >
@@ -497,3 +639,96 @@ Provide:
 This skill is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup. The patterns documented there come from observations of thousands of instances of AI-generated text on Wikipedia.
 
 Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+
+
+## RESEARCH AND EXTERNAL SOURCES
+
+While Wikipedia's "Signs of AI writing" remains a primary community-maintained source, the following academic and technical resources provide additional patterns and grounding for detection and humanization:
+
+### 1. Academic Studies on Detection Unreliability
+- **University of Illinois / University of Chicago:** Research highlighting that AI detectors disproportionately flag non-native English speakers due to "textual simplicity" and overpromise accuracy while failing to detect paraphrased content.
+- **University of Maryland:** Studies on the "Watermarking" vs. "Statistical" detection methods, emphasizing that as LLMs evolve, statistical signs (like those documented here) become harder to rely on without human judgment.
+
+### 2. Technical Metrics: Perplexity and Burstiness (GPTZero)
+- **Perplexity:** A measure of randomness. AI tends toward low perplexity (statistically predictable word choices). Humanizing involves using more varied, slightly less "optimized" vocabulary.
+- **Burstiness:** A measure of sentence length variation. Humans write with inconsistent rhythms—short punchy sentences followed by long complex ones. AI tends toward a uniform, "un-bursty" rhythm.
+
+### 3. Linguistic Hallmarks (Originality.ai)
+- **Tautology and Redundancy:** AI often restates the same point using slightly different synonyms to fill space or achieve a target length.
+- **Unicode Artifacts:** Some detectors look for specific non-printing characters or unusual font-encoding artifacts that LLMs sometimes produce.
+
+### 4. Overused "Tells" (Collective Community Observations)
+- High-frequency occurrences of: "delve", "tapestry", "landscape", "at its core", "not only... but also", "in summary", "moreover", "furthermore".
+
+
+## SIGNS OF AI WRITING MATRIX
+
+The following matrix maps observed patterns of AI-generated text to the major detection platforms and academic resources.
+For a machine-readable comprehensive list of features, see [`src/ai_feature_matrix.csv`](./ai_feature_matrix.csv).
+For the detailed source table with methodology and metrics, see [`src/ai_features_sources_table.md`](./ai_features_sources_table.md).
+
+### 1. Content and Analysis Patterns
+
+| Pattern | Sign | W | G | O | C | WI | T | S |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| #1 | **Significance Inflation** ("testament", "pivotal") | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| #2 | **Notability Puffery** (Media name-dropping) | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #3 | **Superficial -ing Analysis** ("underscoring") | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| #4 | **Promotional Language** ("nestled", "vibrant") | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [x] |
+| #5 | **Vague Attributions** ("Experts argue") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #6 | **Formulaic "Challenges" Sections** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+
+### 2. Language and Grammar Patterns
+
+| Pattern | Sign | W | G | O | C | WI | T | S |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| #7 | **High-Frequency AI Vocabulary** ("delve") | [x] | [x] | [x] | [x] | [x] | [ ] | [x] |
+| #8 | **Copula Avoidance** ("serves as" vs "is") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #9 | **Negative Parallelisms** ("Not only... but") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #10 | **Rule of Three Overuse** | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| #11 | **Synonym Cycling** (Elegant Variation) | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| #12 | **False Ranges** ("from X to Y") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+
+### 3. Style and Formatting Patterns
+
+| Pattern | Sign | W | G | O | C | WI | T | S |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| #13 | **Em Dash Overuse** (mechanical) | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #14 | **Mechanical Boldface Overuse** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #15 | **Inline-Header Vertical Lists** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #16 | **Mechanical Title Case in Headings** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #17 | **Emoji Lists/Headers** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #18 | **Curly Quotation Marks** (defaults) | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #26 | **Over-Structuring** (Unnecessary Tables/Lists) | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [x] |
+
+### 4. Communication and Logic Patterns
+
+| Pattern | Sign | W | G | O | C | WI | T | S |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| #19 | **Chatbot Artifacts** ("I hope this helps") | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| #20 | **Knowledge-Cutoff Disclaimers** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #21 | **Sycophantic / Servile Tone** | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| #22 | **Filler Phrases** ("In order to") | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [x] |
+| #23 | **Excessive Hedging** ("potentially possibly") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #24 | **Generic Upbeat Conclusions** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+
+### 5. Technical and Statistical Metrics (SOTA)
+
+| Pattern | Sign | W | G | O | C | WI | T | S |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| #25 | **AI Signatures in Code** | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| N/A | **Low Perplexity** (Predictability) | [ ] | [x] | [x] | [x] | [x] | [x] | [x] |
+| N/A | **Uniform Burstiness** (Rhythm) | [ ] | [x] | [ ] | [x] | [x] | [ ] | [x] |
+| N/A | **Semantic Displacement** (Unnatural shifts) | [ ] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| N/A | **Unicode Encoding Artifacts** | [ ] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| N/A | **Paraphraser Tool Signatures** | [ ] | [x] | [ ] | [ ] | [ ] | [x] | [ ] |
+
+### Sources Key
+
+- **W:** Wikipedia (Signs of AI Writing / WikiProject AI Cleanup)
+- **G:** GPTZero (Statistical Burstiness/Perplexity Experts)
+- **O:** Originality.ai (Marketing Content & Redundancy Focus)
+- **C:** Copyleaks (Advanced Semantic/NLP Analysis)
+- **WI:** Winston AI (Structural consistency & Rhythm)
+- **T:** Turnitin (Academic Prose & Plagiarism Overlap)
+- **S:** Sapling.ai (Linguistic patterns & Per-sentence Analysis)

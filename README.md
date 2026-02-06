@@ -1,113 +1,68 @@
 # Humanizer
 
-A Claude Code skill that removes signs of AI-generated writing from text, making it sound more natural and human.
+A toolkit to remove signs of AI-generated writing from text, making it sound more natural and human. Based on Wikipedia's "Signs of AI writing" guide.
 
 ## Installation
 
-### Recommended (clone directly into Claude Code skills directory)
+### Recommended
 
 ```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer
-```
-
-### Manual install/update (only the skill file)
-
-If you already have this repo cloned (or you downloaded `SKILL.md`), copy the skill file into Claude Code’s skills directory:
-
-```bash
-mkdir -p ~/.claude/skills/humanizer
-cp SKILL.md ~/.claude/skills/humanizer/
+git clone https://github.com/blader/humanizer.git
 ```
 
 ## Usage
 
-### Claude Code
+### Sync and build (cross-platform)
 
-In Claude Code, invoke the skill:
+The repository use a modular fragment system to maintain consistency.
 
-```text
-/humanizer
+1.  Requires **Node.js**.
+2.  Install dependencies: `npm install`
+3.  Compile and sync all versions: `npm run sync`
+4.  Validate metadata: `npm run validate`
 
-[paste your text here]
-```
+This will rebuild `SKILL.md` (Standard) and `SKILL_PROFESSIONAL.md` (Pro) from the `src/` directory and sync them to all adapter files.
 
-Or ask Claude to humanize text directly:
+### Variants
 
-```text
-Please humanize this text: [your text]
-```
+- **Standard version (Human):** `/humanizer` (via `SKILL.md`)
+- **Professional version (Pro):** `/humanizer-pro` (via `SKILL_PROFESSIONAL.md`)
 
-### Gemini CLI
+## Capability overview
 
-Use the extension command:
+Detects 25 patterns including inflated symbolism, superficial analyses, vague attributions, and AI-signature comments.
 
-```bash
-/humanizer:humanize "text to humanize"
-```
+### Global agent context
 
-### Google Antigravity
-
-**Skill:**
-Copy `adapters/antigravity-skill/` to your workspace skill directory (e.g., `.agent/skills/humanizer`).
-
-**Rules & Workflows:**
-See `adapters/antigravity-rules-workflows/README.md` for installation instructions.
-
-### Qwen CLI
-
-Include `adapters/qwen-cli/QWEN.md` in your context or copy its content to your Qwen system prompt.
-
-### GitHub Copilot
-
-Copy the content of `adapters/copilot/COPILOT.md` to your Copilot custom instructions.
+AI agents (Claude Code, Cursor, Windsurf, etc.) should use [AGENTS.md](AGENTS.md) for repository orientation and core instructions.
 
 ---
 
-## Adapters (Multi-Agent)
+## Adapters (multi-agent)
 
 `SKILL.md` remains the canonical source of truth. These adapters provide thin wrappers for other environments:
 
-- Global Agent Manifest: `AGENTS.md`
-- Gemini CLI: `adapters/gemini-extension/`
-- Google Antigravity (skill): `adapters/antigravity-skill/`
-- Google Antigravity (rules/workflows): `adapters/antigravity-rules-workflows/`
-- Qwen CLI: `adapters/qwen-cli/`
-- GitHub Copilot: `adapters/copilot/`
-- VS Code: `adapters/vscode/`
+- **Agents manifest:** `AGENTS.md`
+- **Gemini CLI:** `adapters/gemini-extension/`
+- **Google Antigravity (skill):** `adapters/antigravity-skill/`
+- **Google Antigravity (rules/workflows):** `adapters/antigravity-rules-workflows/`
+- **Qwen CLI:** `adapters/qwen-cli/`
+- **GitHub Copilot:** `adapters/copilot/`
+- **VS Code:** `adapters/vscode/`
 
-### Sync Process
+### Sync process
 
 When `SKILL.md` is updated, run the sync script to propagate changes to all adapters:
 
-1. **Sync:**
-    - Python: `python scripts/sync_adapters.py`
-    - PowerShell: `scripts/sync-adapters.ps1`
-    - CMD: `scripts/sync-adapters.cmd`
-    *(This copies the core skill content to the Antigravity adapter and updates version metadata files)*
+```bash
+npm run sync
+```
 
-2. **Validate:**
-    - Python: `python scripts/validate_adapters.py`
-    - PowerShell: `scripts/validate-adapters.ps1`
-    - CMD: `scripts/validate-adapters.cmd`
+This will automatically update version metadata and last synced timestamps across all adapter files.
 
-3. **Install:**
-    - Python: `python scripts/install_adapters.py`
-    - PowerShell: `scripts/install-adapters.ps1`
-    - CMD: `scripts/install-adapters.cmd`
-    *(This automatically places all adapter files into their respective local/workspace directories)*
+## 25 patterns detected (with before/after examples)
 
-## Overview
-
-Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide, maintained by WikiProject AI Cleanup. This comprehensive guide comes from observations of thousands of instances of AI-generated text.
-
-### Key Insight from Wikipedia
-
-> "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
-
-## 25 Patterns Detected (with Before/After Examples)
-
-### Content Patterns
+### Content patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -118,7 +73,7 @@ Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikip
 | 5 | **Vague attributions** | "Experts believe it plays a crucial role" | "according to a 2019 survey by..." |
 | 6 | **Formulaic challenges** | "Despite challenges... continues to thrive" | Specific facts about actual challenges |
 
-### Language Patterns
+### Language patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -126,42 +81,38 @@ Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikip
 | 8 | **Copula avoidance** | "serves as... features... boasts" | "is... has" |
 | 9 | **Negative parallelisms** | "It's not just X, it's Y" | State the point directly |
 | 10 | **Rule of three** | "innovation, inspiration, and insights" | Use natural number of items |
-| 11 | **Synonym cycling** | "protagonist... main character... central figure... hero" | "protagonist" (repeat when clearest) |
+| 11 | **Elegant variation** | "protagonist... main character... central figure... hero" | "protagonist" (repeat when clearest) |
 | 12 | **False ranges** | "from the Big Bang to dark matter" | List topics directly |
 
-### Style Patterns
+### Style patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
 | 13 | **Em dash overuse** | "institutions—not the people—yet this continues—" | Use commas or periods |
 | 14 | **Boldface overuse** | "**OKRs**, **KPIs**, **BMC**" | "OKRs, KPIs, BMC" |
 | 15 | **Inline-header lists** | "**Performance:** Performance improved" | Convert to prose |
-| 16 | **Title Case Headings** | "Strategic Negotiations And Partnerships" | "Strategic negotiations and partnerships" |
+| 16 | **Title case in headings** | "Strategic Negotiations And Partnerships" | "Strategic negotiations and partnerships" |
 | 17 | **Emojis** | "🚀 Launch Phase: 💡 Key Insight:" | Remove emojis |
-| 18 | **Curly quotes** | `said “the project”` | `said "the project"` |
-| 19 | **Primary Single Quotes** | `stated, 'This is a pattern.'` | `stated, "This is a pattern."` |
+| 18 | **Curly quotation marks** | `said “the project”` | `said "the project"` |
+| 19 | **Primary single quotes** | `stated, 'This is a pattern.'` | `stated, "This is a pattern."` |
 
-### Global Agent Context
-
-AI agents (Claude Code, Cursor, Windsurf, etc.) should use [AGENTS.md](AGENTS.md) for repository orientation and core instructions.
-
-### Communication Patterns
+### Communication patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
 | 20 | **Chatbot artifacts** | "I hope this helps! Let me know if..." | Remove entirely |
-| 21 | **Cutoff disclaimers** | "While details are limited in available sources..." | Find sources or remove |
+| 21 | **Knowledge-cutoff disclaimers** | "While details are limited in available sources..." | Find sources or remove |
 | 22 | **Sycophantic tone** | "Great question! You're absolutely right!" | Respond directly |
 
-### Filler and Hedging
+### Filler and hedging
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
 | 23 | **Filler phrases** | "In order to", "Due to the fact that" | "To", "Because" |
 | 24 | **Excessive hedging** | "could potentially possibly" | "may" |
-| 25 | **Generic conclusions** | "The future looks bright" | Specific plans or facts |
+| 25 | **Generic positive conclusions** | "The future looks bright" | Specific plans or facts |
 
-## Full Example
+## Full example
 
 **Before (AI-sounding):**
 > Great question! Here is an essay on this topic. I hope this helps!
@@ -196,13 +147,13 @@ AI agents (Claude Code, Cursor, Windsurf, etc.) should use [AGENTS.md](AGENTS.md
 - [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) - Primary source
 - [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) - Maintaining organization
 
-## Version History
+## Version history
 
-- **2.2.0** - Added Pattern #19 (Primary Single Quotes)
-- **2.1.2** - Fixed YAML description (replaced "excessive conjunctive phrases" with "filler phrases")
-- **2.1.1** - Fixed pattern #18 example (curly quotes vs straight quotes)
-- **2.1.0** - Added before/after examples for all 24 patterns
-- **2.0.0** - Complete rewrite based on raw Wikipedia article content
+- **2.2.0** - Added Pattern #19 (Primary Single Quotes), modular refactor, and Agents.md manifest.
+- **2.1.2** - Fixed YAML description (replaced "excessive conjunctive phrases" with "filler phrases").
+- **2.1.1** - Fixed pattern #18 example (curly quotes vs straight quotes).
+- **2.1.0** - Added Pattern #25 (AI Signatures) and Pattern #26 (Non-text slop).
+- **2.0.0** - Complete rewrite based on raw Wikipedia article content.
 - **1.0.0** - Initial release
 
 ## License

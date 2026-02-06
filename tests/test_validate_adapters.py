@@ -67,7 +67,7 @@ def test_validate_adapter_failures(tmp_path: Path) -> None:
     assert len(errors) == 4
     assert any("skill_name mismatch" in e for e in errors)
     assert any("skill_version mismatch" in e for e in errors)
-    assert any("missing last_synced" in e for e in errors)
+    assert any("missing or invalid last_synced" in e for e in errors)
     assert any("source_path mismatch" in e for e in errors)
 
 
@@ -86,7 +86,7 @@ def test_main_success(
 ) -> None:
     """Verify the main validation flow with successful validation."""
     caplog.set_level("INFO")
-    mock_get_meta.return_value = ("humanizer", "1.2.3")
+    mock_get_meta.side_effect = [("humanizer", "1.2.3"), ("humanizer-pro", "2.3.4")]
     mock_validate.return_value = []
 
     with patch(
@@ -108,7 +108,7 @@ def test_main_failure(
     caplog: pytest.LogCaptureFixture,
 ) -> None:
     """Verify that validation failures exit with code 1."""
-    mock_get_meta.return_value = ("humanizer", "1.2.3")
+    mock_get_meta.side_effect = [("humanizer", "1.2.3"), ("humanizer-pro", "2.3.4")]
     mock_validate.return_value = ["Error 1", "Error 2"]
 
     with patch(

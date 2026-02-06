@@ -5,6 +5,7 @@ import argparse
 import logging
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 
 # Configure logging
@@ -39,18 +40,32 @@ def validate_adapter(
     errors = []
     content = adapter_path.read_text(encoding="utf-8")
 
-    if not re.search(rf"skill_name:\s*{re.escape(skill_name)}", content):
+    if not re.search(
+        rf"(?m)^\s*skill_name:\s*{re.escape(skill_name)}\s*$", content
+    ):
         errors.append(f"{adapter_path}: skill_name mismatch (expected {skill_name})")
 
-    if not re.search(rf"skill_version:\s*{re.escape(skill_version)}", content):
+    if not re.search(
+        rf"(?m)^\s*skill_version:\s*{re.escape(skill_version)}\s*$", content
+    ):
         errors.append(
             f"{adapter_path}: skill_version mismatch (expected {skill_version})"
         )
 
-    if "last_synced:" not in content:
-        errors.append(f"{adapter_path}: missing last_synced")
+    last_synced_match = re.search(
+        r"(?m)^\s*last_synced:\s*([0-9]{4}-[0-9]{2}-[0-9]{2})\s*$", content
+    )
+    if not last_synced_match:
+        errors.append(f"{adapter_path}: missing or invalid last_synced")
+    else:
+        try:
+            datetime.strptime(last_synced_match.group(1), "%Y-%m-%d")
+        except ValueError:
+            errors.append(f"{adapter_path}: invalid last_synced date")
 
-    if not re.search(rf"source_path:\s*{re.escape(source_path)}", content):
+    if not re.search(
+        rf"(?m)^\s*source_path:\s*{re.escape(source_path)}\s*$", content
+    ):
         errors.append(f"{adapter_path}: source_path mismatch (expected {source_path})")
 
     return errors
@@ -67,29 +82,73 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    root = Path(__file__).parent.parent
     source_path = args.source
+    if not source_path.is_absolute():
+        source_path = root / source_path
     try:
         skill_name, skill_version = get_skill_metadata(source_path)
     except (FileNotFoundError, ValueError) as e:
         logger.error("Error: %s", e)  # noqa: TRY400
         sys.exit(1)
 
+    pro_path = root / "SKILL_PROFESSIONAL.md"
+    try:
+        pro_name, pro_version = get_skill_metadata(pro_path)
+    except (FileNotFoundError, ValueError) as e:
+        logger.error("Error: %s", e)  # noqa: TRY400
+        sys.exit(1)
+
     adapters = [
-        "AGENTS.md",
-        "adapters/gemini-extension/GEMINI.md",
-        "adapters/vscode/HUMANIZER.md",
-        "adapters/antigravity-skill/SKILL.md",
-        "adapters/antigravity-rules-workflows/README.md",
-        "adapters/qwen-cli/QWEN.md",
-        "adapters/copilot/COPILOT.md",
+        {"path": "AGENTS.md", "meta": (skill_name, skill_version), "source": source_path.name},
+        {
+            "path": "adapters/antigravity-skill/SKILL.md",
+            "meta": (skill_name, skill_version),
+            "source": source_path.name,
+        },
+        {
+            "path": "adapters/antigravity-skill/SKILL_PROFESSIONAL.md",
+            "meta": (pro_name, pro_version),
+            "source": pro_path.name,
+        },
+        {
+            "path": "adapters/gemini-extension/GEMINI.md",
+            "meta": (skill_name, skill_version),
+            "source": source_path.name,
+        },
+        {
+            "path": "adapters/gemini-extension/GEMINI_PRO.md",
+            "meta": (pro_name, pro_version),
+            "source": pro_path.name,
+        },
+        {
+            "path": "adapters/vscode/HUMANIZER.md",
+            "meta": (skill_name, skill_version),
+            "source": source_path.name,
+        },
+        {
+            "path": "adapters/antigravity-rules-workflows/README.md",
+            "meta": (skill_name, skill_version),
+            "source": source_path.name,
+        },
+        {
+            "path": "adapters/qwen-cli/QWEN.md",
+            "meta": (skill_name, skill_version),
+            "source": source_path.name,
+        },
+        {
+            "path": "adapters/copilot/COPILOT.md",
+            "meta": (skill_name, skill_version),
+            "source": source_path.name,
+        },
     ]
 
     all_errors = []
-    root = Path(__file__).parent.parent
-    for adapter_rel_path in adapters:
-        adapter_path = root / adapter_rel_path
+    for adapter in adapters:
+        adapter_path = root / adapter["path"]
+        name, version = adapter["meta"]
         all_errors.extend(
-            validate_adapter(adapter_path, skill_name, skill_version, str(source_path))
+            validate_adapter(adapter_path, name, version, adapter["source"])
         )
 
     if all_errors:

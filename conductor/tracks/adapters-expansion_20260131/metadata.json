@@ -1,6 +1,7 @@
 {
   "track_id": "adapters-expansion_20260131",
   "name": "Expand Humanizer adapters to Qwen CLI and Copilot",
-  "status": "planned",
-  "created_at": "2026-01-31"
+  "status": "archived",
+  "created_at": "2026-01-31",
+  "updated_at": "2026-01-31"
 }

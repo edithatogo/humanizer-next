@@ -1,0 +1,32 @@
+{
+  "name": "humanizer",
+  "version": "2.3.0",
+  "description": "Remove signs of AI-generated writing from text.",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-adapters.js",
+    "validate": "node scripts/validate-adapters.js",
+    "lint": "npx markdownlint-cli src/*.md README.md AGENTS.md",
+    "lint:js": "eslint . --ext .js,.mjs --max-warnings=0",
+    "format:check": "prettier --check \"**/*.{js,json,md,mdx,css,scss,ts,tsx}\"",
+    "format:fix": "prettier --write \"**/*.{js,json,md,mdx,css,scss,ts,tsx}\"",
+    "typecheck": "tsc --noEmit",
+    "lint:all": "npm run lint && npm run lint:js && npm run typecheck && npm run format:check",
+    "test": "node --test test/*.test.js && node scripts/run-tests.js",
+    "build": "node scripts/compile-skill.js",
+    "install:adapters": "node scripts/install-adapters.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.1.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-node": "^11.1.0",
+    "markdownlint-cli": "^0.44.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
+  }
+}
