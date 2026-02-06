@@ -1,15 +1,4 @@
 ---
-adapter_metadata:
-  skill_name: humanizer-pro
-  skill_version: 2.2.0
-  last_synced: 2026-01-31
-  source_path: SKILL_PROFESSIONAL.md
-  adapter_id: antigravity-skill-pro
-  adapter_format: Antigravity skill
----
-
-
----
 name: humanizer-pro
 version: 2.2.0
 description: |
@@ -42,8 +31,15 @@ When given text to humanize:
 3. **Preserve meaning** - Keep the core message intact
 4. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
 5. **Refine voice** - Ensure writing is alive, specific, and professional
-
+adapter_metadata:
+  skill_name: humanizer-pro
+  skill_version: 2.2.0
+  last_synced: 2026-02-06
+  source_path: SKILL_PROFESSIONAL.md
+  adapter_id: antigravity-skill-pro
+  adapter_format: Antigravity skill
 ---
+
 
 ## VOICE AND CRAFT
 
@@ -311,15 +307,19 @@ The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like s
 
 ---
 
-### 18. Curly Quotation Marks
+### 18. Quotation Mark Issues
 
-**Problem:** ChatGPT uses curly quotes (“...”) instead of straight quotes ("...").
+**Problem:** AI models make two common quotation mistakes:
+1. Using curly quotes (“...”) instead of straight quotes ("...")
+2. Using single quotes ('...') as primary delimiters (from code training)
 
 **Before:**
 > He said “the project is on track” but others disagreed.
+> She stated, 'This is the final version.'
 
 **After:**
 > He said "the project is on track" but others disagreed.
+> She stated, "This is the final version."
 
 ---
 
@@ -477,7 +477,7 @@ Common in AI but also in some human writing:
 
 ### Low (Subtle Tells)
 Minor indicators, fix if other patterns present:
-- **Pattern 18:** Curly Quotation Marks
+- **Pattern 18:** Quotation Mark Issues
 - **Pattern 16:** Title Case in Headings
 - **Pattern 14:** Overuse of Boldface
 

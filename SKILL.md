@@ -305,15 +305,19 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ---
 
-### 18. Curly Quotation Marks
+### 18. Quotation Mark Issues
 
-**Problem:** ChatGPT uses curly quotes (“...”) instead of straight quotes ("...").
+**Problem:** AI models make two common quotation mistakes:
+1. Using curly quotes (“...”) instead of straight quotes ("...")
+2. Using single quotes ('...') as primary delimiters (from code training)
 
 **Before:**
 > He said “the project is on track” but others disagreed.
+> She stated, 'This is the final version.'
 
 **After:**
 > He said "the project is on track" but others disagreed.
+> She stated, "This is the final version."
 
 ---
 
@@ -471,7 +475,7 @@ Common in AI but also in some human writing:
 
 ### Low (Subtle Tells)
 Minor indicators, fix if other patterns present:
-- **Pattern 18:** Curly Quotation Marks
+- **Pattern 18:** Quotation Mark Issues
 - **Pattern 16:** Title Case in Headings
 - **Pattern 14:** Overuse of Boldface
 
