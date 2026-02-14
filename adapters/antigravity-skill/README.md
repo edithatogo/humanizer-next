@@ -1,5 +1,9 @@
 # Humanizer Antigravity Skill (Adapter)
 
+For canonical installation, migration, and update instructions, use:
+
+- [`docs/install-matrix.md`](../../docs/install-matrix.md)
+
 ## Install (Workspace)
 
 Copy this folder into your workspace skill directory:
@@ -12,5 +16,5 @@ Copy this folder into your workspace skill directory:
 
 ## Notes
 
-- The canonical rules live in the repo `SKILL.md`.
+- Canonical rules live in repository `SKILL.md`.
 - Update adapter metadata in this skill when syncing versions.

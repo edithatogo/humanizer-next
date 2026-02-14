@@ -2,6 +2,6 @@
 
 This is a draft entry to submit to VoltAgent/awesome-agent-skills.
 
-• [blader/humanizer](https://github.com/blader/humanizer) - Remove AI writing patterns to make text sound more natural and human-written. Supports SKILL.md and SKILL_PROFESSIONAL.md variants and adapter formats for multiple agent targets. Includes CI validation examples for Skillshare and AIX.
+• [edithatogo/humanizer-next](https://github.com/edithatogo/humanizer-next) - Forward-maintained fork of Humanizer that removes AI writing patterns while preserving technical literals. Supports SKILL.md and SKILL_PROFESSIONAL.md variants plus adapter formats for multiple agent targets. Includes CI-friendly validation for adapters and docs.
 
 See `docs/skill-distribution.md` for submission & verification notes.
