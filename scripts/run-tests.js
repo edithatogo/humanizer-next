@@ -1,6 +1,5 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
-import path from 'path';
 
 console.log('--- Integration Testing Start ---');
 
@@ -14,7 +13,7 @@ function run(cmd) {
   try {
     execSync(cmd, { stdio: 'inherit' });
     return true;
-  } catch (e) {
+  } catch {
     console.error(`Command failed: ${cmd}`);
     return false;
   }

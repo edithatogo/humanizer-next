@@ -9,25 +9,32 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const BUNDLED_SKILL = path.join(ROOT_DIR, 'dist', 'humanizer-pro.bundled.md');
 const USER_HOME = os.homedir();
 
+/**
+ * Copy bundled adapter content to a destination.
+ * @param {string} name
+ * @param {string} destDir
+ * @param {string} [destFilename='GEMINI.md']
+ */
 function installTo(name, destDir, destFilename = 'GEMINI.md') {
-    console.log(`Installing ${name}...`);
-    try {
-        if (!fs.existsSync(destDir)) {
-            fs.mkdirSync(destDir, { recursive: true });
-        }
-        
-        const destPath = path.join(destDir, destFilename);
-        
-        // Use bundled skill if available, otherwise check for source adapter
-        if (fs.existsSync(BUNDLED_SKILL)) {
-            fs.copyFileSync(BUNDLED_SKILL, destPath);
-            console.log(`  [OK] Installed bundled skill to: ${destPath}`);
-        } else {
-            console.error(`  [FAIL] Bundled skill not found. Run 'npm run build' first.`);
-        }
-    } catch (e) {
-        console.error(`  [FAIL] Could not install ${name}: ${e.message}`);
+  console.log(`Installing ${name}...`);
+  try {
+    if (!fs.existsSync(destDir)) {
+      fs.mkdirSync(destDir, { recursive: true });
     }
+
+    const destPath = path.join(destDir, destFilename);
+
+    // Use bundled skill if available, otherwise check for source adapter
+    if (fs.existsSync(BUNDLED_SKILL)) {
+      fs.copyFileSync(BUNDLED_SKILL, destPath);
+      console.log(`  [OK] Installed bundled skill to: ${destPath}`);
+    } else {
+      console.error(`  [FAIL] Bundled skill not found. Run 'npm run build' first.`);
+    }
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    console.error(`  [FAIL] Could not install ${name}: ${message}`);
+  }
 }
 
 console.log('--- Universal Humanizer Installer ---');

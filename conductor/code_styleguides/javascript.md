@@ -55,4 +55,4 @@ This document summarizes key rules and best practices from the Google JavaScript
 - Use `@param`, `@return`, `@override`, `@deprecated`.
 - Type annotations are enclosed in braces (e.g., `/** @param {string} userName */`).
 
-*Source: [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)*
+_Source: [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)_

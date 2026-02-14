@@ -14,12 +14,12 @@ const adapters = [
   { path: 'adapters/antigravity-rules-workflows/README.md', base: 'SKILL.md' },
   { path: 'adapters/qwen-cli/QWEN.md', base: 'SKILL.md' },
   { path: 'adapters/copilot/COPILOT.md', base: 'SKILL.md' },
-  { path: 'adapters/vscode/HUMANIZER.md', base: 'SKILL.md' }
+  { path: 'adapters/vscode/HUMANIZER.md', base: 'SKILL.md' },
 ];
 
 let failed = false;
 
-adapters.forEach(adapter => {
+adapters.forEach((adapter) => {
   const adapterPath = path.join(REPO_ROOT, adapter.path);
   if (!fs.existsSync(adapterPath)) {
     console.error(`Missing: ${adapter.path}`);
@@ -29,7 +29,7 @@ adapters.forEach(adapter => {
 
   const content = fs.readFileSync(adapterPath, 'utf8');
   const frontmatterMatch = content.match(/^---\s*([\s\S]*?)^---\s*/m);
-  
+
   if (!frontmatterMatch) {
     console.error(`No frontmatter found in ${adapter.path}`);
     failed = true;

@@ -3,7 +3,7 @@
 ## Guiding Principles
 
 1. **The Plan is the Source of Truth:** All work must be tracked in `plan.md`
-2. **The Tech Stack is Deliberate:** Changes to the tech stack must be documented in `tech-stack.md` *before* implementation
+2. **The Tech Stack is Deliberate:** Changes to the tech stack must be documented in `tech-stack.md` _before_ implementation
 3. **Test-Driven Development:** Write unit tests before implementing functionality
 4. **High Code Coverage:** Aim for >80% code coverage for all modules
 5. **User Experience First:** Every decision should prioritize user experience
@@ -52,7 +52,7 @@ All tasks follow a strict lifecycle:
    - Perform the commit.
 
 9. **Attach Task Summary with Git Notes:**
-   - **Step 9.1: Get Commit Hash:** Obtain the hash of the *just-completed commit* (`git log -1 --format="%H"`).
+   - **Step 9.1: Get Commit Hash:** Obtain the hash of the _just-completed commit_ (`git log -1 --format="%H"`).
    - **Step 9.2: Draft Note Content:** Create a detailed summary for the completed task. This should include the task name, a summary of changes, a list of all created/modified files, and the core "why" for the change.
    - **Step 9.3: Attach Note:** Use the `git notes` command to attach the summary to the commit.
 
@@ -62,7 +62,7 @@ All tasks follow a strict lifecycle:
      ```
 
 10. **Get and Record Task Commit SHA:**
-    - **Step 10.1: Update Plan:** Read `plan.md`, find the line for the completed task, update its status from `[~]` to `[x]`, and append the first 7 characters of the *just-completed commit's* commit hash.
+    - **Step 10.1: Update Plan:** Read `plan.md`, find the line for the completed task, update its status from `[~]` to `[x]`, and append the first 7 characters of the _just-completed commit's_ commit hash.
     - **Step 10.2: Write Plan:** Write the updated content back to `plan.md`.
 
 11. **Commit Plan Update:**
@@ -76,40 +76,40 @@ All tasks follow a strict lifecycle:
 1. **Announce Protocol Start:** Inform the user that the phase is complete and the verification and checkpointing protocol has begun.
 
 2. **Ensure Test Coverage for Phase Changes:**
-    - **Step 2.1: Determine Phase Scope:** To identify the files changed in this phase, you must first find the starting point. Read `plan.md` to find the Git commit SHA of the *previous* phase's checkpoint. If no previous checkpoint exists, the scope is all changes since the first commit.
-    - **Step 2.2: List Changed Files:** Execute `git diff --name-only <previous_checkpoint_sha> HEAD` to get a precise list of all files modified during this phase.
-    - **Step 2.3: Verify and Create Tests:** For each file in the list:
-        - **CRITICAL:** First, check its extension. Exclude non-code files (e.g., `.json`, `.md`, `.yaml`).
-        - For each remaining code file, verify a corresponding test file exists.
-        - If a test file is missing, you **must** create one. Before writing the test, **first, analyze other test files in the repository to determine the correct naming convention and testing style.** The new tests **must** validate the functionality described in this phase's tasks (`plan.md`).
+   - **Step 2.1: Determine Phase Scope:** To identify the files changed in this phase, you must first find the starting point. Read `plan.md` to find the Git commit SHA of the _previous_ phase's checkpoint. If no previous checkpoint exists, the scope is all changes since the first commit.
+   - **Step 2.2: List Changed Files:** Execute `git diff --name-only <previous_checkpoint_sha> HEAD` to get a precise list of all files modified during this phase.
+   - **Step 2.3: Verify and Create Tests:** For each file in the list:
+     - **CRITICAL:** First, check its extension. Exclude non-code files (e.g., `.json`, `.md`, `.yaml`).
+     - For each remaining code file, verify a corresponding test file exists.
+     - If a test file is missing, you **must** create one. Before writing the test, **first, analyze other test files in the repository to determine the correct naming convention and testing style.** The new tests **must** validate the functionality described in this phase's tasks (`plan.md`).
 
 3. **Execute Automated Tests with Proactive Debugging:**
-    - Before execution, you **must** announce the exact shell command you will use to run the tests.
-    - **Example Announcement:** "I will now run the automated test suite to verify the phase. **Command:** `CI=true npm test`"
-    - Execute the announced command.
-    - If tests fail, you **must** inform the user and begin debugging. You may attempt to propose a fix a **maximum of two times**. If the tests still fail after your second proposed fix, you **must stop**, report the persistent failure, and ask the user for guidance.
+   - Before execution, you **must** announce the exact shell command you will use to run the tests.
+   - **Example Announcement:** "I will now run the automated test suite to verify the phase. **Command:** `CI=true npm test`"
+   - Execute the announced command.
+   - If tests fail, you **must** inform the user and begin debugging. You may attempt to propose a fix a **maximum of two times**. If the tests still fail after your second proposed fix, you **must stop**, report the persistent failure, and ask the user for guidance.
 
 4. **Automated Verification Instead of Manual Steps:**
-    - **CRITICAL:** Analyze `product.md`, `product-guidelines.md`, and `plan.md` to determine the user-facing goals of the completed phase.
-    - Design and run automated verification steps that cover the user-facing goals (e.g., CLI checks, scriptable smoke tests, snapshot validation).
-    - If a verification step cannot be automated, the phase cannot be marked complete. Document the gap and stop for user guidance.
+   - **CRITICAL:** Analyze `product.md`, `product-guidelines.md`, and `plan.md` to determine the user-facing goals of the completed phase.
+   - Design and run automated verification steps that cover the user-facing goals (e.g., CLI checks, scriptable smoke tests, snapshot validation).
+   - If a verification step cannot be automated, the phase cannot be marked complete. Document the gap and stop for user guidance.
 
 5. **Create Checkpoint Commit:**
-    - Stage all changes. If no changes occurred in this step, proceed with an empty commit.
-    - Perform the commit with a clear and concise message (e.g., `conductor(checkpoint): Checkpoint end of Phase X`).
+   - Stage all changes. If no changes occurred in this step, proceed with an empty commit.
+   - Perform the commit with a clear and concise message (e.g., `conductor(checkpoint): Checkpoint end of Phase X`).
 
 6. **Attach Auditable Verification Report using Git Notes:**
-    - **Step 6.1: Draft Note Content:** Create a detailed verification report including the automated test command(s), the automated verification steps executed, and their results.
-    - **Step 6.2: Attach Note:** Use the `git notes` command and the full commit hash from the previous step to attach the full report to the checkpoint commit.
+   - **Step 6.1: Draft Note Content:** Create a detailed verification report including the automated test command(s), the automated verification steps executed, and their results.
+   - **Step 6.2: Attach Note:** Use the `git notes` command and the full commit hash from the previous step to attach the full report to the checkpoint commit.
 
 7. **Get and Record Phase Checkpoint SHA:**
-    - **Step 7.1: Get Commit Hash:** Obtain the hash of the *just-created checkpoint commit* (`git log -1 --format="%H"`).
-    - **Step 7.2: Update Plan:** Read `plan.md`, find the heading for the completed phase, and append the first 7 characters of the commit hash in the format `[checkpoint: <sha>]`.
-    - **Step 7.3: Write Plan:** Write the updated content back to `plan.md`.
+   - **Step 7.1: Get Commit Hash:** Obtain the hash of the _just-created checkpoint commit_ (`git log -1 --format="%H"`).
+   - **Step 7.2: Update Plan:** Read `plan.md`, find the heading for the completed phase, and append the first 7 characters of the commit hash in the format `[checkpoint: <sha>]`.
+   - **Step 7.3: Write Plan:** Write the updated content back to `plan.md`.
 
 8. **Commit Plan Update:**
-    - **Action:** Stage the modified `plan.md` file.
-    - **Action:** Commit this change with a descriptive message following the format `conductor(plan): Mark phase '<PHASE NAME>' as complete`.
+   - **Action:** Stage the modified `plan.md` file.
+   - **Action:** Commit this change with a descriptive message following the format `conductor(plan): Mark phase '<PHASE NAME>' as complete`.
 
 9. **Announce Completion:** Inform the user that the phase is complete and the checkpoint has been created, with the detailed verification report attached as a git note.
 

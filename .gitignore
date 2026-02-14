@@ -7,6 +7,22 @@ __pycache__/
 htmlcov/
 .mypy_cache/
 
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build and temp artifacts
+*.tmp
+*.temp
+*.log
+hist.html
+page_raw.txt
+talk_headings.txt
+talk_raw.txt
+
 # OS
 .DS_Store
 Thumbs.db

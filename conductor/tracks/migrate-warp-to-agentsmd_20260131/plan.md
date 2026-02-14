@@ -7,12 +7,12 @@
 ## Phase 2: Migration (Done)
 
 - [x] Task: Update `AGENTS.md`
-    - [x] **Content Merge:** Append `WARP.md` sections to `AGENTS.md`.
-    - [x] **Generalize:** Rename/rewrite Warp-specific references.
-    - [x] **Formatting:** Ensure consistent header hierarchy.
+  - [x] **Content Merge:** Append `WARP.md` sections to `AGENTS.md`.
+  - [x] **Generalize:** Rename/rewrite Warp-specific references.
+  - [x] **Formatting:** Ensure consistent header hierarchy.
 - [x] Task: Update `README.md`
-    - [x] Replace `WARP.md` references with `AGENTS.md`.
-    - [x] Update "Adapters" section.
+  - [x] Replace `WARP.md` references with `AGENTS.md`.
+  - [x] Update "Adapters" section.
 - [x] Task: Delete `WARP.md`
 
 ## Phase 3: Verification (Done)

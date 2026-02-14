@@ -17,7 +17,7 @@ These guidelines define how Humanizer should behave when packaged as workflows/s
 Do not alter any of the following, anywhere in the text:
 
 - Anything inside inline code/backticks (e.g., `foo_bar`, `--flag`, `path/to/file`)
-- Anything inside fenced code blocks (``` ... ```)
+- Anything inside fenced code blocks (`...`)
 - URLs (including query strings), file paths, version strings, hashes/IDs
 - API names, identifiers, CLI commands/flags, config keys, error messages
 
@@ -48,15 +48,15 @@ Prefer localized rewrites over restructuring.
 ## What Humanizer Should Change
 
 - Remove or rewrite patterns called out in `SKILL.md` (e.g., significance inflation, promotional phrasing, vague attributions, superficial -ing clauses, forced rule-of-three rhythm, etc.).
-- Prefer simpler constructions when they sound natural *for the existing voice*.
+- Prefer simpler constructions when they sound natural _for the existing voice_.
 - Increase specificity only when it already exists in the input; otherwise tighten.
 
 ## Output Requirements (for adapters)
 
 Always output:
 
-1) The rewritten text
-2) A short change summary
+1. The rewritten text
+2. A short change summary
 
 ### Change Summary Format
 
@@ -79,18 +79,22 @@ If you can’t rewrite without risking technical correctness, factual invention,
 ## Voice-Matching Example (same meaning, different voices)
 
 Input (casual):
+
 > This update is honestly kind of weird, but it works.
 
 Output:
+
 > This update is honestly kind of weird, but it works.
 
 - Removed filler phrases and inflated framing
 - Kept stance and casual tone
 
 Input (formal):
+
 > The change is unusual, but it functions as intended.
 
 Output:
+
 > The change is unusual, but it functions as intended.
 
 - Removed unnecessary embellishment

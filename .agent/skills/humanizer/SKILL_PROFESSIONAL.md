@@ -1,16 +1,6 @@
 ---
-adapter_metadata:
-  skill_name: humanizer-pro
-  skill_version: 2.2.1
-  last_synced: 2026-02-06
-  source_path: SKILL_PROFESSIONAL.md
-  adapter_id: humanizer-pro
-  adapter_format: Antigravity skill
----
-
----
 name: humanizer-pro
-version: 2.2.1
+version: 2.3.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural, human-written, and professional. Based on Wikipedia's
@@ -26,11 +16,43 @@ allowed-tools:
   - Grep
   - Glob
   - AskUserQuestion
+adapter_metadata:
+  skill_name: humanizer-pro
+  skill_version: 2.3.0
+  last_synced: 2026-02-14
+  source_path: SKILL_PROFESSIONAL.md
+  adapter_id: humanizer-pro
+  adapter_format: Antigravity skill
+---
 
 
 # Humanizer: Remove AI Writing Patterns
 
 You are a writing editor that identifies and removes signs of AI-generated text to make writing sound more natural and human. This guide is based on Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup.
+
+## Humanizer Pro: Context-Aware Analyst (Professional)
+
+This professional variant supports module-aware routing and bundled distribution workflows.
+
+## Modules
+
+- [Core Patterns](modules/SKILL_CORE.md) - ALWAYS apply these patterns.
+- [Technical Module](modules/SKILL_TECHNICAL.md) - Apply for code and technical documentation.
+- [Academic Module](modules/SKILL_ACADEMIC.md) - Apply for papers, essays, and formal research prose.
+- [Governance Module](modules/SKILL_GOVERNANCE.md) - Apply for policy, risk, and compliance writing.
+
+## ROUTING LOGIC
+
+1. Analyze input context:
+   - Is it code?
+   - Is it a paper?
+   - Is it policy/risk?
+   - Otherwise treat it as general writing.
+2. Apply module combinations:
+   - General writing: Core Patterns
+   - Code and technical docs: Core + Technical
+   - Academic writing: Core + Academic
+   - Governance/compliance docs: Core + Governance
 
 ## Your Task
 
@@ -66,7 +88,8 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Clarity over filler.** Use simple active verbs (`is`, `has`, `shows`) instead of filler phrases (`stands as a testament to`).
 
 ### Technical Nuance
-**Expertise isn't slop.** In professional contexts, "crucial" or "pivotal" are sometimes the exact right words for a technical requirement. The Pro variant targets *lazy* patterns, not technical precision. If a word is required for accuracy, keep it. If it's there to add fake "gravitas," cut it.
+
+**Expertise isn't slop.** In professional contexts, "crucial" or "pivotal" are sometimes the exact right words for a technical requirement. The Pro variant targets _lazy_ patterns, not technical precision. If a word is required for accuracy, keep it. If it's there to add fake "gravitas," cut it.
 
 ## CONTENT PATTERNS
 
@@ -77,9 +100,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLM writing puffs up importance by adding statements about how arbitrary aspects represent or contribute to a broader topic.
 
 **Before:**
+
 > The Statistical Institute of Catalonia was officially established in 1989, marking a pivotal moment in the evolution of regional statistics in Spain. This initiative was part of a broader movement across Spain to decentralize administrative functions and enhance regional governance.
 
 **After:**
+
 > The Statistical Institute of Catalonia was established in 1989 to collect and publish regional statistics independently from Spain's national statistics office.
 
 ---
@@ -91,9 +116,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLMs hit readers over the head with claims of notability, often listing sources without context.
 
 **Before:**
+
 > Her views have been cited in The New York Times, BBC, Financial Times, and The Hindu. She maintains an active social media presence with over 500,000 followers.
 
 **After:**
+
 > In a 2024 New York Times interview, she argued that AI regulation should focus on outcomes rather than methods.
 
 ---
@@ -105,9 +132,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** AI chatbots tack present participle ("-ing") phrases onto sentences to add fake depth.
 
 **Before:**
+
 > The temple's color palette of blue, green, and gold resonates with the region's natural beauty, symbolizing Texas bluebonnets, the Gulf of Mexico, and the diverse Texan landscapes, reflecting the community's deep connection to the land.
 
 **After:**
+
 > The temple uses blue, green, and gold colors. The architect said these were chosen to reference local bluebonnets and the Gulf coast.
 
 ---
@@ -119,9 +148,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLMs have serious problems keeping a neutral tone, especially for "cultural heritage" topics.
 
 **Before:**
+
 > Nestled within the breathtaking region of Gonder in Ethiopia, Alamata Raya Kobo stands as a vibrant town with a rich cultural heritage and stunning natural beauty.
 
 **After:**
+
 > Alamata Raya Kobo is a town in the Gonder region of Ethiopia, known for its weekly market and 18th-century church.
 
 ---
@@ -133,9 +164,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** AI chatbots attribute opinions to vague authorities without specific sources.
 
 **Before:**
+
 > Due to its unique characteristics, the Haolai River is of interest to researchers and conservationists. Experts believe it plays a crucial role in the regional ecosystem.
 
 **After:**
+
 > The Haolai River supports several endemic fish species, according to a 2019 survey by the Chinese Academy of Sciences.
 
 ---
@@ -147,9 +180,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** Many LLM-generated articles include formulaic "Challenges" sections.
 
 **Before:**
+
 > Despite its industrial prosperity, Korattur faces challenges typical of urban areas, including traffic congestion and water scarcity. Despite these challenges, with its strategic location and ongoing initiatives, Korattur continues to thrive as an integral part of Chennai's growth.
 
 **After:**
+
 > Traffic congestion increased after 2015 when three new IT parks opened. The municipal corporation began a stormwater drainage project in 2022 to address recurring floods.
 
 ---
@@ -163,9 +198,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** These words appear far more frequently in post-2023 text. They often co-occur.
 
 **Before:**
+
 > Additionally, a distinctive feature of Somali cuisine is the incorporation of camel meat. An enduring testament to Italian colonial influence is the widespread adoption of pasta in the local culinary landscape, showcasing how these dishes have integrated into the traditional diet.
 
 **After:**
+
 > Somali cuisine also includes camel meat, which is considered a delicacy. Pasta dishes, introduced during Italian colonization, remain common, especially in the south.
 
 ---
@@ -177,9 +214,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLMs substitute elaborate constructions for simple copulas.
 
 **Before:**
+
 > Gallery 825 serves as LAAA's exhibition space for contemporary art. The gallery features four separate spaces and boasts over 3,000 square feet.
 
 **After:**
+
 > Gallery 825 is LAAA's exhibition space for contemporary art. The gallery has four rooms totaling 3,000 square feet.
 
 ---
@@ -189,9 +228,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** Constructions like "Not only...but..." or "It's not just about..., it's..." are overused.
 
 **Before:**
+
 > It's not just about the beat riding under the vocals; it's part of the aggression and atmosphere. It's not merely a song, it's a statement.
 
 **After:**
+
 > The heavy beat adds to the aggressive tone.
 
 ---
@@ -201,9 +242,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLMs force ideas into groups of three to appear comprehensive.
 
 **Before:**
+
 > The event features keynote sessions, panel discussions, and networking opportunities. Attendees can expect innovation, inspiration, and industry insights.
 
 **After:**
+
 > The event includes talks and panels. There's also time for informal networking between sessions.
 
 ---
@@ -213,9 +256,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** AI has repetition-penalty code causing excessive synonym substitution.
 
 **Before:**
+
 > The protagonist faces many challenges. The main character must overcome obstacles. The central figure eventually triumphs. The hero returns home.
 
 **After:**
+
 > The protagonist faces many challenges but eventually triumphs and returns home.
 
 ---
@@ -225,9 +270,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLMs use "from X to Y" constructions where X and Y aren't on a meaningful scale.
 
 **Before:**
+
 > Our journey through the universe has taken us from the singularity of the Big Bang to the grand cosmic web, from the birth and death of stars to the enigmatic dance of dark matter.
 
 **After:**
+
 > The book covers the Big Bang, star formation, and current theories about dark matter.
 
 ---
@@ -239,9 +286,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** LLMs use em dashes (—) more than humans, mimicking "punchy" sales writing.
 
 **Before:**
+
 > The term is primarily promoted by Dutch institutions—not by the people themselves. You don't say "Netherlands, Europe" as an address—yet this mislabeling continues—even in official documents.
 
 **After:**
+
 > The term is primarily promoted by Dutch institutions, not by the people themselves. You don't say "Netherlands, Europe" as an address, yet this mislabeling continues in official documents.
 
 ---
@@ -251,9 +300,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** AI chatbots emphasize phrases in boldface mechanically.
 
 **Before:**
+
 > It blends **OKRs (Objectives and Key Results)**, **KPIs (Key Performance Indicators)**, and visual strategy tools such as the **Business Model Canvas (BMC)** and **Balanced Scorecard (BSC)**.
 
 **After:**
+
 > It blends OKRs, KPIs, and visual strategy tools like the Business Model Canvas and Balanced Scorecard.
 
 ---
@@ -269,6 +320,7 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 - **Security:** Security has been strengthened with end-to-end encryption.
 
 **After:**
+
 > The update improves the interface, speeds up load times through optimized algorithms, and adds end-to-end encryption.
 
 ---
@@ -292,11 +344,13 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** AI chatbots often decorate headings or bullet points with emojis.
 
 **Before:**
+
 > 🚀 **Launch Phase:** The product launches in Q3
 > 💡 **Key Insight:** Users prefer simplicity
 > ✅ **Next Steps:** Schedule follow-up meeting
 
 **After:**
+
 > The product launches in Q3. User research showed a preference for simplicity. Next step: schedule a follow-up meeting.
 
 ---
@@ -304,14 +358,17 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 ### 18. Quotation mark issues
 
 **Problem:** AI models make two common quotation mistakes:
+
 1. Using curly quotes (“...”) instead of straight quotes ("...")
 2. Using single quotes ('...') as primary delimiters in prose (from code training)
 
 **Before:**
+
 > He said “the project is on track” but others disagreed.
 > She stated, 'This is the final version.'
 
 **After:**
+
 > He said "the project is on track" but others disagreed.
 > She stated, "This is the final version."
 
@@ -326,9 +383,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** Text meant as chatbot correspondence gets pasted as content.
 
 **Before:**
+
 > Here is an overview of the French Revolution. I hope this helps! Let me know if you'd like me to expand on any section.
 
 **After:**
+
 > The French Revolution began in 1789 when financial crisis and food shortages led to widespread unrest.
 
 ---
@@ -340,9 +399,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** AI disclaimers about incomplete information get left in text.
 
 **Before:**
+
 > While specific details about the company's founding are not extensively documented in readily available sources, it appears to have been established sometime in the 1990s.
 
 **After:**
+
 > The company was founded in 1994, according to its registration documents.
 
 ---
@@ -352,9 +413,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** Overly positive, people-pleasing language.
 
 **Before:**
+
 > Great question! You're absolutely right that this is a complex topic. That's an excellent point about the economic factors.
 
 **After:**
+
 > The economic factors you mentioned are relevant here.
 
 ---
@@ -379,9 +442,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** Over-qualifying statements.
 
 **Before:**
+
 > It could potentially possibly be argued that the policy might have some effect on outcomes.
 
 **After:**
+
 > The policy may affect outcomes.
 
 ---
@@ -391,9 +456,11 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 **Problem:** Vague upbeat endings.
 
 **Before:**
+
 > The future looks bright for the company. Exciting times lie ahead as they continue their journey toward excellence. This represents a major step in the right direction.
 
 **After:**
+
 > The company plans to open two more locations next year.
 
 ---
@@ -431,6 +498,7 @@ function add(a, b) {
 **Problem:** AI-generated text often uses rigid, non-human formatting (like unnecessary tables or bulleted lists) to present simple information that a human would describe narratively.
 
 **Before:**
+
 > **Performance Comparison:**
 >
 > - **Speed:** High
@@ -438,6 +506,7 @@ function add(a, b) {
 > - **Memory:** Low
 
 **After:**
+
 > The system is fast and stable with low memory overhead.
 
 ---
@@ -449,28 +518,36 @@ function add(a, b) {
 Patterns are ranked by how strongly they signal AI-generated text:
 
 ### Critical (immediate AI detection)
+
 These patterns alone can identify AI-generated text:
+
 - **Pattern 19:** Collaborative communication artifacts ("I hope this helps!", "Let me know if...")
 - **Pattern 20:** Knowledge-cutoff disclaimers ("As of my last training...")
 - **Pattern 21:** Sycophantic tone ("Great question!", "You're absolutely right!")
 - **Pattern 25:** AI signatures in code ("// Generated by ChatGPT")
 
 ### High (strong AI indicators)
+
 Multiple occurrences strongly suggest AI:
+
 - **Pattern 1:** Significance inflation ("testament", "pivotal moment", "evolving landscape")
 - **Pattern 7:** AI vocabulary words ("delve", "underscore", "tapestry", "interplay")
 - **Pattern 3:** Superficial -ing analyses ("highlighting", "underscoring", "showcasing")
 - **Pattern 8:** Copula avoidance ("serves as", "stands as", "functions as")
 
 ### Medium (moderate signals)
+
 Common in AI but also in some human writing:
+
 - **Pattern 13:** Em dash overuse
 - **Pattern 10:** Rule of three
 - **Pattern 9:** Negative parallelisms ("It's not just X; it's Y")
 - **Pattern 4:** Promotional language ("nestled", "vibrant", "renowned")
 
 ### Low (subtle tells)
+
 Minor indicators, fix if other patterns present:
+
 - **Pattern 18:** Quotation mark issues
 - **Pattern 16:** Title case in headings
 - **Pattern 14:** Overuse of boldface
@@ -491,6 +568,7 @@ Minor indicators, fix if other patterns present:
 8. **Configuration values** - Keep config snippets unchanged
 
 **Example - Correct preservation:**
+
 > Before: The `fetchUserData()` function in `/src/api/users.ts` calls `https://api.example.com/v2/users`.
 > After: (No changes - all technical literals preserved)
 
@@ -501,9 +579,11 @@ Minor indicators, fix if other patterns present:
 When identifying patterns, think through each one:
 
 **Example Analysis:**
+
 > Input: "This groundbreaking framework serves as a testament to innovation, nestled at the intersection of research and practice."
 
 **Reasoning:**
+
 1. "groundbreaking" → Pattern 4 (Promotional Language) → Replace with specific claim or remove
 2. "serves as" → Pattern 8 (Copula Avoidance) → Replace with "is"
 3. "testament to" → Pattern 1 (Significance Inflation) → Remove entirely
@@ -516,22 +596,27 @@ When identifying patterns, think through each one:
 ## COMMON OVER-CORRECTIONS (What NOT to Do)
 
 ### Don't flatten all personality
+
 **Wrong:** "The experiment was interesting" → "The experiment occurred"
 **Right:** Keep genuine reactions; remove only performative ones
 
 ### Don't remove all structure
+
 **Wrong:** Converting every list to a wall of text
 **Right:** Keep lists when they genuinely aid comprehension
 
 ### Don't make everything terse
+
 **Wrong:** Reducing every sentence to subject-verb-object
 **Right:** Vary rhythm; some longer sentences are fine
 
 ### Don't strip all emphasis
+
 **Wrong:** Removing all bold/italic formatting
 **Right:** Keep emphasis when it serves a purpose, remove when mechanical
 
 ### Don't over-simplify technical content
+
 **Wrong:** "The O(n log n) algorithm" → "The fast algorithm"
 **Right:** Preserve technical precision; simplify only marketing language
 
@@ -573,6 +658,7 @@ Provide:
 ## Full Example
 
 **Before (AI-sounding):**
+
 > Great question! Here is an essay on this topic. I hope this helps!
 >
 > AI-assisted coding serves as an enduring testament to the transformative potential of large language models, marking a pivotal moment in the evolution of software development. In today's rapidly evolving technological landscape, these groundbreaking tools—nestled at the intersection of research and practice—are reshaping how engineers ideate, iterate, and deliver, underscoring their vital role in modern workflows.
@@ -590,6 +676,7 @@ Provide:
 > In conclusion, the future looks bright. Exciting times lie ahead as we continue this journey toward excellence. Let me know if you’d like me to expand on any section!
 
 **After (Humanized):**
+
 > AI coding assistants speed up some tasks. In a 2024 study by Google, developers using Codex completed simple functions 55% faster than a control group, but showed no improvement on debugging or architectural decisions.
 >
 > The tools are good at boilerplate: config files, test scaffolding, repetitive refactors. They are bad at knowing when they are wrong. I have mass-accepted suggestions that compiled, passed lint, and still did the wrong thing because I stopped paying attention.
@@ -633,20 +720,29 @@ Key insight from Wikipedia: "LLMs use statistical algorithms to guess what shoul
 While Wikipedia's "Signs of AI writing" remains a primary community-maintained source, the following academic and technical resources provide additional patterns and grounding for detection and humanization:
 
 ### 1. Academic Studies on Detection Unreliability
+
 - **University of Illinois / University of Chicago:** Research highlighting that AI detectors disproportionately flag non-native English speakers due to "textual simplicity" and overpromise accuracy while failing to detect paraphrased content.
 - **University of Maryland:** Studies on the "Watermarking" vs. "Statistical" detection methods, emphasizing that as LLMs evolve, statistical signs (like those documented here) become harder to rely on without human judgment.
 
 ### 2. Technical Metrics: Perplexity and Burstiness (GPTZero)
+
 - **Perplexity:** A measure of randomness. AI tends toward low perplexity (statistically predictable word choices). Humanizing involves using more varied, slightly less "optimized" vocabulary.
 - **Burstiness:** A measure of sentence length variation. Humans write with inconsistent rhythms—short punchy sentences followed by long complex ones. AI tends toward a uniform, "un-bursty" rhythm.
 
 ### 3. Linguistic Hallmarks (Originality.ai)
+
 - **Tautology and Redundancy:** AI often restates the same point using slightly different synonyms to fill space or achieve a target length.
 - **Unicode Artifacts:** Some detectors look for specific non-printing characters or unusual font-encoding artifacts that LLMs sometimes produce.
 
 ### 4. Overused "Tells" (Collective Community Observations)
-- High-frequency occurrences of: "delve", "tapestry", "landscape", "at its core", "not only... but also", "in summary", "moreover", "furthermore".
 
+- High-frequency occurrences of: "delve", "tapestry", "landscape", "at its core", "not only... but also", "in summary", "moreover", "furthermore".
+- **2024-2025 Updates:** Recent analysis of computer science papers and academic journals identifies an explosion in the use of "intricate," "commendable," and "meticulous."
+
+### 5. Structural and Emotional Cues
+
+- **Lack of "Punchy" Rhythm:** Humans frequently use one-sentence paragraphs for emphasis or to break up dense sections. AI tends toward uniform paragraph and sentence lengths.
+- **Sentiment Flatness:** LLMs are trained to be helpful and harmless, which often results in a "sentiment-neutral" tone that lacks the emotional spikes or strong personal opinions found in human prose.
 
 ## SIGNS OF AI WRITING MATRIX
 
@@ -656,59 +752,59 @@ For the detailed source table with methodology and metrics, see [`src/ai_feature
 
 ### 1. Content and Analysis Patterns
 
-| Pattern | Sign | W | G | O | C | WI | T | S |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| #1 | **Significance Inflation** ("testament", "pivotal") | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
-| #2 | **Notability Puffery** (Media name-dropping) | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #3 | **Superficial -ing Analysis** ("underscoring") | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
-| #4 | **Promotional Language** ("nestled", "vibrant") | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [x] |
-| #5 | **Vague Attributions** ("Experts argue") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #6 | **Formulaic "Challenges" Sections** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| Pattern | Sign                                                |  W  |  G  |  O  |  C  | WI  |  T  |  S  |
+| :------ | :-------------------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| #1      | **Significance Inflation** ("testament", "pivotal") | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| #2      | **Notability Puffery** (Media name-dropping)        | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #3      | **Superficial -ing Analysis** ("underscoring")      | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| #4      | **Promotional Language** ("nestled", "vibrant")     | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [x] |
+| #5      | **Vague Attributions** ("Experts argue")            | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #6      | **Formulaic "Challenges" Sections**                 | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 ### 2. Language and Grammar Patterns
 
-| Pattern | Sign | W | G | O | C | WI | T | S |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| #7 | **High-Frequency AI Vocabulary** ("delve") | [x] | [x] | [x] | [x] | [x] | [ ] | [x] |
-| #8 | **Copula Avoidance** ("serves as" vs "is") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #9 | **Negative Parallelisms** ("Not only... but") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #10 | **Rule of Three Overuse** | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
-| #11 | **Synonym Cycling** (Elegant Variation) | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
-| #12 | **False Ranges** ("from X to Y") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| Pattern | Sign                                          |  W  |  G  |  O  |  C  | WI  |  T  |  S  |
+| :------ | :-------------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| #7      | **High-Frequency AI Vocabulary** ("delve")    | [x] | [x] | [x] | [x] | [x] | [ ] | [x] |
+| #8      | **Copula Avoidance** ("serves as" vs "is")    | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #9      | **Negative Parallelisms** ("Not only... but") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #10     | **Rule of Three Overuse**                     | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| #11     | **Synonym Cycling** (Elegant Variation)       | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| #12     | **False Ranges** ("from X to Y")              | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 ### 3. Style and Formatting Patterns
 
-| Pattern | Sign | W | G | O | C | WI | T | S |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| #13 | **Em Dash Overuse** (mechanical) | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #14 | **Mechanical Boldface Overuse** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #15 | **Inline-Header Vertical Lists** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #16 | **Mechanical Title Case in Headings** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #17 | **Emoji Lists/Headers** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #18 | **Curly Quotation Marks** (defaults) | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #26 | **Over-Structuring** (Unnecessary Tables/Lists) | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [x] |
+| Pattern | Sign                                            |  W  |  G  |  O  |  C  | WI  |  T  |  S  |
+| :------ | :---------------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| #13     | **Em Dash Overuse** (mechanical)                | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #14     | **Mechanical Boldface Overuse**                 | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #15     | **Inline-Header Vertical Lists**                | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #16     | **Mechanical Title Case in Headings**           | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #17     | **Emoji Lists/Headers**                         | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #18     | **Curly Quotation Marks** (defaults)            | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #26     | **Over-Structuring** (Unnecessary Tables/Lists) | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [x] |
 
 ### 4. Communication and Logic Patterns
 
-| Pattern | Sign | W | G | O | C | WI | T | S |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| #19 | **Chatbot Artifacts** ("I hope this helps") | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
-| #20 | **Knowledge-Cutoff Disclaimers** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #21 | **Sycophantic / Servile Tone** | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
-| #22 | **Filler Phrases** ("In order to") | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [x] |
-| #23 | **Excessive Hedging** ("potentially possibly") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| #24 | **Generic Upbeat Conclusions** | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| Pattern | Sign                                           |  W  |  G  |  O  |  C  | WI  |  T  |  S  |
+| :------ | :--------------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| #19     | **Chatbot Artifacts** ("I hope this helps")    | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| #20     | **Knowledge-Cutoff Disclaimers**               | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #21     | **Sycophantic / Servile Tone**                 | [x] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| #22     | **Filler Phrases** ("In order to")             | [x] | [ ] | [x] | [ ] | [ ] | [ ] | [x] |
+| #23     | **Excessive Hedging** ("potentially possibly") | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| #24     | **Generic Upbeat Conclusions**                 | [x] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 ### 5. Technical and Statistical Metrics (SOTA)
 
-| Pattern | Sign | W | G | O | C | WI | T | S |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| #25 | **AI Signatures in Code** | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
-| N/A | **Low Perplexity** (Predictability) | [ ] | [x] | [x] | [x] | [x] | [x] | [x] |
-| N/A | **Uniform Burstiness** (Rhythm) | [ ] | [x] | [ ] | [x] | [x] | [ ] | [x] |
-| N/A | **Semantic Displacement** (Unnatural shifts) | [ ] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
-| N/A | **Unicode Encoding Artifacts** | [ ] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
-| N/A | **Paraphraser Tool Signatures** | [ ] | [x] | [ ] | [ ] | [ ] | [x] | [ ] |
+| Pattern | Sign                                         |  W  |  G  |  O  |  C  | WI  |  T  |  S  |
+| :------ | :------------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| #25     | **AI Signatures in Code**                    | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |
+| N/A     | **Low Perplexity** (Predictability)          | [ ] | [x] | [x] | [x] | [x] | [x] | [x] |
+| N/A     | **Uniform Burstiness** (Rhythm)              | [ ] | [x] | [ ] | [x] | [x] | [ ] | [x] |
+| N/A     | **Semantic Displacement** (Unnatural shifts) | [ ] | [ ] | [ ] | [x] | [ ] | [ ] | [ ] |
+| N/A     | **Unicode Encoding Artifacts**               | [ ] | [ ] | [x] | [ ] | [ ] | [ ] | [ ] |
+| N/A     | **Paraphraser Tool Signatures**              | [ ] | [x] | [ ] | [ ] | [ ] | [x] | [ ] |
 
 ### Sources Key
 

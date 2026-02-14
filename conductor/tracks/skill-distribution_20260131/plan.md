@@ -17,10 +17,11 @@
 ## Phase 3: CI Integration and validation
 
 - [x] Task: Add `.github/workflows/skill-distribution.yml` that runs skill validation on PRs and pushes
-    - [x] Subtask: Install minimal Skillshare (curl script) and run `skillshare sync --dry-run` or `skillshare install ./ --dry-run`
-    - [ ] Subtask: Optionally install AIX and run `aix skill validate ./` for a sample platform
-    - [x] Subtask: Ensure the job fails on non-zero exit or if `SKILL.md` is modified by the run
+  - [x] Subtask: Install minimal Skillshare (curl script) and run `skillshare sync --dry-run` or `skillshare install ./ --dry-run`
+  - [ ] Subtask: Optionally install AIX and run `aix skill validate ./` for a sample platform
+  - [x] Subtask: Ensure the job fails on non-zero exit or if `SKILL.md` is modified by the run
 - [x] Task: Add a small verification script (`scripts/validate-skill.sh`) to encapsulate dry-run logic
+
 ## Phase 4: Submission and Release
 
 - [ ] Task: Prepare PR to VoltAgent/awesome-agent-skills (draft)

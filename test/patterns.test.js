@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert';
 import fs from 'node:fs';
-import path from 'node:path';
 
 const SKILL_CORE_PATH = '.agent/skills/humanizer/modules/SKILL_CORE.md';
 const SKILL_PRO_PATH = '.agent/skills/humanizer/SKILL_PROFESSIONAL.md';
@@ -9,7 +8,7 @@ const SKILL_PRO_PATH = '.agent/skills/humanizer/SKILL_PROFESSIONAL.md';
 test('SKILL_CORE.md integrity', async (t) => {
   assert.ok(fs.existsSync(SKILL_CORE_PATH), 'SKILL_CORE.md should exist');
   const content = fs.readFileSync(SKILL_CORE_PATH, 'utf8');
-  
+
   await t.test('contains all 24 patterns', () => {
     // Check for the presence of headings for patterns 1 through 24 (General Patterns)
     for (let i = 1; i <= 24; i++) {

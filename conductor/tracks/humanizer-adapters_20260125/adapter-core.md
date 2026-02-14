@@ -21,7 +21,7 @@ When given text to humanize:
 - Preserve technical literals: inline code, fenced code blocks, URLs, file paths, identifiers.
 - Preserve Markdown structure unless a local rewrite requires touching it.
 - Output the rewritten text, then a short bullet summary of changes.
-"""
+  """
 
 ## Metadata Placement
 

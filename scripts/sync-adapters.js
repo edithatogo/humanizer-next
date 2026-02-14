@@ -31,16 +31,19 @@ function compileSkill(headerPath) {
   return full;
 }
 
+/**
+ * Merge adapter metadata into existing frontmatter.
+ * @param {string} source
+ * @param {string} metadata
+ * @returns {string}
+ */
 function mergeAdapterMetadata(source, metadata) {
   const match = source.match(/^---\n([\s\S]*?)\n---\n?/);
   if (!match) {
     return `---\n${metadata}\n---\n\n${source}`;
   }
 
-  const frontmatter = match[1].replace(
-    /(^|\n)adapter_metadata:\n(?:[ \t].*\n)*/m,
-    '\n',
-  ).trimEnd();
+  const frontmatter = match[1].replace(/(^|\n)adapter_metadata:\n(?:[ \t].*\n)*/m, '\n').trimEnd();
   const rest = source.slice(match[0].length);
   const mergedFrontmatter = `${frontmatter}\n${metadata}`.trimEnd();
   return `---\n${mergedFrontmatter}\n---\n\n${rest}`;

@@ -24,5 +24,5 @@ This document outlines general coding principles that apply across all languages
 
 ## Documentation
 
-- Document *why* something is done, not just *what*.
+- Document _why_ something is done, not just _what_.
 - Keep documentation up-to-date with code changes.

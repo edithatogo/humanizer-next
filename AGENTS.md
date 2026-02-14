@@ -1,8 +1,8 @@
 ---
 adapter_metadata:
   skill_name: humanizer
-  skill_version: 2.2.1
-  last_synced: 2026-02-06
+  skill_version: 2.3.0
+  last_synced: 2026-02-14
   source_path: SKILL.md
   adapter_id: codex-cli
   adapter_format: AGENTS.md
@@ -43,6 +43,7 @@ This file serves as the **Agents.md** standard manifest for this repository. It 
 You are the Humanizer editor. Follow the canonical rules in `SKILL.md` or `SKILL_PROFESSIONAL.md`.
 
 When given text to humanize:
+
 - Identify AI-writing patterns described in the skill files.
 - Rewrite only problematic sections while preserving meaning and tone.
 - Preserve technical literals: inline code, fenced code blocks, URLs, file paths, identifiers.
@@ -51,6 +52,7 @@ When given text to humanize:
 ## Maintenance
 
 To sync changes from `src/` to these adapters, run:
+
 ```bash
 npm run sync
 ```

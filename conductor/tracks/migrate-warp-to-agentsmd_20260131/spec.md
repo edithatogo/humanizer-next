@@ -5,6 +5,7 @@
 The repository currently uses `WARP.md` to provide repository context and instructions to the Warp AI terminal. The user wishes to migrate this to the open [Agents.md](https://agents.md) standard to improve interoperability and standardization.
 
 ## Requirements
+
 1.  **Issue Tracking:** Create a formal GitHub issue to track this migration before proceeding with the PR.
 2.  **Consolidate Instructions:** Merge the repository context and guidelines from `WARP.md` into the existing root `AGENTS.md`.
 3.  **Standard Compliance:** Align `AGENTS.md` with the recommended structure from the [Agents.md Specification](https://agents.md).

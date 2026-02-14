@@ -1,6 +1,6 @@
 ---
 name: humanizer
-version: 2.2.1
+version: 2.3.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
@@ -10,6 +10,7 @@ description: |
   parallelisms, and excessive conjunctive phrases. Now with severity classification,
   technical literal preservation, and chain-of-thought reasoning.
 <<<<[CORE_FRONTMATTER]>>>>
+---
 
 # Humanizer: Remove AI Writing Patterns
 
@@ -45,11 +46,11 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 Have opinions and react to facts. Vary sentence rhythm with short and long lines. Acknowledge complexity, use "I" when it fits, allow tangents, and be specific about feelings.
 
 ### Before (clean but soulless)
->
+
 > The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical. The implications remain unclear.
 
 ### After (has a pulse)
->
+
 > I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
 
 ---

@@ -38,6 +38,7 @@ For each source in `src/ai_features_sources_table.md`:
 - [x] CoNLL-2003
 
 ### Phase 5: Architecture Implementation (SOTA)
+
 - [x] Create `implementation_plan_v3.md` (Tiered Architecture)
 - [x] Create `modules/` (Core, Technical, Academic)
 - [x] Refactor `SKILL.md` (Standard Wrapper) and `SKILL_PROFESSIONAL.md` (Pro Router)
