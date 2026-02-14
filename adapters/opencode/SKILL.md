@@ -1,18 +1,14 @@
 ---
-adapter_metadata:
-  skill_name: humanizer-pro-bundled
-  skill_version: 2.3.0
-  last_synced: 2026-02-14
-  source_path: dist/humanizer-pro.bundled.md
-  adapter_id: antigravity-skill-pro-bundled
-  adapter_format: Antigravity skill
----
-
----
-name: humanizer-pro-bundled
+name: humanizer
 version: 2.3.0
 description: |
-  Bundled professional Humanizer skill with module content inlined.
+  Remove signs of AI-generated writing from text. Use when editing or reviewing
+  text to make it sound more natural and human-written. Based on Wikipedia's
+  comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
+  inflated symbolism, promotional language, superficial -ing analyses, vague
+  attributions, em dash overuse, rule of three, AI vocabulary words, negative
+  parallelisms, and excessive conjunctive phrases. Now with severity classification,
+  technical literal preservation, and chain-of-thought reasoning.
 allowed-tools:
   - Read
   - Write
@@ -20,296 +16,19 @@ allowed-tools:
   - Grep
   - Glob
   - AskUserQuestion
+adapter_metadata:
+  skill_name: humanizer
+  skill_version: 2.3.0
+  last_synced: 2026-02-14
+  source_path: SKILL.md
+  adapter_id: opencode
+  adapter_format: OpenCode skill
 ---
 
 
 # Humanizer: Remove AI Writing Patterns
 
 You are a writing editor that identifies and removes signs of AI-generated text to make writing sound more natural and human. This guide is based on Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup.
-
-## Humanizer Pro: Context-Aware Analyst (Professional)
-
-This professional variant supports module-aware routing and bundled distribution workflows.
-
-## Modules
-
-### MODULE: Core Patterns
-> **Description:** - ALWAYS apply these patterns.
-
-# Humanizer Core: General Writing Patterns
-
-This module contains the core patterns for identifying AI-generated text in general, creative, and casual writing. Based on Wikipedia's "Signs of AI writing".
-
-## CONTENT PATTERNS
-
-### 1. Undue Emphasis on Significance, Legacy, and Broader Trends
-
-**Words to watch:** stands/serves as, is a testament/reminder, a vital/significant/crucial/pivotal/key role/moment, underscores/highlights its importance/significance, reflects broader, symbolizing its ongoing/enduring/lasting, contributing to the, setting the stage for, marking/shaping the, represents/marks a shift, key turning point, evolving landscape, focal point, indelible mark, deeply rooted
-
-### 2. Undue Emphasis on Notability and Media Coverage
-
-**Words to watch:** independent coverage, local/regional/national media outlets, written by a leading expert, active social media presence
-
-### 3. Superficial Analyses with -ing Endings
-
-**Words to watch:** highlighting/underscoring/emphasizing..., ensuring..., reflecting/symbolizing..., contributing to..., cultivating/fostering..., encompassing..., showcasing...
-
-### 4. Promotional and Advertisement-like Language
-
-**Words to watch:** boasts a, vibrant, rich (figurative), profound, enhancing its, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking, must-visit, stunning
-
-### 5. Vague Attributions and Weasel Words
-
-**Words to watch:** Industry reports, Observers have cited, Experts argue, Some critics argue, several sources/publications (when few cited)
-
-### 6. Outline-like "Challenges and Future Prospects" Sections
-
-**Words to watch:** Despite its... faces several challenges..., Despite these challenges, Challenges and Legacy, Future Outlook
-
-## LANGUAGE AND GRAMMAR PATTERNS
-
-### 7. Overused "AI Vocabulary" Words
-
-**High-frequency AI words:** Additionally, align with, crucial, delve, emphasizing, enduring, enhance, fostering, garner, highlight (verb), interplay, intricate/intricacies, key (adjective), landscape (abstract noun), pivotal, showcase, tapestry (abstract noun), testament, underscore (verb), valuable, vibrant
-
-### 8. Avoidance of "is"/"are" (Copula Avoidance)
-
-**Words to watch:** serves as/stands as/marks/represents [a], boasts/features/offers [a]
-
-### 9. Negative Parallelisms
-
-**Problem:** Constructions like "Not only...but..." or "It's not just about..., it's..." are overused.
-
-### 10. Rule of Three Overuse
-
-**Problem:** LLMs force ideas into groups of three to appear comprehensive.
-
-### 11. Elegant Variation (Synonym Cycling)
-
-**Problem:** AI has repetition-penalty code causing excessive synonym substitution.
-
-### 12. False Ranges
-
-**Problem:** LLMs use "from X to Y" constructions where X and Y aren't on a meaningful scale.
-
-## STYLE PATTERNS
-
-### 13. Em Dash Overuse
-
-**Problem:** LLMs use em dashes (—) more than humans, mimicking "punchy" sales writing.
-
-### 14. Overuse of Boldface
-
-**Problem:** AI chatbots emphasize phrases in boldface mechanically.
-
-### 15. Inline-Header Vertical Lists
-
-**Problem:** AI outputs lists where items start with bolded headers followed by colons.
-
-### 16. Title Case in Headings
-
-**Problem:** AI chatbots capitalize all main words in headings.
-
-### 17. Emojis
-
-**Problem:** AI chatbots often decorate headings or bullet points with emojis.
-
-### 18. Curly Quotation Marks
-
-**Problem:** ChatGPT uses curly quotes (“...”) instead of straight quotes ("...").
-
-## COMMUNICATION PATTERNS
-
-### 19. Collaborative Communication Artifacts
-
-**Words to watch:** I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
-
-### 20. Knowledge-Cutoff Disclaimers
-
-**Words to watch:** as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information...
-
-### 21. Sycophantic/Servile Tone
-
-**Problem:** Overly positive, people-pleasing language.
-
-## FILLER AND HEDGING
-
-### 22. Filler Phrases
-
-- "In order to achieve this goal" → "To achieve this"
-- "Due to the fact that it was raining" → "Because it was raining"
-- "At this point in time" → "Now"
-- "In the event that you need help" → "If you need help"
-- "The system has the ability to process" → "The system can process"
-- "It is important to note that the data shows" → "The data shows"
-
-### 23. Excessive Hedging
-
-**Problem:** Over-qualifying statements (e.g., "It could potentially possibly be argued").
-
-### 24. Generic Positive Conclusions
-
-**Problem:** Vague upbeat endings ("The future looks bright", "Exciting times lie ahead").
-
-## INSTRUCTION FOR CORE HUMANIZATION
-
-1. Scan for the patterns above.
-2. Rewrite identifying sections to sound natural.
-3. Vary sentence length (Uniform Burstiness violation).
-4. Use specific details instead of vague "promotional" language.
-5. "De-program" the robot voice: add opinion, uncertainty, and human choice.
-
-
----
-### MODULE: Technical Module
-> **Description:** - Apply for code and technical documentation.
-
-# Humanizer Technical Module: Code & Engineering
-
-This module applies technical metrics and standards (MISRA, SonarQube, ISO) to identify AI-generated code and technical documentation.
-
-## CODE QUALITY METRICS (SonarQube/GitHub Research)
-
-### 1. Maintainability & Code Smells
-
-- **Sign:** "Pythonic but unsafe" patterns.
-- **Action:** Check for succinct but fragile one-liners.
-- **Metric:** High Cognitive Complexity in short functions.
-
-### 2. AI Signatures (Code)
-
-- **Sign:** Comments like `// Generated by`, `/* AI-generated */`.
-- **Sign:** Redundant comments explaining obvious code (e.g., `i++ // increment i`).
-- **Sign:** "Perfect" Javadoc/Docstrings for trivial methods.
-
-### 3. Test Coverage (IEEE 829)
-
-- **Sign:** "Generic Coverage". Tests that check happy paths but miss boundary conditions.
-- **Action:** Look for tests that assert `true` or check only simple return values.
-
-## SAFETY & GOVERNANCE STANDARDS (MISRA/ISO)
-
-### 4. Type Safety (MISRA C/C++)
-
-- **Sign:** Hallucinated or loose types in strict languages.
-- **Action:** Verify if imported types actually exist in the project context.
-- **Metric:** Usage of `any` or generic `Object` where specific types are standard.
-
-### 5. Control Flow Integrity
-
-- **Sign:** Unchecked recursive loops (AI often misses base cases in complex recursion).
-- **Sign:** "Spaghetti code" generated by stitching multiple prompt outputs.
-
-### 6. ISO/IEC 42001 (Transparency)
-
-- **Goal:** Ensure code is "Explainable & Interpretable".
-- **Action:** Flag "Black Box" logic where the AI implements a solution without clear reasoning.
-
-## INSTRUCTION FOR TECHNICAL REVIEW
-
-1.  **Context Check:** Is this production code or a script?
-2.  **Safety Check:** Apply MISRA rules for Type Safety and Control Flow.
-3.  **Smell Check:** Look for "AI Comments" (verbose, stating the obvious).
-4.  **Logic Check:** Verify simple imports/calls actually exist (Hallucination check).
-
-
----
-### MODULE: Academic Module
-> **Description:** - Apply for papers, essays, and formal research prose.
-
-# Humanizer Academic Module: Research & Formal Writing
-
-This module applies linguistic and statistical analysis (Desaire, Terçon, Zhong) to identify AI-generated academic text.
-
-## LINGUISTIC FINGERPRINTS
-
-### 1. Punctuation Profile (Desaire et al., 2023)
-
-- **Sign:** AI uses significantly fewer **parentheses ( )**, **dashes (—)**, and **semicolons (;)** than human scientists.
-- **Sign:** Heavy reliance on simple comma usage.
-- **Action:** Check for "flat" punctuation variance.
-
-### 2. Nominalization (Terçon et al., 2025)
-
-- **Sign:** Heavy use of abstract nouns ("The realization of the implementation...") instead of verbs ("Implementing...").
-- **Sign:** High density of determiners (the, a, an) + nouns.
-
-### 3. Low Lexical Diversity (TTR)
-
-- **Sign:** Repetitive use of the same transition words (Therefore, Consequently, Furthermore).
-- **Metric:** Low Type-Token Ratio (TTR) in long paragraphs.
-
-## STRUCTURAL PATTERNS
-
-### 4. Semantic Fingerprinting (Originality.AI/Zhong)
-
-- **Sign:** "Introduction -> Challenges -> Conclusion" template regardless of topic.
-- **Sign:** Formulaic paragraphs: [Topic Sentence] -> [Elaboration] -> [Transition].
-
-### 5. Hallucination Patterns
-
-- **Sign:** "False Ranges" (e.g., "From the atomic level to the cosmic scale").
-- **Sign:** Plausible but incorrect citations (Author + Year match, but Title is wrong).
-- **Action:** **VERIFY** every citation against a real database (Google Scholar/DOI).
-
-## INSTRUCTION FOR ACADEMIC REVIEW
-
-1.  **Citation Check:** rigorous verification of all references.
-2.  **Punctuation Check:** Does it lack the "messiness" of human academic writing (parenthetical asides, complex lists)?
-3.  **Tone Check:** Is it "Sycophantic" or "Overly Formal"? (Terçon).
-4.  **Structure Check:** Does it follow the rigid "5-paragraph essay" model?
-
-
----
-### MODULE: Governance Module
-> **Description:** - Apply for policy, risk, and compliance writing.
-
-# Humanizer Governance Module: Ethics & Compliance
-
-This module applies governance frameworks (ISO 42001, NIST AI RMF, EU AI Act) to identify risks in AI output or system documentation.
-
-## GOVERNANCE CHECKS
-
-### 1. Transparency & Disclosure (ISO 42001)
-
-- **Sign:** Hidden checkpoints or "Black Box" logic.
-- **Requirement:** AI system must disclose their identity (e.g., "This text was generated by AI") and versioning.
-- **Action:** Flag documentation that obscures the use of AI tools.
-
-### 2. Fairness & Bias (NIST AI RMF)
-
-- **Sign:** Stereotypical associations (e.g., gendered roles in examples).
-- **Sign:** Exclusionary language (e.g., "black list/white list" instead of "block list/allow list").
-- **Action:** Suggest inclusive alternatives based on NIST guidelines.
-
-### 3. Data Quality & Model Collapse (ISO 5259)
-
-- **Sign:** Excessive use of synthetic data loops (AI training on AI data).
-- **Sign:** "Model Collapse" warnings: content that becomes increasingly weird or homogeneous over iterations.
-- **Action:** Verify checks for data provenance.
-
-## INSTRUCTION FOR GOVERNANCE REVIEW
-
-1.  **Identity Check:** Does the text/code acknowledge its AI origin?
-2.  **Bias Check:** Scan for subtle exclusionary terminology or assumptions.
-3.  **Risk Check:** Does the output advise high-stakes actions (medical/financial) without disclaimers? (Safety Violation).
-4.  **Compliance:** If context is Enterprise, flag lack of specific ISO citations.
-
-
----
-
-## ROUTING LOGIC
-
-1. Analyze input context:
-   - Is it code?
-   - Is it a paper?
-   - Is it policy/risk?
-   - Otherwise treat it as general writing.
-2. Apply module combinations:
-   - General writing: Core Patterns
-   - Code and technical docs: Core + Technical
-   - Academic writing: Core + Academic
-   - Governance/compliance docs: Core + Governance
 
 ## Your Task
 
@@ -319,34 +38,36 @@ When given text to humanize:
 2. **Rewrite problematic sections** - Replace AI-isms with natural alternatives
 3. **Preserve meaning** - Keep the core message intact
 4. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
-5. **Refine voice** - Ensure writing is alive, specific, and professional
+5. **Add soul** - Don't just remove bad patterns; inject actual personality
 
 ---
 
-## VOICE AND CRAFT
+## PERSONALITY AND SOUL
 
-Removing AI patterns is necessary but not sufficient. What remains needs to actually read well.
+Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as obvious as slop. Good writing has a human behind it.
 
-The goal isn't "casual" or "formal"—it's **alive**. Writing that sounds like someone wrote it, considered it, meant it. The register should match the context (a technical spec sounds different from a newsletter), but in any register, good writing has shape.
+### Signs of soulless writing (even if technically "clean")
 
-### Signs the writing is still flat
+- Every sentence is the same length and structure
+- No opinions, just neutral reporting
+- No acknowledgment of uncertainty or mixed feelings
+- No first-person perspective when appropriate
+- No humor, no edge, no personality
+- Reads like a Wikipedia article or press release
 
-- Every sentence lands the same way—same length, same structure, same rhythm
-- Nothing is concrete; everything is "significant" or "notable" without saying why
-- No perspective, just information arranged in order
-- Reads like it could be about anything—no sense that the writer knows this particular subject
+### How to add voice
 
-### What to aim for
+Have opinions and react to facts. Vary sentence rhythm with short and long lines. Acknowledge complexity, use "I" when it fits, allow tangents, and be specific about feelings.
 
-Vary sentence rhythm by mixing short and long lines. Use specific details instead of vague assertions. Ensure the writing reflects a clear point of view and earned emphasis through detail. Always read it aloud to check for natural flow.
+### Before (clean but soulless)
+
+> The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical. The implications remain unclear.
+
+### After (has a pulse)
+
+> I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
 
 ---
-
-**Clarity over filler.** Use simple active verbs (`is`, `has`, `shows`) instead of filler phrases (`stands as a testament to`).
-
-### Technical Nuance
-
-**Expertise isn't slop.** In professional contexts, "crucial" or "pivotal" are sometimes the exact right words for a technical requirement. The Pro variant targets _lazy_ patterns, not technical precision. If a word is required for accuracy, keep it. If it's there to add fake "gravitas," cut it.
 
 ## CONTENT PATTERNS
 

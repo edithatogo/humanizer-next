@@ -1,4 +1,5 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -145,7 +146,71 @@ const adapters = [
     format: 'VSCode markdown',
     base: 'SKILL.md',
   },
+  {
+    name: 'Claude Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'claude', 'SKILL.md'),
+    source: standardContent,
+    id: 'claude',
+    format: 'Claude skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Cline Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'cline', 'SKILL.md'),
+    source: standardContent,
+    id: 'cline',
+    format: 'Cline skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Kilo Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'kilo', 'SKILL.md'),
+    source: standardContent,
+    id: 'kilo',
+    format: 'Kilo skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Amp Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'amp', 'SKILL.md'),
+    source: standardContent,
+    id: 'amp',
+    format: 'Amp skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'OpenCode Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'opencode', 'SKILL.md'),
+    source: standardContent,
+    id: 'opencode',
+    format: 'OpenCode skill',
+    base: 'SKILL.md',
+  },
 ];
+
+// Optional: Global Home Directory Sync (SOTA approach)
+const SYNC_GLOBAL = process.env.HUMANIZER_SYNC_GLOBAL === '1';
+if (SYNC_GLOBAL) {
+  const home = os.homedir();
+  [
+    { tool: 'cline', dir: '.cline/skills' },
+    { tool: 'kilo', dir: '.kilo/skills' },
+    { tool: 'amp', dir: '.amp/skills' },
+    { tool: 'opencode', dir: '.opencode/skills' },
+    { tool: 'claude', dir: '.claude/skills' },
+    { tool: 'qwen', dir: '.qwen/skills' },
+    { tool: 'codex', dir: '.codex/skills' },
+  ].forEach(({ tool, dir }) => {
+    adapters.push({
+      name: `${tool.charAt(0).toUpperCase() + tool.slice(1)} (Global)`,
+      path: path.join(home, dir, 'humanizer', 'SKILL.md'),
+      source: standardContent,
+      id: `${tool}-global`,
+      format: `${tool} skill`,
+      base: 'SKILL.md',
+    });
+  });
+}
 
 adapters.forEach((adapter) => {
   console.log(`Syncing ${adapter.name}...`);

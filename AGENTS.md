@@ -64,4 +64,4 @@ npm run sync
 
 ## Interoperability
 
-Check for specialized adapters in the `adapters/` directory for specific tool support (Antigravity, VS Code, Gemini, Qwen, Copilot).
+Check for specialized adapters in the `adapters/` directory for specific tool support (Antigravity, VS Code, Gemini, Qwen, Copilot, Cline, Kilo, Amp, OpenCode).
