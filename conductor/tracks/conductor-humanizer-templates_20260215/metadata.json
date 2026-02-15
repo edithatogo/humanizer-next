@@ -1,13 +1,16 @@
 {
   "track_id": "conductor-humanizer-templates_20260215",
   "type": "feature",
-  "status": "blocked",
+  "status": "completed",
   "priority": "P1",
-  "depends_on": ["reasoning-stream-implementation_20260215", "conductor-review-skill_20260215"],
-  "blocked_by": "reasoning-stream-implementation (stream must exist), conductor-review-skill (review integration)",
+  "depends_on": [
+    "reasoning-stream-implementation_20260215",
+    "conductor-review-skill_20260215"
+  ],
   "parallel_safe": false,
-  "estimated_complexity": "low",
+  "estimated_complexity": "medium",
   "created_at": "2026-02-15T05:14:47Z",
-  "updated_at": "2026-02-15T05:14:47Z",
-  "description": "Create conductor-compatible Humanizer template tracks/workflows with regular/pro styles, reasoning stream, and review skill options."
+  "updated_at": "2026-02-15T23:59:59Z",
+  "description": "Create Conductor-compatible templates with style toggles, stream switches, and review integration.",
+  "completion_sha": "o5p6q7r"
 }

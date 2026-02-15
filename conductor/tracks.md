@@ -38,46 +38,52 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 Priority order (run sequentially unless marked parallel-safe):
 
-### 1. [x] reasoning-failures-stream_20260215 [g1h2i3j]
+### 1. [ ] repo-hardening-skill-distribution_20260215
+
+**Summary:** Repository hardening and skill distribution optimization - consolidate agent files, organize context files, ensure installability
+**Status:** new | **Priority:** P1 | **Dependencies:** none
+_Link: [./tracks/repo-hardening-skill-distribution_20260215/](./tracks/repo-hardening-skill-distribution_20260215/)_
+
+### 2. [x] reasoning-failures-stream_20260215 [g1h2i3j]
 
 **Summary:** LLM reasoning failures stream - source archiving, evidence cataloging, taxonomy, Wikipedia workflow
 **Status:** completed | **Priority:** P0 | **Dependencies:** none
 _Link: [./tracks/reasoning-failures-stream_20260215/](./tracks/reasoning-failures-stream_20260215/)_
 
-### 2. [ ] reasoning-stream-implementation_20260215
+### 2. [x] reasoning-stream-implementation_20260215 [p6q7r8s]
 
-**Summary:** Productize reasoning stream - source fragments, adapters, regression safety  
-**Status:** blocked | **Priority:** P0 | **Dependencies:** reasoning-failures-stream  
+**Summary:** Productize reasoning stream - source fragments, adapters, regression safety
+**Status:** completed | **Priority:** P0 | **Dependencies:** reasoning-failures-stream
 _Link: [./tracks/reasoning-stream-implementation_20260215/](./tracks/reasoning-stream-implementation_20260215/)_
 
-### 3. [ ] conductor-review-skill_20260215
+### 3. [x] conductor-review-skill_20260215 [p6q7r8s]
 
-**Summary:** Humanizer review skill - severity-ordered findings, citation/taxonomy checks  
-**Status:** blocked | **Priority:** P1 | **Dependencies:** reasoning-failures-stream (taxonomy)  
+**Summary:** Humanizer review skill - severity-ordered findings, citation/taxonomy checks
+**Status:** completed | **Priority:** P1 | **Dependencies:** reasoning-failures-stream (taxonomy)
 _Link: [./tracks/conductor-review-skill_20260215/](./tracks/conductor-review-skill_20260215/)_
 
-### 4. [ ] conductor-humanizer-templates_20260215
+### 4. [x] conductor-humanizer-templates_20260215 [o5p6q7r]
 
-**Summary:** Conductor-compatible templates - style toggles, stream switches, review integration  
-**Status:** blocked | **Priority:** P1 | **Dependencies:** reasoning-stream-implementation, conductor-review-skill  
+**Summary:** Conductor-compatible templates - style toggles, stream switches, review integration
+**Status:** completed | **Priority:** P1 | **Dependencies:** reasoning-stream-implementation, conductor-review-skill
 _Link: [./tracks/conductor-humanizer-templates_20260215/](./tracks/conductor-humanizer-templates_20260215/)_
 
-### 5. [ ] repo-hardening-release-ops_20260215
+### 5. [x] repo-hardening-release-ops_20260215 [r8s9t0u]
 
-**Summary:** CI/CD hardening, release policy, versioning, upstream PR runbook  
-**Status:** new | **Priority:** P1 | **Dependencies:** none (parallel-safe)  
+**Summary:** CI/CD hardening, release policy, versioning, upstream PR runbook
+**Status:** completed | **Priority:** P1 | **Dependencies:** none (parallel-safe)
 _Link: [./tracks/repo-hardening-release-ops_20260215/](./tracks/repo-hardening-release-ops_20260215/)_
 
-### 6. [ ] downstream-skill-sync-automation_20260215
+### 6. [x] downstream-skill-sync-automation_20260215 [q7r8s9t]
 
-**Summary:** Auto-sync downstream repos after version updates  
-**Status:** blocked | **Priority:** P2 | **Dependencies:** repo-hardening-release-ops (release policy)  
+**Summary:** Auto-sync downstream repos after version updates
+**Status:** completed | **Priority:** P2 | **Dependencies:** repo-hardening-release-ops (release policy)
 _Link: [./tracks/downstream-skill-sync-automation_20260215/](./tracks/downstream-skill-sync-automation_20260215/)_
 
-### 7. [ ] systematic-refactor-hardening_20260215
+### 7. [x] systematic-refactor-hardening_20260215 [o5p6q7r]
 
-**Summary:** Modular refactor baseline, structural guardrails, maintenance playbook, ADRs  
-**Status:** blocked | **Priority:** P2 | **Dependencies:** reasoning-stream-implementation (hotspot discovery needs new code)  
+**Summary:** Modular refactor baseline, structural guardrails, maintenance playbook, ADRs
+**Status:** completed | **Priority:** P2 | **Dependencies:** reasoning-stream-implementation (hotspot discovery needs new code)
 _Link: [./tracks/systematic-refactor-hardening_20260215/](./tracks/systematic-refactor-hardening_20260215/)_
 
 ---
