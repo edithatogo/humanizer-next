@@ -2,7 +2,7 @@
 
 ## Phase 1: Define scope and acceptance
 
-- [ ] Task: Finalize targets and decide whether Skillshare or AIX is primary (Recommendation: Skillshare primary, AIX complementary)
+- [x] Task: Finalize targets and decide whether Skillshare or AIX is primary (Recommendation: Skillshare primary, AIX complementary) [ee3a7c2]
 - [ ] Task: Draft `docs/skill-distribution.md` outline
 - [ ] Task: Create CI job spec (inputs/outputs/failure modes)
 - [ ] Task: Conductor - Agent Verification 'Phase 1: Define scope and acceptance' (Protocol in workflow.md)
