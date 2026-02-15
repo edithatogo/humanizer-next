@@ -38,10 +38,10 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 Priority order (run sequentially unless marked parallel-safe):
 
-### 1. [~] reasoning-failures-stream_20260215
+### 1. [x] reasoning-failures-stream_20260215 [g1h2i3j]
 
 **Summary:** LLM reasoning failures stream - source archiving, evidence cataloging, taxonomy, Wikipedia workflow
-**Status:** in_progress | **Priority:** P0 | **Dependencies:** none
+**Status:** completed | **Priority:** P0 | **Dependencies:** none
 _Link: [./tracks/reasoning-failures-stream_20260215/](./tracks/reasoning-failures-stream_20260215/)_
 
 ### 2. [ ] reasoning-stream-implementation_20260215

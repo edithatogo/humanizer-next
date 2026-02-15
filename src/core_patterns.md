@@ -622,7 +622,8 @@ Provide:
 
 **Problem:** LLMs exhibit degraded performance as reasoning depth increases.
 
-**Signs:** 
+**Signs:**
+
 - Overly complex explanations that lose focus
 - Tangential discussions that don't connect back to the main point
 - Accuracy decreases as reasoning chain lengthens
@@ -640,6 +641,7 @@ Provide:
 **Problem:** LLMs have difficulty maintaining coherence when switching between different domains or contexts.
 
 **Signs:**
+
 - Abrupt topic changes without proper transitions
 - Mixing formal and informal registers inappropriately
 - Difficulty maintaining coherence across different knowledge domains
@@ -657,6 +659,7 @@ Provide:
 **Problem:** LLMs struggle with reasoning about time, sequences, or causality.
 
 **Signs:**
+
 - Confusing chronological order
 - Unclear cause-and-effect relationships
 - Errors in temporal sequence or causal reasoning tasks
@@ -674,6 +677,7 @@ Provide:
 **Problem:** LLMs have difficulty shifting between different levels of abstraction.
 
 **Signs:**
+
 - Jumping suddenly from concrete examples to abstract concepts without connection
 - Difficulty maintaining appropriate level of abstraction
 - Inability to bridge abstraction gaps with clear connections
@@ -691,6 +695,7 @@ Provide:
 **Problem:** LLMs tend to make specific types of logical errors.
 
 **Signs:**
+
 - Circular reasoning
 - False dichotomies
 - Hasty generalizations
@@ -710,6 +715,7 @@ Provide:
 **Problem:** LLMs fail in numerical or quantitative reasoning.
 
 **Signs:**
+
 - Arithmetic errors
 - Misunderstanding of probabilities
 - Scale misjudgments
@@ -729,6 +735,7 @@ Provide:
 **Problem:** LLMs fail to maintain consistent reasoning within a single response.
 
 **Signs:**
+
 - Contradictory statements within the same response
 - Changing positions mid-response
 - Internal contradictions within a single output
@@ -746,6 +753,7 @@ Provide:
 **Problem:** LLMs fail to adequately verify reasoning steps or final answers.
 
 **Signs:**
+
 - Providing incorrect answers without self-correction
 - Accepting obviously wrong intermediate steps
 - Lack of internal verification mechanisms
