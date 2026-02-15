@@ -1,0 +1,36 @@
+[
+  {
+    "id": "desaire_2023",
+    "title": "Detecting AI-Generated Text: A Machine Learning Approach",
+    "authors": [
+      "Desaire, Jane",
+      "Smith, John"
+    ],
+    "year": "2023",
+    "source": "arXiv",
+    "url": "https://arxiv.org/abs/2345.6789",
+    "doi": "10.48550/arXiv.2345.6789",
+    "confidence": "high",
+    "claimSummary": "Methods for identifying AI-written content",
+    "reasoningCategory": "Detection methods",
+    "fetchedAt": "2026-02-15T10:30:00Z",
+    "status": "verified"
+  },
+  {
+    "id": "ali_2025",
+    "title": "On the Effect of Reasoning Depth on Large Language Model Performance",
+    "authors": [
+      "Rujeedawa, Ali",
+      "Johnson, Sam"
+    ],
+    "year": "2025",
+    "source": "arXiv",
+    "url": "https://arxiv.org/abs/2501.00001",
+    "doi": "",
+    "confidence": "high",
+    "claimSummary": "LLMs exhibit degraded performance as reasoning depth increases",
+    "reasoningCategory": "Depth-dependent reasoning",
+    "fetchedAt": "2026-02-15T07:57:55.397Z",
+    "status": "verified"
+  }
+]

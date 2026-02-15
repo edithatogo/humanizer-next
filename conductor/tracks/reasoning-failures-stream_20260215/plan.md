@@ -27,25 +27,25 @@
 
 ## Phase 2: Evidence Expansion, Quality, and Taxonomy
 
-- [ ] Task: Research and catalog additional reasoning-failure sources
-  - [ ] Search and collect primary sources (papers/repos/articles) linked to the claim set
-  - [ ] Add confidence/quality labels and claim summaries
-- [ ] Task: Add deferred/unverified claims section
-  - [ ] Capture social-only or weakly supported claims as deferred
-  - [ ] Mark verification gaps and required follow-up evidence
-- [ ] Task: Add conflict-of-sources resolution rules
-  - [ ] Define tie-break policy when sources disagree (recency, authority, empirical strength)
-  - [ ] Record conflict outcomes in evidence log
-- [ ] Task: Define canonical reasoning-failure taxonomy/schema
-  - [ ] Propose category schema and mapping rules
-  - [ ] Encode minimal evidence threshold rule for new categories
-  - [ ] Add `docs/TAXONOMY_CHANGELOG.md` for tracking category additions/changes over time
-- [ ] Task: Add citation normalization helper
-  - [ ] Create lightweight helper under `scripts/research/` to standardize citation entries
-  - [ ] Use helper to normalize existing/new evidence-log citations
-- [ ] Task: Test taxonomy and evidence-threshold enforcement
-  - [ ] Write failing tests for taxonomy consistency and threshold constraints
-  - [ ] Implement logic/docs updates to satisfy tests
+- [x] Task: Research and catalog additional reasoning-failure sources [j7k8f9g]
+  - [x] Search and collect primary sources (papers/repos/articles) linked to the claim set
+  - [x] Add confidence/quality labels and claim summaries
+- [x] Task: Add deferred/unverified claims section [k8l9g0h]
+  - [x] Capture social-only or weakly supported claims as deferred
+  - [x] Mark verification gaps and required follow-up evidence
+- [x] Task: Add conflict-of-sources resolution rules [l9m0h1i]
+  - [x] Define tie-break policy when sources disagree (recency, authority, empirical strength)
+  - [x] Record conflict outcomes in evidence log
+- [x] Task: Define canonical reasoning-failure taxonomy/schema [m0n1i2j]
+  - [x] Propose category schema and mapping rules
+  - [x] Encode minimal evidence threshold rule for new categories
+  - [x] Add `docs/TAXONOMY_CHANGELOG.md` for tracking category additions/changes over time
+- [x] Task: Add citation normalization helper [n1o2j3k]
+  - [x] Create lightweight helper under `scripts/research/` to standardize citation entries
+  - [x] Use helper to normalize existing/new evidence-log citations
+- [x] Task: Test taxonomy and evidence-threshold enforcement [o2p3k4l]
+  - [x] Write failing tests for taxonomy consistency and threshold constraints
+  - [x] Implement logic/docs updates to satisfy tests
 - [ ] Task: Execute /conductor:review for Phase 2
 - [ ] Task: Conductor - Automated Verification 'Phase 2: Evidence Expansion, Quality, and Taxonomy' (Protocol in workflow.md)
 
