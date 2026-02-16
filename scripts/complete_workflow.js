@@ -9,7 +9,7 @@
  * Usage: node complete_workflow.js <track_id>
  */
 
-const { execSync } = require('child_process');
+const { execSync, execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -35,12 +35,12 @@ try {
   // Step 2: Archive the completed track
   console.log('\n--- Step 2: Archiving Completed Track ---');
   const archiveScriptPath = path.join(__dirname, 'archive_track.js');
-  execSync(`node ${archiveScriptPath} ${trackId}`, { stdio: 'inherit' });
+  execFileSync('node', [archiveScriptPath, trackId], { stdio: 'inherit' });
   
   // Step 3: Progress to the next track
   console.log('\n--- Step 3: Progressing to Next Track ---');
   const progressScriptPath = path.join(__dirname, 'progress_to_next_track.js');
-  execSync(`node ${progressScriptPath} ${trackId}`, { stdio: 'inherit' });
+  execFileSync('node', [progressScriptPath, trackId], { stdio: 'inherit' });
   
   console.log('\n--- Workflow Complete ---');
   console.log(`Successfully processed track ${trackId}: reviewed, archived, and moved to next track.`);
