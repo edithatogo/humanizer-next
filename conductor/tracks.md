@@ -106,9 +106,9 @@ _Status: completed | Archived: ./tracks/archive/repo-tooling-enhancements_202602
 
 ## Archived Tracks
 
-## [x] Track: Skill Expansion & Portable Compilation
+## [x] Track: Skill Expansion & Portable Compilation [6526ed2]
 
-_Link: [./tracks/skill-expansion_20260201/](./tracks/skill-expansion_20260201/)_
+_Link: [./tracks/archive/skill-expansion_20260201/](./tracks/archive/skill-expansion_20260201/)_
 
 ## [x] Track: DevOps and Quality Engineering (da248f2)
 
