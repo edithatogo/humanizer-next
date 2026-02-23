@@ -90,15 +90,13 @@ _Link: [./tracks/systematic-refactor-hardening_20260215/](./tracks/systematic-re
 
 ### Legacy Active Tracks (pre-2026-02-15)
 
-## [ ] Track: Adopt upstream pull requests #3, #4, and #5 from blader/humanizer
+## [x] Track: Adopt upstream pull requests #3, #4, and #5 from blader/humanizer
 
-_Status: new_  
-_Link: [./tracks/adopt-upstream-prs_20260131/](./tracks/adopt-upstream-prs_20260131/)_
+_Status: completed | Archived: ./tracks/archive/adopt-upstream-prs_20260131/_
 
-## [ ] Track: Add Skillshare distribution + AIX validation (skill-distribution_20260131)
+## [x] Track: Add Skillshare distribution + AIX validation (skill-distribution_20260131) [e0131db]
 
-_Status: in_progress_  
-_Link: [./tracks/skill-distribution_20260131/](./tracks/skill-distribution_20260131/)_
+_Status: completed | Archived: ./tracks/archive/skill-distribution_20260131/_
 
 ## [ ] Track: Implement repo management tooling recommendations (Vale scripts, Renovate, npx skills distribution docs)
 
