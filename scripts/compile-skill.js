@@ -7,6 +7,13 @@
  * 
  * Usage: node scripts/compile-skill.js
  * 
+ * Phase Status:
+ * - [x] Phase 1: Compile script structure (backward compatible)
+ * - [ ] Phase 2: Extract SKILL_CORE_PATTERNS.md from SKILL.md
+ * - [ ] Phase 3: Create SKILL_TECHNICAL.md, SKILL_ACADEMIC.md, SKILL_GOVERNANCE.md
+ * - [ ] Phase 4: Implement actual module assembly
+ * - [ ] Phase 5: Test compiled output matches current behavior
+ * 
  * Module Structure:
  * - src/modules/SKILL_CORE_PATTERNS.md (required)
  * - src/modules/SKILL_TECHNICAL.md (optional)
@@ -45,16 +52,50 @@ const OUTPUT = {
 /**
  * Read module file with error handling
  */
-function readModule(modulePath) {
+function readModule(modulePath, required = false) {
   const fullPath = path.join(ROOT_DIR, modulePath);
   
   if (!fs.existsSync(fullPath)) {
+    if (required) {
+      throw new Error(`Required module not found: ${modulePath}`);
+    }
     console.log(`⚠️  Module not found: ${modulePath} (optional)`);
     return null;
   }
   
   console.log(`✓ Reading module: ${modulePath}`);
   return fs.readFileSync(fullPath, 'utf-8');
+}
+
+/**
+ * Find all adapter files dynamically
+ */
+function findAdapters() {
+  const adapters = [];
+  const adapterDirs = [
+    '.agent/skills/humanizer',
+    ...fs.readdirSync(path.join(ROOT_DIR, 'adapters'))
+      .filter(d => fs.statSync(path.join(ROOT_DIR, 'adapters', d)).isDirectory())
+      .map(d => `adapters/${d}`)
+  ];
+  
+  for (const dir of adapterDirs) {
+    const fullPath = path.join(ROOT_DIR, dir);
+    if (!fs.existsSync(fullPath)) continue;
+    
+    const files = fs.readdirSync(fullPath);
+    for (const file of files) {
+      if (file.endsWith('.md')) {
+        const filePath = path.join(fullPath, file);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        if (content.includes('skill_version:') || content.includes('skill_name:')) {
+          adapters.push(filePath);
+        }
+      }
+    }
+  }
+  
+  return adapters;
 }
 
 /**
@@ -174,30 +215,24 @@ function compileProfessionalSkill() {
 function updateAdapterMetadata(version) {
   console.log('\n=== Updating Adapter Metadata ===');
   
-  const adapters = [
-    '.agent/skills/humanizer/SKILL.md',
-    '.agent/skills/humanizer/SKILL_PROFESSIONAL.md',
-    'adapters/antigravity-skill/SKILL.md',
-    'adapters/antigravity-skill/SKILL_PROFESSIONAL.md',
-    'adapters/gemini-extension/GEMINI.md',
-    'adapters/gemini-extension/GEMINI_PRO.md'
-  ];
+  const adapters = findAdapters();
+  console.log(`✓ Found ${adapters.length} adapter files`);
   
+  let updated = 0;
   for (const adapterPath of adapters) {
-    const fullPath = path.join(ROOT_DIR, adapterPath);
-    
-    if (!fs.existsSync(fullPath)) {
-      continue;
-    }
-    
-    let content = fs.readFileSync(fullPath, 'utf-8');
+    let content = fs.readFileSync(adapterPath, 'utf-8');
     const oldVersion = content.match(/skill_version: ([\d.]+)/);
     
     if (oldVersion && oldVersion[1] !== version) {
       content = content.replace(/skill_version: [\d.]+/, `skill_version: ${version}`);
-      fs.writeFileSync(fullPath, content, 'utf-8');
+      fs.writeFileSync(adapterPath, content, 'utf-8');
       console.log(`✓ Updated ${adapterPath}: ${oldVersion[1]} → ${version}`);
+      updated++;
     }
+  }
+  
+  if (updated === 0) {
+    console.log('✓ All adapters up to date');
   }
 }
 
