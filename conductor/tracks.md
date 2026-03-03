@@ -6,6 +6,18 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
+## Active Tracks
+
+### P1 Maintenance & Improvement
+- [~] **repo-self-improvement_20260303** - Repository self-improvement, upstream alignment, and Ralph Loop integration
+  - **Spec:** [`conductor/tracks/repo-self-improvement_20260303/spec.md`](./tracks/repo-self-improvement_20260303/spec.md)
+  - **Plan:** [`conductor/tracks/repo-self-improvement_20260303/plan.md`](./tracks/repo-self-improvement_20260303/plan.md)
+  - **Status:** **IN PROGRESS** - Phase 1: Dependency Updates & Security Baseline
+  - **Ralph Loop:** Enabled for Phases 2, 3, 6
+  - **Started:** 2026-03-03
+
+---
+
 ## ✅ ALL TRACKS COMPLETE!
 
 **Total Tracks Completed:** 16
@@ -60,7 +72,9 @@ Archive includes:
 
 ## Active Tracks
 
-**None** - All tracks complete! ✓
+**1 Active Track:**
+
+- `repo-self-improvement_20260303` - Repository self-improvement, upstream alignment, and Ralph Loop integration (see above)
 
 ---
 
@@ -95,5 +109,5 @@ Archive includes:
 
 ---
 
-*Last updated: 2026-02-23*
-*All 16 tracks complete - Repository ready for production use*
+*Last updated: 2026-03-03*
+*1 active track - Repository self-improvement in progress*
