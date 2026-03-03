@@ -1,21 +1,36 @@
-# Self-Improvement Workflow (Manual Ralph Loop Alternative)
+# Self-Improvement Workflow
 
-**Purpose:** Automated self-improvement analysis when Ralph Loop extension is not available
+**Purpose:** Automated self-improvement for the Humanizer repository
 
 **Frequency:** Weekly (Mondays at 9:00 AM)
 
-**Duration:** 2-3 hours per cycle
+**Primary Tool:** Ralph Loop Extension (https://github.com/gemini-cli-extensions/ralph)
+
+**Alternative:** Manual process (if Ralph Loop unavailable)
 
 ---
 
-## Workflow Overview
+## Quick Start
 
-This workflow provides a structured approach to continuous self-improvement without requiring the Ralph Loop extension. It follows the same principles:
+### With Ralph Loop Extension (Recommended)
 
-1. **Iterative Analysis** - Multiple passes through content
-2. **Focused Prompts** - Specific areas of improvement
-3. **Completion Criteria** - Clear stopping conditions
-4. **Documentation** - Track all changes and learnings
+**Install:**
+```bash
+gemini extensions install https://github.com/gemini-cli-extensions/ralph --auto-update
+```
+
+**Run Cycle:**
+```bash
+/ralph:loop "[cycle command]" --max-iterations 5 --completion-promise "[PROMISE]"
+```
+
+**See:** [`RALPH_LOOP_WORKFLOW.md`](./RALPH_LOOP_WORKFLOW.md) for detailed Ralph Loop cycles.
+
+---
+
+## Manual Alternative (If Ralph Loop Unavailable)
+
+Follow the manual process in the original workflow documentation.
 
 ---
 
