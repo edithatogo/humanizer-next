@@ -134,13 +134,47 @@ function compileStandardSkill() {
   // Read optional reasoning module
   const reasoningModule = readModule(MODULES.reasoning);
   
-  // Start with core module content
-  let content = coreModule;
+  // Extract version from core module
+  const coreFrontmatter = extractFrontmatter(coreModule);
+  const version = coreFrontmatter?.version || '3.0.0';
+  
+  // Build standard skill frontmatter
+  const frontmatter = `---
+name: humanizer
+version: ${version}
+description: |
+  Remove signs of AI-generated writing from text. Use when editing or reviewing
+  text to make it sound more natural and human-written. Based on Wikipedia's
+  comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
+  inflated symbolism, promotional language, superficial -ing analyses, vague
+  attributions, em dash overuse, rule of three, AI vocabulary words, negative
+  parallelisms, and excessive conjunctive phrases. Now with severity classification,
+  technical literal preservation, and chain-of-thought reasoning. Includes reasoning
+  failure detection and remediation.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - Glob
+  - AskUserQuestion
+
+---
+
+`;
+  
+  // Extract content without frontmatter from core module
+  let coreContent = coreModule.replace(/^---\s*[\s\S]*?^---\s*/m, '');
+  
+  // Start with frontmatter + core content
+  let content = frontmatter + coreContent;
   
   // Append reasoning module if available
   if (reasoningModule) {
     console.log('✓ Appending reasoning module');
-    content += '\n\n---\n\n' + reasoningModule;
+    // Remove reasoning module frontmatter and append
+    const reasoningContent = reasoningModule.replace(/^---\s*[\s\S]*?^---\s*/m, '');
+    content += '\n\n---\n\n' + reasoningContent;
   }
   
   console.log('✓ Standard SKILL.md compiled from modules');
