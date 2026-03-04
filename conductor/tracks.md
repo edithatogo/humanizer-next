@@ -8,9 +8,17 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
-**None** - All tracks complete! ✓
+### P0 Critical - Upstream Adoption
+- [~] **upstream-pr-adoption_20260304** - Adopting critical upstream PRs (#49, #39, #16, #17)
+  - **Spec:** [`conductor/tracks/upstream-pr-adoption_20260304/spec.md`](./tracks/upstream-pr-adoption_20260304/spec.md)
+  - **Status:** IN PROGRESS
+  - **Started:** 2026-03-04
 
-**Latest Completion:** repo-self-improvement_20260303 (2026-03-03)
+### P1 Recurring - Self-Improvement
+- [~] **self-improvement-cycle2_20260304** - Ralph Loop self-improvement cycle #2
+  - **Spec:** [`conductor/tracks/self-improvement-cycle2_20260304/spec.md`](./tracks/self-improvement-cycle2_20260304/spec.md)
+  - **Status:** IN PROGRESS
+  - **Started:** 2026-03-04
 
 ---
 

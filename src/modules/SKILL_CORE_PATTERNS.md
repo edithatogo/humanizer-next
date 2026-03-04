@@ -496,6 +496,62 @@ function add(a, b) {
 
 ---
 
+### Pattern 28: Persuasive Tropes
+
+**Words to watch:** The real question is, At its core, What this really means is, The truth is
+
+**Problem:** Frames ordinary claims as revelations. The sentence after these phrases almost always restates something already said.
+
+**Severity:** Low
+
+**Before:**
+> The real question is whether this approach will work. At its core, this is about making better decisions.
+
+**After:**
+> This approach will work if we implement it correctly. This is about making better decisions.
+
+**Not a problem when:** Used in legitimate contexts like op-eds or presentation scripts.
+
+---
+
+### Pattern 29: Signposting
+
+**Words to watch:** Let's dive in, Here's what you need to know, Let's explore, In this article we'll
+
+**Problem:** The model announces what it's about to do instead of doing it.
+
+**Severity:** Low
+
+**Before:**
+> Let's dive in and explore the key features. Here's what you need to know about the system.
+
+**After:**
+> The system has three key features: speed, reliability, and security.
+
+**Not a problem when:** Used in legitimate contexts like presentation scripts or tutorials.
+
+---
+
+### Pattern 30: Fragmented Headers
+
+**Problem:** A short generic sentence appears right after a heading (e.g., "Speed matters.") before the actual paragraph. Adds nothing the heading doesn't already say.
+
+**Severity:** Low
+
+**Before:**
+> ## Performance
+> 
+> Speed matters. The system processes requests in under 100ms.
+
+**After:**
+> ## Performance
+> 
+> The system processes requests in under 100ms.
+
+**Not a problem when:** Used in legitimate contexts like op-eds or persuasive writing.
+
+---
+
 ## SEVERITY CLASSIFICATION
 
 ### Critical (immediate AI detection)
@@ -532,9 +588,13 @@ function add(a, b) {
 - Pattern 23: Excessive hedging
 - Pattern 24: Generic positive conclusions
 - Pattern 26: Over-structuring
+- Pattern 28: Persuasive tropes
+- Pattern 29: Signposting
+- Pattern 30: Fragmented headers
 
 ---
 
-*Module Version: 3.0.0*
-*Last Updated: 2026-03-03*
+*Module Version: 3.1.0*
+*Last Updated: 2026-03-04*
+*Patterns: 30 (27 original + 3 from upstream PR #39)*
 *Source: Wikipedia "Signs of AI writing" + Humanizer community contributions*
