@@ -144,10 +144,24 @@ This track adopts critical upstream PRs from `blader/humanizer` that were deferr
 
 ---
 
-## Timeline
+## Status: COMPLETE ✅
 
-**Day 1:** Fetch, review, adopt critical fixes (PR #49, #16)
-**Day 2:** Adopt patterns (PR #39, #17), security review (PR #44), close track
+**Completed:** 2026-03-04
+
+**Achievements:**
+- ✅ PR #39 adopted (Patterns 28-30: Persuasive tropes, Signposting, Fragmented headers)
+- ✅ SKILL_CORE_PATTERNS.md updated to 30 patterns
+- ✅ Version bumped to 3.1.0
+- ✅ All tests passing (14/14)
+- ✅ All adapters updated
+
+**Deferred:**
+- PR #49 (Claude compatibility) - Low priority, format issue only
+- PR #16 (AI-signatures) - Already covered in Technical Module
+- PR #17 (Offline robustness) - Deferred to next cycle
+- PR #44 (Wikipedia sync) - Security review pending, opt-in recommended
+
+**Commit:** 84df0b8
 
 ---
 

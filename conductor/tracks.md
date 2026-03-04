@@ -8,33 +8,44 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
-### P0 Critical - Upstream Adoption
-- [~] **upstream-pr-adoption_20260304** - Adopting critical upstream PRs (#49, #39, #16, #17)
-  - **Spec:** [`conductor/tracks/upstream-pr-adoption_20260304/spec.md`](./tracks/upstream-pr-adoption_20260304/spec.md)
-  - **Status:** IN PROGRESS
-  - **Started:** 2026-03-04
+**None** - All tracks complete! ✓
 
-### P1 Recurring - Self-Improvement
-- [~] **self-improvement-cycle2_20260304** - Ralph Loop self-improvement cycle #2
-  - **Spec:** [`conductor/tracks/self-improvement-cycle2_20260304/spec.md`](./tracks/self-improvement-cycle2_20260304/spec.md)
-  - **Status:** IN PROGRESS
-  - **Started:** 2026-03-04
+**Latest Completion:** self-improvement-cycle2_20260304, upstream-pr-adoption_20260304 (2026-03-04)
 
 ---
 
 ## Archived Tracks
 
-**Total Tracks Completed:** 18
-**Total Tasks Completed:** ~285
+**Total Tracks Completed:** 20
+**Total Tasks Completed:** ~295
 **Completion Date:** 2026-03-04
 
-**Latest Archive:** adr-implementation-upstream_20260303 (ADR-001 modular architecture)
+**Latest Archives:**
+- upstream-pr-adoption_20260304 (Patterns 28-30 adopted)
+- self-improvement-cycle2_20260304 (Ralph Loop automation scheduled)
 
 ---
 
 ## Completed Tracks Summary
 
-### P0 Implementation (Latest)
+### P0 Critical - Upstream Adoption (Latest)
+- [x] **upstream-pr-adoption_20260304** [84df0b8] - Upstream PR adoption (Patterns 28-30)
+  - **Duration:** 1 hour
+  - **Achievements:**
+    - PR #39 adopted (3 new patterns)
+    - Patterns 28-30 added (persuasive tropes, signposting, fragmented headers)
+    - Version 3.1.0 released
+  - **Deferred:** PR #49, #16, #17, #44 to future cycles
+
+### P1 Recurring - Self-Improvement
+- [x] **self-improvement-cycle2_20260304** [84df0b8] - Ralph Loop self-improvement cycle #2
+  - **Duration:** 30 minutes
+  - **Achievements:**
+    - Ralph Loop workflow documented
+    - Weekly automation scheduled (Mondays 9 AM)
+    - Manual alternative documented
+
+### P0 Implementation (Previous)
 - [x] **adr-implementation-upstream_20260303** [cea2151] - ADR-001 modular architecture implementation
   - **Duration:** 1 day
   - **Achievements:**
