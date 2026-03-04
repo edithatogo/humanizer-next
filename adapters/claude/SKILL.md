@@ -20,7 +20,7 @@ allowed-tools:
 adapter_metadata:
   skill_name: humanizer
   skill_version: 2.3.0
-  last_synced: 2026-03-03
+  last_synced: 2026-03-04
   source_path: SKILL.md
   adapter_id: claude
   adapter_format: Claude skill
