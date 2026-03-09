@@ -48,7 +48,7 @@ jobs:
           npm test
 
       - name: Upload Baseline Metrics
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: baseline-metrics
           path: metrics-baseline.txt
