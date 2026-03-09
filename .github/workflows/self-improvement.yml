@@ -54,7 +54,7 @@ jobs:
           path: metrics-baseline.txt
 
       - name: Create Analysis Issue
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6
         with:
           title: Self-Improvement Cycle $(date +%Y-%m-%d)
           content-filepath: .github/SELF_IMPROVEMENT_TEMPLATE.md
