@@ -68,9 +68,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** High
 
 **Before:**
+
 > The Statistical Institute of Catalonia was officially established in 1989, marking a pivotal moment in the evolution of regional statistics in Spain. This initiative was part of a broader movement across Spain to decentralize administrative functions and enhance regional governance.
 
 **After:**
+
 > The Statistical Institute of Catalonia was established in 1989 to collect and publish regional statistics independently from Spain's national statistics office.
 
 ---
@@ -84,9 +86,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Medium
 
 **Before:**
+
 > Her views have been cited in The New York Times, BBC, Financial Times, and The Hindu. She maintains an active social media presence with over 500,000 followers.
 
 **After:**
+
 > In a 2024 New York Times interview, she argued that AI regulation should focus on outcomes rather than methods.
 
 ---
@@ -100,9 +104,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** High
 
 **Before:**
+
 > The temple's color palette of blue, green, and gold resonates with the region's natural beauty, symbolizing Texas bluebonnets, the Gulf of Mexico, and the diverse Texan landscapes, reflecting the community's deep connection to the land.
 
 **After:**
+
 > The temple uses blue, green, and gold colors. The architect said these were chosen to reference local bluebonnets and the Gulf coast.
 
 ---
@@ -116,9 +122,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** High
 
 **Before:**
+
 > Nestled within the breathtaking region of Gonder in Ethiopia, Alamata Raya Kobo stands as a vibrant town with a rich cultural heritage and stunning natural beauty.
 
 **After:**
+
 > Alamata Raya Kobo is a town in the Gonder region of Ethiopia, known for its weekly market and 18th-century church.
 
 ---
@@ -132,9 +140,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Medium
 
 **Before:**
+
 > Due to its unique characteristics, the Haolai River is of interest to researchers and conservationists. Experts believe it plays a crucial role in the regional ecosystem.
 
 **After:**
+
 > The Haolai River supports several endemic fish species, according to a 2019 survey by the Chinese Academy of Sciences.
 
 ---
@@ -148,9 +158,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Medium
 
 **Before:**
+
 > Despite its industrial prosperity, Korattur faces challenges typical of urban areas, including traffic congestion and water scarcity. Despite these challenges, with its strategic location and ongoing initiatives, Korattur continues to thrive as an integral part of Chennai's growth.
 
 **After:**
+
 > Traffic congestion increased after 2015 when three new IT parks opened. The municipal corporation began a stormwater drainage project in 2022 to address recurring floods.
 
 ---
@@ -164,9 +176,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Medium
 
 **Before:**
+
 > Additionally, a distinctive feature of Somali cuisine is the incorporation of camel meat. An enduring testament to Italian colonial influence is the widespread adoption of pasta in the local culinary landscape, showcasing how these dishes have integrated into the traditional diet.
 
 **After:**
+
 > Somali cuisine also includes camel meat, which is considered a delicacy. Pasta dishes, introduced during Italian colonization, remain common, especially in the south.
 
 ---
@@ -180,9 +194,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Medium
 
 **Before:**
+
 > Gallery 825 serves as LAAA's exhibition space for contemporary art. The gallery features four separate spaces and boasts over 3,000 square feet.
 
 **After:**
+
 > Gallery 825 is LAAA's exhibition space for contemporary art. The gallery has four rooms totaling 3,000 square feet.
 
 ---
@@ -194,9 +210,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > It's not just about the beat riding under the vocals; it's part of the aggression and atmosphere. It's not merely a song, it's a statement.
 
 **After:**
+
 > The heavy beat adds to the aggressive tone.
 
 ---
@@ -208,9 +226,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > The event features keynote sessions, panel discussions, and networking opportunities. Attendees can expect innovation, inspiration, and industry insights.
 
 **After:**
+
 > The event includes talks and panels. There's also time for informal networking between sessions.
 
 ---
@@ -222,9 +242,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Medium
 
 **Before:**
+
 > The protagonist faces many challenges. The main character must overcome obstacles. The central figure eventually triumphs. The hero returns home.
 
 **After:**
+
 > The protagonist faces many challenges but eventually triumphs and returns home.
 
 ---
@@ -236,9 +258,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > Our journey through the universe has taken us from the singularity of the Big Bang to the grand cosmic web, from the birth and death of stars to the enigmatic dance of dark matter.
 
 **After:**
+
 > The book covers the Big Bang, star formation, and current theories about dark matter.
 
 ---
@@ -252,9 +276,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > The term is primarily promoted by Dutch institutions—not by the people themselves. You don't say "Netherlands, Europe" as an address—yet this mislabeling continues—even in official documents.
 
 **After:**
+
 > The term is primarily promoted by Dutch institutions, not by the people themselves. You don't say "Netherlands, Europe" as an address, yet this mislabeling continues in official documents.
 
 ---
@@ -266,9 +292,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > It blends **OKRs (Objectives and Key Results)**, **KPIs (Key Performance Indicators)**, and visual strategy tools such as the **Business Model Canvas (BMC)** and **Balanced Scorecard (BSC)**.
 
 **After:**
+
 > It blends OKRs, KPIs, and visual strategy tools like the Business Model Canvas and Balanced Scorecard.
 
 ---
@@ -280,11 +308,13 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 - **User Experience:** The user experience has been significantly improved with a new interface.
 - **Performance:** Performance has been enhanced through optimized algorithms.
 - **Security:** Security has been strengthened with end-to-end encryption.
 
 **After:**
+
 > The update improves the interface, speeds up load times through optimized algorithms, and adds end-to-end encryption.
 
 ---
@@ -296,9 +326,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > ## Strategic Negotiations And Global Partnerships
 
 **After:**
+
 > ## Strategic negotiations and global partnerships
 
 ---
@@ -310,11 +342,13 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > 🚀 **Launch Phase:** The product launches in Q3
 > 💡 **Key Insight:** Users prefer simplicity
 > ✅ **Next Steps:** Schedule follow-up meeting
 
 **After:**
+
 > The product launches in Q3. User research showed a preference for simplicity. Next step: schedule a follow-up meeting.
 
 ---
@@ -322,16 +356,19 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 ### Pattern 18: Quotation Mark Issues
 
 **Problem:** AI models make two common quotation mistakes:
+
 1. Using curly quotes ("...") instead of straight quotes ("...")
 2. Using single quotes ('...') as primary delimiters in prose (from code training)
 
 **Severity:** Low
 
 **Before:**
+
 > He said "the project is on track" but others disagreed.
 > She stated, 'This is the final version.'
 
 **After:**
+
 > He said "the project is on track" but others disagreed.
 > She stated, "This is the final version."
 
@@ -348,9 +385,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Critical
 
 **Before:**
+
 > Here is an overview of the French Revolution. I hope this helps! Let me know if you'd like me to expand on any section.
 
 **After:**
+
 > The French Revolution began in 1789 when financial crisis and food shortages led to widespread unrest.
 
 ---
@@ -364,9 +403,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Critical
 
 **Before:**
+
 > While specific details about the company's founding are not extensively documented in readily available sources, it appears to have been established sometime in the 1990s.
 
 **After:**
+
 > The company was founded in 1994, according to its registration documents.
 
 ---
@@ -378,9 +419,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Critical
 
 **Before:**
+
 > Great question! You're absolutely right that this is a complex topic. That's an excellent point about the economic factors.
 
 **After:**
+
 > The economic factors you mentioned are relevant here.
 
 ---
@@ -394,6 +437,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before → After:**
+
 - "In order to achieve this goal" → "To achieve this"
 - "Due to the fact that it was raining" → "Because it was raining"
 - "At this point in time" → "Now"
@@ -410,9 +454,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > It could potentially possibly be argued that the policy might have some effect on outcomes.
 
 **After:**
+
 > The policy may affect outcomes.
 
 ---
@@ -424,9 +470,11 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Low
 
 **Before:**
+
 > The future looks bright for the company. Exciting times lie ahead as they continue their journey toward excellence. This represents a major step in the right direction.
 
 **After:**
+
 > The company plans to open two more locations next year.
 
 ---
@@ -440,6 +488,7 @@ Have opinions and react to facts. Vary sentence rhythm with short and long lines
 **Severity:** Critical
 
 **Before:**
+
 ```javascript
 // Generated by ChatGPT
 // This function adds two numbers
@@ -449,6 +498,7 @@ function add(a, b) {
 ```
 
 **After:**
+
 ```javascript
 function add(a, b) {
   return a + b;
@@ -466,6 +516,7 @@ function add(a, b) {
 **Severity:** Low
 
 **Before:**
+
 > **Performance Comparison:**
 >
 > - **Speed:** High
@@ -473,6 +524,7 @@ function add(a, b) {
 > - **Memory:** Low
 
 **After:**
+
 > The system is fast and stable with low memory overhead.
 
 ---
@@ -489,9 +541,11 @@ function add(a, b) {
 **Severity:** Critical (must preserve)
 
 **Example:**
+
 > The `--verbose` flag enables detailed logging. See `docs/api.md` for more.
 
 **Do NOT change to:**
+
 > The verbose option enables detailed logging. See the API documentation for more.
 
 ---
@@ -505,9 +559,11 @@ function add(a, b) {
 **Severity:** Low
 
 **Before:**
+
 > The real question is whether this approach will work. At its core, this is about making better decisions.
 
 **After:**
+
 > This approach will work if we implement it correctly. This is about making better decisions.
 
 **Not a problem when:** Used in legitimate contexts like op-eds or presentation scripts.
@@ -523,9 +579,11 @@ function add(a, b) {
 **Severity:** Low
 
 **Before:**
+
 > Let's dive in and explore the key features. Here's what you need to know about the system.
 
 **After:**
+
 > The system has three key features: speed, reliability, and security.
 
 **Not a problem when:** Used in legitimate contexts like presentation scripts or tutorials.
@@ -539,13 +597,15 @@ function add(a, b) {
 **Severity:** Low
 
 **Before:**
+
 > ## Performance
-> 
+>
 > Speed matters. The system processes requests in under 100ms.
 
 **After:**
+
 > ## Performance
-> 
+>
 > The system processes requests in under 100ms.
 
 **Not a problem when:** Used in legitimate contexts like op-eds or persuasive writing.
@@ -555,6 +615,7 @@ function add(a, b) {
 ## SEVERITY CLASSIFICATION
 
 ### Critical (immediate AI detection)
+
 - Pattern 19: Collaborative communication artifacts
 - Pattern 20: Knowledge-cutoff disclaimers
 - Pattern 21: Sycophantic tone
@@ -562,11 +623,13 @@ function add(a, b) {
 - Pattern 27: Technical literal preservation (must preserve)
 
 ### High (strong AI signals)
+
 - Pattern 1: Undue emphasis on significance
 - Pattern 3: Superficial -ing analyses
 - Pattern 4: Promotional language
 
 ### Medium (moderate AI signals)
+
 - Pattern 2: Undue emphasis on notability
 - Pattern 5: Vague attributions
 - Pattern 6: Formulaic "Challenges" sections
@@ -575,6 +638,7 @@ function add(a, b) {
 - Pattern 11: Elegant variation
 
 ### Low (weak AI signals)
+
 - Pattern 9: Negative parallelisms
 - Pattern 10: Rule of three overuse
 - Pattern 12: False ranges
@@ -594,7 +658,7 @@ function add(a, b) {
 
 ---
 
-*Module Version: 3.1.0*
-*Last Updated: 2026-03-04*
-*Patterns: 30 (27 original + 3 from upstream PR #39)*
-*Source: Wikipedia "Signs of AI writing" + Humanizer community contributions*
+_Module Version: 3.1.0_
+_Last Updated: 2026-03-04_
+_Patterns: 30 (27 original + 3 from upstream PR #39)_
+_Source: Wikipedia "Signs of AI writing" + Humanizer community contributions_

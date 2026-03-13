@@ -6,7 +6,6 @@
  */
 
 import fs from 'fs';
-import path from 'path';
 
 /**
  * Normalize a citation object to standard format
@@ -18,7 +17,9 @@ function normalizeCitation(citation) {
   const normalized = {
     id: citation.id || generateId(citation),
     title: citation.title || '',
-    authors: Array.isArray(citation.authors) ? citation.authors : (citation.authors || '').split(', '),
+    authors: Array.isArray(citation.authors)
+      ? citation.authors
+      : (citation.authors || '').split(', '),
     year: citation.year || citation.date?.substring(0, 4) || null,
     source: citation.source || 'unknown',
     url: citation.url || '',
@@ -27,11 +28,11 @@ function normalizeCitation(citation) {
     claimSummary: citation.claimSummary || citation.summary || '',
     reasoningCategory: citation.reasoningCategory || citation.category || '',
     fetchedAt: citation.fetchedAt || new Date().toISOString(),
-    status: citation.status || 'verified' // Default status
+    status: citation.status || 'verified', // Default status
   };
 
   // Clean up authors array
-  normalized.authors = normalized.authors.map(author => author.trim()).filter(author => author);
+  normalized.authors = normalized.authors.map((author) => author.trim()).filter((author) => author);
 
   return normalized;
 }
@@ -66,7 +67,7 @@ function normalizeCitationsFile(filePath) {
       } else {
         citations = [parsed];
       }
-    } catch (e) {
+    } catch {
       // If not JSON, try to parse as markdown or other format
       console.error('File is not in JSON format. This helper only works with JSON citation files.');
       return;
@@ -88,7 +89,7 @@ function normalizeCitationsFile(filePath) {
  * @param {Object} citation - Citation to validate
  * @returns {Array} List of validation errors
  */
-function validateCitation(citation) {
+export function validateCitation(citation) {
   const errors = [];
 
   if (!citation.id) errors.push('ID is required');

@@ -11,23 +11,23 @@
 export function cslJsonToYaml(cslJson) {
   // Ensure we're working with an array
   const cslArray = Array.isArray(cslJson) ? cslJson : [cslJson];
-  
+
   let yamlOutput = '';
-  
+
   for (const citation of cslArray) {
     // Use the ID as the key for the entry
     yamlOutput += `- id: ${citation.id}\n`;
-    
+
     // Add type
     if (citation.type) {
       yamlOutput += `  type: ${citation.type}\n`;
     }
-    
+
     // Add title
     if (citation.title) {
       yamlOutput += `  title: ${escapeYamlValue(citation.title)}\n`;
     }
-    
+
     // Add author
     if (citation.author && Array.isArray(citation.author) && citation.author.length > 0) {
       yamlOutput += '  author:\n';
@@ -45,17 +45,17 @@ export function cslJsonToYaml(cslJson) {
         yamlOutput += '\n'; // Add extra newline for readability
       }
     }
-    
+
     // Add container title (e.g., journal name)
     if (citation['container-title']) {
       yamlOutput += `  container-title: ${escapeYamlValue(citation['container-title'])}\n`;
     }
-    
+
     // Add publisher
     if (citation.publisher) {
       yamlOutput += `  publisher: ${escapeYamlValue(citation.publisher)}\n`;
     }
-    
+
     // Add issued date
     if (citation.issued && citation.issued['date-parts'] && citation.issued['date-parts'][0]) {
       const dateParts = citation.issued['date-parts'][0];
@@ -63,42 +63,57 @@ export function cslJsonToYaml(cslJson) {
       yamlOutput += '    date-parts:\n';
       yamlOutput += `      - [${dateParts.join(', ')}]\n`;
     }
-    
+
     // Add URL
     if (citation.URL) {
       yamlOutput += `  URL: ${escapeYamlValue(citation.URL)}\n`;
     }
-    
+
     // Add DOI
     if (citation.DOI) {
       yamlOutput += `  DOI: ${escapeYamlValue(citation.DOI)}\n`;
     }
-    
+
     // Add volume
     if (citation.volume) {
       yamlOutput += `  volume: ${citation.volume}\n`;
     }
-    
+
     // Add issue
     if (citation.issue) {
       yamlOutput += `  issue: ${citation.issue}\n`;
     }
-    
+
     // Add page
     if (citation.page) {
       yamlOutput += `  page: ${escapeYamlValue(citation.page)}\n`;
     }
-    
+
     // Add other fields as needed
     for (const [key, value] of Object.entries(citation)) {
-      if (!['id', 'type', 'title', 'author', 'container-title', 'publisher', 'issued', 'URL', 'DOI', 'volume', 'issue', 'page'].includes(key)) {
+      if (
+        ![
+          'id',
+          'type',
+          'title',
+          'author',
+          'container-title',
+          'publisher',
+          'issued',
+          'URL',
+          'DOI',
+          'volume',
+          'issue',
+          'page',
+        ].includes(key)
+      ) {
         yamlOutput += `  ${key}: ${escapeYamlValue(value)}\n`;
       }
     }
-    
+
     yamlOutput += '\n'; // Separate entries with a blank line
   }
-  
+
   return yamlOutput.trim();
 }
 
@@ -111,20 +126,32 @@ function escapeYamlValue(value) {
   if (value === null || value === undefined) {
     return 'null';
   }
-  
+
   if (typeof value === 'string') {
     // If the string contains special characters, wrap it in quotes
-    if (value.includes('\n') || value.includes('"') || value.includes("'") || value.includes(': ') || value.includes('#') || value.includes('[') || value.includes(']') || value.includes('{') || value.includes('}') || value.includes('|') || value.includes('>')) {
+    if (
+      value.includes('\n') ||
+      value.includes('"') ||
+      value.includes("'") ||
+      value.includes(': ') ||
+      value.includes('#') ||
+      value.includes('[') ||
+      value.includes(']') ||
+      value.includes('{') ||
+      value.includes('}') ||
+      value.includes('|') ||
+      value.includes('>')
+    ) {
       // Escape double quotes and wrap in double quotes
       return `"${value.replace(/"/g, '\\"')}"`;
     }
     return value;
   }
-  
+
   if (typeof value === 'object') {
     return JSON.stringify(value);
   }
-  
+
   return String(value);
 }
 
@@ -140,6 +167,7 @@ export function formatConverter(cslJson, format, options = {}) {
     const cslArray = Array.isArray(cslJson) ? cslJson : [cslJson];
 
     let convertedContent = '';
+    const shouldValidate = options.validate === true;
     let validation = null;
 
     switch (format.toLowerCase()) {
@@ -160,24 +188,32 @@ export function formatConverter(cslJson, format, options = {}) {
       case 'endnote-xml':
       case 'endnote xml':
         convertedContent = convertCslToJsonToEndnoteXml(cslArray);
+        if (shouldValidate) {
+          validation = validateEndnoteXml(convertedContent);
+        }
         break;
 
       case 'enw':
       case 'endnote-tagged':
         convertedContent = convertCslToJsonToEndnoteTagged(cslArray);
+        if (shouldValidate) {
+          validation = validateEnw(convertedContent);
+        }
         break;
 
       default:
-        throw new Error(`Unsupported format: ${format}. Supported formats: yaml, ris, biblatex, bibtex, endnote-xml, enw`);
+        throw new Error(
+          `Unsupported format: ${format}. Supported formats: yaml, ris, biblatex, bibtex, endnote-xml, enw`
+        );
     }
 
     return {
       format: format.toLowerCase(),
       content: convertedContent,
-      validation: null,
-      isValid: true,
-      warnings: [],
-      errors: []
+      validation,
+      isValid: validation?.isValid ?? true,
+      warnings: validation?.warnings ?? [],
+      errors: validation?.errors ?? [],
     };
   } catch (error) {
     return {
@@ -186,7 +222,7 @@ export function formatConverter(cslJson, format, options = {}) {
       validation: null,
       isValid: false,
       errors: [error.message],
-      warnings: []
+      warnings: [],
     };
   }
 }
@@ -215,16 +251,19 @@ function cslJsonToBiblatex(cslJson) {
 
     // Add author
     if (citation.author && Array.isArray(citation.author) && citation.author.length > 0) {
-      const authors = citation.author.map(author => {
-        if (author.family && author.given) {
-          return `${author.family}, ${author.given}`;
-        } else if (author.family) {
-          return author.family;
-        } else if (author.literal) {
-          return author.literal;
-        }
-        return '';
-      }).filter(name => name !== '').join(' and ');
+      const authors = citation.author
+        .map((author) => {
+          if (author.family && author.given) {
+            return `${author.family}, ${author.given}`;
+          } else if (author.family) {
+            return author.family;
+          } else if (author.literal) {
+            return author.literal;
+          }
+          return '';
+        })
+        .filter((name) => name !== '')
+        .join(' and ');
 
       if (authors) {
         biblatexOutput += `  author = {${authors}},\n`;
@@ -232,17 +271,25 @@ function cslJsonToBiblatex(cslJson) {
     }
 
     // Add editor if no author
-    if (!citation.author && citation.editor && Array.isArray(citation.editor) && citation.editor.length > 0) {
-      const editors = citation.editor.map(editor => {
-        if (editor.family && editor.given) {
-          return `${editor.family}, ${editor.given}`;
-        } else if (editor.family) {
-          return editor.family;
-        } else if (editor.literal) {
-          return editor.literal;
-        }
-        return '';
-      }).filter(name => name !== '').join(' and ');
+    if (
+      !citation.author &&
+      citation.editor &&
+      Array.isArray(citation.editor) &&
+      citation.editor.length > 0
+    ) {
+      const editors = citation.editor
+        .map((editor) => {
+          if (editor.family && editor.given) {
+            return `${editor.family}, ${editor.given}`;
+          } else if (editor.family) {
+            return editor.family;
+          } else if (editor.literal) {
+            return editor.literal;
+          }
+          return '';
+        })
+        .filter((name) => name !== '')
+        .join(' and ');
 
       if (editors) {
         biblatexOutput += `  editor = {${editors}},\n`;
@@ -324,44 +371,44 @@ function cslJsonToBiblatex(cslJson) {
  */
 function mapCslTypeToBiblatex(cslType) {
   const typeMap = {
-    'article': 'article',
+    article: 'article',
     'article-journal': 'article',
     'article-magazine': 'article',
     'article-newspaper': 'article',
-    'bill': 'legislation',
-    'book': 'book',
-    'broadcast': 'misc',
-    'chapter': 'inbook',
-    'dataset': 'dataset',
-    'entry': 'inreference',
+    bill: 'legislation',
+    book: 'book',
+    broadcast: 'misc',
+    chapter: 'inbook',
+    dataset: 'dataset',
+    entry: 'inreference',
     'entry-dictionary': 'inreference',
     'entry-encyclopedia': 'inreference',
-    'event': 'misc',
-    'figure': 'misc',
-    'graphic': 'image',
-    'hearing': 'legislation',
-    'interview': 'misc',
-    'legal_case': 'jurisdiction',
-    'legislation': 'legislation',
-    'manuscript': 'unpublished',
-    'map': 'misc',
-    'motion_picture': 'movie',
-    'musical_score': 'collection',
-    'pamphlet': 'booklet',
+    event: 'misc',
+    figure: 'misc',
+    graphic: 'image',
+    hearing: 'legislation',
+    interview: 'misc',
+    legal_case: 'jurisdiction',
+    legislation: 'legislation',
+    manuscript: 'unpublished',
+    map: 'misc',
+    motion_picture: 'movie',
+    musical_score: 'collection',
+    pamphlet: 'booklet',
     'paper-conference': 'inproceedings',
-    'patent': 'patent',
-    'personal_communication': 'misc',
-    'post': 'online',
+    patent: 'patent',
+    personal_communication: 'misc',
+    post: 'online',
     'post-weblog': 'online',
-    'regulation': 'legislation',
-    'report': 'report',
-    'review': 'article',
+    regulation: 'legislation',
+    report: 'report',
+    review: 'article',
     'review-book': 'article',
-    'song': 'audio',
-    'speech': 'unpublished',
-    'thesis': 'thesis',
-    'treaty': 'legislation',
-    'webpage': 'online'
+    song: 'audio',
+    speech: 'unpublished',
+    thesis: 'thesis',
+    treaty: 'legislation',
+    webpage: 'online',
   };
 
   return typeMap[cslType] || 'misc';
@@ -556,25 +603,25 @@ function convertCslToJsonToEndnoteTagged(cslJson) {
  */
 function mapCslTypeToEndnote(cslType) {
   const typeMap = {
-    'book': 'Book',
-    'chapter': 'Book Section',
+    book: 'Book',
+    chapter: 'Book Section',
     'article-journal': 'Journal Article',
     'article-magazine': 'Magazine Article',
     'article-newspaper': 'Newspaper Article',
     'paper-conference': 'Conference Proceedings',
-    'thesis': 'Thesis',
-    'manuscript': 'Manuscript',
-    'patent': 'Patent',
-    'webpage': 'Web Page',
-    'report': 'Report',
-    'bill': 'Bill',
-    'hearing': 'Hearing',
-    'legal_case': 'Case',
-    'legislation': 'Statute',
-    'motion_picture': 'Film',
-    'song': 'Music',
-    'speech': 'Speech',
-    'personal_communication': 'Personal Communication'
+    thesis: 'Thesis',
+    manuscript: 'Manuscript',
+    patent: 'Patent',
+    webpage: 'Web Page',
+    report: 'Report',
+    bill: 'Bill',
+    hearing: 'Hearing',
+    legal_case: 'Case',
+    legislation: 'Statute',
+    motion_picture: 'Film',
+    song: 'Music',
+    speech: 'Speech',
+    personal_communication: 'Personal Communication',
   };
 
   return typeMap[cslType] || 'Generic';
@@ -587,25 +634,25 @@ function mapCslTypeToEndnote(cslType) {
  */
 function mapCslTypeToEnw(cslType) {
   const typeMap = {
-    'book': 'Book',
-    'chapter': 'Book Section',
+    book: 'Book',
+    chapter: 'Book Section',
     'article-journal': 'Journal Article',
     'article-magazine': 'Magazine Article',
     'article-newspaper': 'Newspaper Article',
     'paper-conference': 'Conference Paper',
-    'thesis': 'Thesis',
-    'manuscript': 'Manuscript',
-    'patent': 'Patent',
-    'webpage': 'Web Page',
-    'report': 'Report',
-    'bill': 'Bill',
-    'hearing': 'Hearing',
-    'legal_case': 'Legal Case',
-    'legislation': 'Legislation',
-    'motion_picture': 'Film',
-    'song': 'Song',
-    'speech': 'Speech',
-    'personal_communication': 'Personal Communication'
+    thesis: 'Thesis',
+    manuscript: 'Manuscript',
+    patent: 'Patent',
+    webpage: 'Web Page',
+    report: 'Report',
+    bill: 'Bill',
+    hearing: 'Hearing',
+    legal_case: 'Legal Case',
+    legislation: 'Legislation',
+    motion_picture: 'Film',
+    song: 'Song',
+    speech: 'Speech',
+    personal_communication: 'Personal Communication',
   };
 
   return typeMap[cslType] || 'Generic';
@@ -618,26 +665,26 @@ function mapCslTypeToEnw(cslType) {
  */
 function getTypeNumber(typeName) {
   const numberMap = {
-    'Book': '6',
+    Book: '6',
     'Book Section': '5',
     'Journal Article': '1',
     'Magazine Article': '15',
     'Newspaper Article': '16',
     'Conference Proceedings': '10',
-    'Thesis': '32',
-    'Manuscript': '35',
-    'Patent': '22',
+    Thesis: '32',
+    Manuscript: '35',
+    Patent: '22',
     'Web Page': '12',
-    'Report': '27',
-    'Bill': '13',
-    'Hearing': '14',
-    'Case': '23',
-    'Statute': '18',
-    'Film': '20',
-    'Music': '21',
-    'Speech': '24',
+    Report: '27',
+    Bill: '13',
+    Hearing: '14',
+    Case: '23',
+    Statute: '18',
+    Film: '20',
+    Music: '21',
+    Speech: '24',
     'Personal Communication': '37',
-    'Generic': '0'
+    Generic: '0',
   };
 
   return numberMap[typeName] || '0';
@@ -696,7 +743,7 @@ function validateEndnoteXml(xmlContent) {
     isValid: errors.length === 0,
     errors,
     warnings,
-    format: 'EndNote XML'
+    format: 'EndNote XML',
   };
 }
 
@@ -735,7 +782,7 @@ function validateEnw(enwContent) {
     isValid: errors.length === 0,
     errors,
     warnings,
-    format: 'ENW'
+    format: 'ENW',
   };
 }
 
@@ -779,7 +826,7 @@ export async function convertFile(inputPath, outputPath, outputFormat, options =
       return {
         success: false,
         error: `Conversion failed: ${result.errors.join(', ')}`,
-        result
+        result,
       };
     }
 
@@ -789,12 +836,12 @@ export async function convertFile(inputPath, outputPath, outputFormat, options =
     return {
       success: true,
       outputPath,
-      result
+      result,
     };
   } catch (error) {
     return {
       success: false,
-      error: error.message
+      error: error.message,
     };
   }
 }

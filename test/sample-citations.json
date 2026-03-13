@@ -2,10 +2,7 @@
   {
     "id": "desaire_2023",
     "title": "Detecting AI-Generated Text: A Machine Learning Approach",
-    "authors": [
-      "Desaire, Jane",
-      "Smith, John"
-    ],
+    "authors": ["Desaire, Jane", "Smith, John"],
     "year": "2023",
     "source": "arXiv",
     "url": "https://arxiv.org/abs/2345.6789",
@@ -19,10 +16,7 @@
   {
     "id": "ali_2025",
     "title": "On the Effect of Reasoning Depth on Large Language Model Performance",
-    "authors": [
-      "Rujeedawa, Ali",
-      "Johnson, Sam"
-    ],
+    "authors": ["Rujeedawa, Ali", "Johnson, Sam"],
     "year": "2025",
     "source": "arXiv",
     "url": "https://arxiv.org/abs/2501.00001",

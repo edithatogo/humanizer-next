@@ -2,7 +2,7 @@
 adapter_metadata:
   skill_name: humanizer
   skill_version: 2.3.0
-  last_synced: 2026-03-04
+  last_synced: 2026-03-13
   source_path: SKILL.md
   adapter_id: codex-cli
   adapter_format: AGENTS.md
@@ -11,6 +11,8 @@ adapter_metadata:
 # Humanizer (agents manifest)
 
 This repository defines the **Humanizer** coding skill, designed to remove AI-generated patterns and improve prose quality.
+
+This is a **skill source repository**. Treat the Node/Python configuration here as maintenance tooling for compiling, validating, and distributing skill artifacts rather than as a standalone software product.
 
 ## Capability
 
@@ -37,6 +39,7 @@ This file serves as the **Agents.md** standard manifest for this repository. It 
   - Tool-specific implementations (VS Code, Qwen, Copilot, Antigravity, etc.).
 - `scripts/`
   - Automation for syncing fragments to these files.
+  - Maintenance/build scripts for artifact generation, not user-facing runtime code.
 
 ### Core instructions
 
@@ -61,6 +64,7 @@ npm run sync
 
 - `SKILL.md` has a `version:` field in its YAML frontmatter.
 - **Rule:** If you bump the version, you must update the source in `src/` and run `npm run sync`.
+- `package.json` is only for repo tooling. Do not treat this repository as an npm package to publish or consume.
 
 ## Interoperability
 

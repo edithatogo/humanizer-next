@@ -16,18 +16,18 @@ import { URL } from 'url';
 export async function referenceVerifier(cslJson, options = {}) {
   try {
     const cslArray = Array.isArray(cslJson) ? cslJson : [cslJson];
-    
+
     const results = [];
-    
+
     for (const citation of cslArray) {
       const citationResult = {
         id: citation.id,
         title: citation.title || 'Untitled',
         urlVerification: null,
         doiVerification: null,
-        issues: []
+        issues: [],
       };
-      
+
       // Verify URL if present
       if (citation.URL) {
         citationResult.urlVerification = await verifyUrl(citation.URL, options);
@@ -35,11 +35,11 @@ export async function referenceVerifier(cslJson, options = {}) {
           citationResult.issues.push({
             type: 'inaccessible_url',
             severity: 'error',
-            message: `URL is not accessible: ${citation.URL}`
+            message: `URL is not accessible: ${citation.URL}`,
           });
         }
       }
-      
+
       // Verify DOI if present
       if (citation.DOI) {
         citationResult.doiVerification = await verifyDoi(citation.DOI, options);
@@ -47,33 +47,38 @@ export async function referenceVerifier(cslJson, options = {}) {
           citationResult.issues.push({
             type: 'invalid_doi',
             severity: 'error',
-            message: `DOI is not accessible: ${citation.DOI}`
+            message: `DOI is not accessible: ${citation.DOI}`,
           });
         }
       }
-      
+
       results.push(citationResult);
     }
-    
+
     // Compile summary
     const summary = {
       totalCitations: cslArray.length,
-      citationsWithUrls: results.filter(r => r.urlVerification).length,
-      citationsWithDois: results.filter(r => r.doiVerification).length,
-      accessibleUrls: results.filter(r => r.urlVerification && r.urlVerification.accessible).length,
-      accessibleDois: results.filter(r => r.doiVerification && r.doiVerification.accessible).length,
-      inaccessibleUrls: results.filter(r => r.urlVerification && !r.urlVerification.accessible).length,
-      inaccessibleDois: results.filter(r => r.doiVerification && !r.doiVerification.accessible).length,
-      citationsWithIssues: results.filter(r => r.issues.length > 0).length,
-      totalIssues: results.reduce((sum, r) => sum + r.issues.length, 0)
+      citationsWithUrls: results.filter((r) => r.urlVerification).length,
+      citationsWithDois: results.filter((r) => r.doiVerification).length,
+      accessibleUrls: results.filter((r) => r.urlVerification && r.urlVerification.accessible)
+        .length,
+      accessibleDois: results.filter((r) => r.doiVerification && r.doiVerification.accessible)
+        .length,
+      inaccessibleUrls: results.filter((r) => r.urlVerification && !r.urlVerification.accessible)
+        .length,
+      inaccessibleDois: results.filter((r) => r.doiVerification && !r.doiVerification.accessible)
+        .length,
+      citationsWithIssues: results.filter((r) => r.issues.length > 0).length,
+      totalIssues: results.reduce((sum, r) => sum + r.issues.length, 0),
     };
-    
+
     return {
       results,
       summary,
-      isValid: options.failOnInaccessibleUrls || options.failOnInvalidDois 
-        ? summary.inaccessibleUrls === 0 && summary.inaccessibleDois === 0
-        : true
+      isValid:
+        options.failOnInaccessibleUrls || options.failOnInvalidDois
+          ? summary.inaccessibleUrls === 0 && summary.inaccessibleDois === 0
+          : true,
     };
   } catch (error) {
     return {
@@ -87,10 +92,10 @@ export async function referenceVerifier(cslJson, options = {}) {
         inaccessibleUrls: 0,
         inaccessibleDois: 0,
         citationsWithIssues: 0,
-        totalIssues: 0
+        totalIssues: 0,
       },
       isValid: false,
-      error: error.message
+      error: error.message,
     };
   }
 }
@@ -106,51 +111,57 @@ export function verifyUrl(urlStr, options = {}) {
     try {
       const url = new URL(urlStr);
       const client = url.protocol === 'https:' ? https : http;
-      
+
       // Set a timeout for the request
-      const request = client.request(urlStr, { 
-        method: options.method || 'HEAD', 
-        timeout: options.timeout || 10000 
-      }, (res) => {
-        resolve({
-          url: urlStr,
-          isValid: true,
-          statusCode: res.statusCode,
-          statusMessage: res.statusMessage,
-          accessible: res.statusCode >= 200 && res.statusCode < 400,
-          redirected: res.headers.location ? true : false,
-          redirectUrl: res.headers.location || null,
-          contentType: res.headers['content-type'] || null,
-          contentLength: res.headers['content-length'] ? parseInt(res.headers['content-length']) : null
-        });
-      });
-      
+      const request = client.request(
+        urlStr,
+        {
+          method: options.method || 'HEAD',
+          timeout: options.timeout || 10000,
+        },
+        (res) => {
+          resolve({
+            url: urlStr,
+            isValid: true,
+            statusCode: res.statusCode,
+            statusMessage: res.statusMessage,
+            accessible: res.statusCode >= 200 && res.statusCode < 400,
+            redirected: res.headers.location ? true : false,
+            redirectUrl: res.headers.location || null,
+            contentType: res.headers['content-type'] || null,
+            contentLength: res.headers['content-length']
+              ? parseInt(res.headers['content-length'])
+              : null,
+          });
+        }
+      );
+
       request.on('error', (err) => {
         resolve({
           url: urlStr,
           isValid: false,
           error: err.message,
-          accessible: false
+          accessible: false,
         });
       });
-      
+
       request.on('timeout', () => {
         request.destroy();
         resolve({
           url: urlStr,
           isValid: false,
           error: 'Request timed out',
-          accessible: false
+          accessible: false,
         });
       });
-      
+
       request.end();
     } catch (error) {
       resolve({
         url: urlStr,
         isValid: false,
         error: error.message,
-        accessible: false
+        accessible: false,
       });
     }
   });
@@ -174,13 +185,13 @@ export async function verifyDoi(doiStr, options = {}) {
   } else {
     doiUrl = doiStr;
   }
-  
+
   try {
     const result = await verifyUrl(doiUrl, options);
     return {
       doi: doiStr,
       doiUrl,
-      ...result
+      ...result,
     };
   } catch (error) {
     return {
@@ -188,7 +199,7 @@ export async function verifyDoi(doiStr, options = {}) {
       doiUrl,
       isValid: false,
       error: error.message,
-      accessible: false
+      accessible: false,
     };
   }
 }
@@ -202,10 +213,10 @@ export async function verifyDoi(doiStr, options = {}) {
 export async function verifyReferencesFromFile(cslJsonPath, options = {}) {
   try {
     const fs = await import('fs/promises');
-    
+
     const cslJsonContent = await fs.readFile(cslJsonPath, 'utf8');
     const cslJson = JSON.parse(cslJsonContent);
-    
+
     return await referenceVerifier(cslJson, options);
   } catch (error) {
     return {
@@ -219,10 +230,10 @@ export async function verifyReferencesFromFile(cslJsonPath, options = {}) {
         inaccessibleUrls: 0,
         inaccessibleDois: 0,
         citationsWithIssues: 0,
-        totalIssues: 0
+        totalIssues: 0,
       },
       isValid: false,
-      error: error.message
+      error: error.message,
     };
   }
 }
@@ -235,39 +246,45 @@ export async function verifyReferencesFromFile(cslJsonPath, options = {}) {
  */
 export async function filterCitationsByVerificationStatus(cslJson, filters = {}) {
   const cslArray = Array.isArray(cslJson) ? cslJson : [cslJson];
-  
+
   // First verify the citations
   const verificationResult = await referenceVerifier(cslArray);
-  
+
   // Create a map of verification results by citation ID
   const verificationMap = {};
   for (const result of verificationResult.results) {
     verificationMap[result.id] = result;
   }
-  
+
   // Filter the original citations based on verification status
-  return cslArray.filter(citation => {
+  return cslArray.filter((citation) => {
     const verification = verificationMap[citation.id];
-    
+
     if (!verification) return false;
-    
+
     // Apply filters
-    if (filters.requireAccessibleUrl && (!verification.urlVerification || !verification.urlVerification.accessible)) {
+    if (
+      filters.requireAccessibleUrl &&
+      (!verification.urlVerification || !verification.urlVerification.accessible)
+    ) {
       return false;
     }
-    
-    if (filters.requireAccessibleDoi && (!verification.doiVerification || !verification.doiVerification.accessible)) {
+
+    if (
+      filters.requireAccessibleDoi &&
+      (!verification.doiVerification || !verification.doiVerification.accessible)
+    ) {
       return false;
     }
-    
+
     if (filters.hasIssues && verification.issues.length === 0) {
       return false;
     }
-    
+
     if (filters.noIssues && verification.issues.length > 0) {
       return false;
     }
-    
+
     return true;
   });
 }
@@ -280,9 +297,9 @@ export async function filterCitationsByVerificationStatus(cslJson, filters = {})
  */
 export async function getInvalidReferences(cslJson, options = {}) {
   const verificationResult = await referenceVerifier(cslJson, options);
-  
+
   const invalidRefs = [];
-  
+
   for (const result of verificationResult.results) {
     if (
       (result.urlVerification && !result.urlVerification.accessible) ||
@@ -295,11 +312,11 @@ export async function getInvalidReferences(cslJson, options = {}) {
         doi: result.doiVerification ? result.doiVerification.doi : null,
         urlAccessible: result.urlVerification ? result.urlVerification.accessible : null,
         doiAccessible: result.doiVerification ? result.doiVerification.accessible : null,
-        issues: result.issues
+        issues: result.issues,
       });
     }
   }
-  
+
   return invalidRefs;
 }
 
@@ -311,36 +328,42 @@ export async function getInvalidReferences(cslJson, options = {}) {
  */
 export async function createVerificationReport(cslJson, options = {}) {
   const verificationResult = await referenceVerifier(cslJson, options);
-  
+
   const report = {
     generatedAt: new Date().toISOString(),
     options,
     summary: verificationResult.summary,
-    details: verificationResult.results.map(result => ({
+    details: verificationResult.results.map((result) => ({
       id: result.id,
       title: result.title,
       url: result.urlVerification ? result.urlVerification.url : null,
       urlAccessible: result.urlVerification ? result.urlVerification.accessible : null,
       doi: result.doiVerification ? result.doiVerification.doi : null,
       doiAccessible: result.doiVerification ? result.doiVerification.accessible : null,
-      issues: result.issues
+      issues: result.issues,
     })),
-    recommendations: []
+    recommendations: [],
   };
-  
+
   // Add recommendations based on the results
   if (report.summary.inaccessibleUrls > 0) {
-    report.recommendations.push(`Check and update ${report.summary.inaccessibleUrls} inaccessible URLs`);
+    report.recommendations.push(
+      `Check and update ${report.summary.inaccessibleUrls} inaccessible URLs`
+    );
   }
-  
+
   if (report.summary.inaccessibleDois > 0) {
-    report.recommendations.push(`Verify and correct ${report.summary.inaccessibleDois} invalid DOIs`);
+    report.recommendations.push(
+      `Verify and correct ${report.summary.inaccessibleDois} invalid DOIs`
+    );
   }
-  
+
   if (report.summary.citationsWithIssues > 0) {
-    report.recommendations.push(`Review ${report.summary.citationsWithIssues} citations with verification issues`);
+    report.recommendations.push(
+      `Review ${report.summary.citationsWithIssues} citations with verification issues`
+    );
   }
-  
+
   return report;
 }
 

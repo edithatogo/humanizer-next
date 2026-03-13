@@ -10,6 +10,46 @@
 
 ---
 
+## 2026-03-14 Refresh Notes
+
+The implementation plan below was written against a March 3 snapshot and is no longer current. Before closing this track, the plan should be re-prioritized around the refreshed repository data in `repo-data.json`.
+
+### Refresh Priorities
+
+1. Replace stale PR and issue counts with live GitHub data before making adoption decisions.
+2. Treat `humanizer-next` as a **skill-source repo**, not a package-release repo.
+3. Reframe release/distribution work around generated skill artifacts and adapter sync, not npm publishing.
+4. Explicitly evaluate whether `src/citation_ref_manager/` should remain in this repository.
+
+### Recommended Additional Tasks
+
+#### Task R1: Refresh upstream decision inputs
+
+- [ ] Re-run `node scripts/gather-repo-data.js edithatogo/humanizer-next blader/humanizer`
+- [ ] Update `spec.md` and any decision logs from the generated `repo-data.json`
+- [ ] Reject stale conclusions based on superseded PR and issue counts
+
+#### Task R2: Realign CI/CD with skill-repo goals
+
+- [ ] Audit `.github/workflows/release.yml` and decide whether to remove it, repurpose it for GitHub Releases, or convert it to artifact-only distribution
+- [ ] Make `skill-distribution.yml` the primary release-quality gate
+- [ ] Add a drift check that fails CI when `npm run sync` changes tracked adapter outputs
+- [ ] Ensure the main CI path executes the same checks maintainers actually rely on: `npm run lint:all`, `npm test`, `npm run validate`
+
+#### Task R3: Evaluate extraction candidates
+
+- [ ] Review `src/citation_ref_manager/` against the repo's core scope
+- [ ] Decide between: keep and productize, move to `experiments/`, or extract to a separate repo/skill
+- [ ] Document the decision in an ADR or track summary
+
+#### Task R4: Strengthen self-improvement automation
+
+- [ ] Make the weekly workflow consume refreshed upstream data rather than only creating a placeholder issue
+- [ ] Add decision criteria for adopting new "AI tells": evidence quality, overlap, false-positive risk, adapter impact
+- [ ] Record explicit Adopt / Reject / Defer outcomes for high-signal upstream PRs
+
+---
+
 ## Phase 1: Dependency Updates & Security Baseline [P0]
 
 **Goal:** Clear Dependabot backlog and establish security baseline

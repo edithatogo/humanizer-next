@@ -10,7 +10,7 @@ export { default as formatConverter } from './subskills/format_converter.js';
 export { default as referenceVerifier } from './subskills/reference_verifier.js';
 
 // Export utility functions and classes
-export { 
+export {
   CanonicalStorage,
   validateCslJsonSchema,
   validateRequiredFields,
@@ -18,11 +18,8 @@ export {
   verifyManuscriptCitations,
   calculateConfidenceScore,
   needsManualVerification,
-  humanizeCitations
+  humanizeCitations,
 } from './utils.js';
 
 // Export format conversion functions from utils
-export { 
-  cslJsonToYaml,
-  cslJsonToRis
-} from './utils.js';
+export { cslJsonToYaml, cslJsonToRis } from './utils.js';

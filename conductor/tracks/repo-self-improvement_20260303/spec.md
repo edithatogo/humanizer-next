@@ -25,6 +25,30 @@ This is the **first recurring self-improvement cycle** for the humanizer-next re
 5. **Major architectural decisions** on modularization and live Wikipedia sync
 6. **Security hardening** with no current vulnerabilities but missing policy documentation
 
+## 2026-03-14 Refresh
+
+The original track snapshot is now stale and should not be used as the source of truth for current prioritization.
+
+Fresh data was gathered on **2026-03-13** via `scripts/gather-repo-data.js` and saved to `repo-data.json`.
+
+### Current Snapshot
+
+- **Local repository:** 6 open Dependabot PRs, 0 standalone open issues
+- **Upstream repository (`blader/humanizer`):** 24 open PRs, 25 open issues
+- **Security posture:** `SECURITY.md` exists locally, but GitHub does not detect a published security policy for either repo
+
+### Current Assessment
+
+1. `humanizer-next` should remain a **skill-source repository**, not a publishable npm library.
+2. `.github/workflows/release.yml` is currently **misaligned** with that goal because it still assumes a Changesets + npm publish lifecycle.
+3. `.github/workflows/self-improvement.yml` is useful as a scheduler, but it is too shallow to be considered a closed-loop improvement system. It creates an issue and gathers baseline metrics, but it does not make high-quality adoption decisions.
+4. `src/citation_ref_manager/` appears to be a **scope outlier** relative to the repo's core purpose. It should be evaluated for extraction into a separate skill, plugin, or experiments repo unless it becomes a first-class part of the maintained Humanizer experience.
+5. The highest-value maintenance work is now:
+   - reviewing and merging the 6 current Dependabot PRs,
+   - triaging upstream PRs/issues by adoption value,
+   - simplifying release/distribution automation around skill artifacts rather than package publishing,
+   - and deciding whether experimental subsystems should stay in-tree.
+
 ---
 
 ## 1. Local Repository Analysis (edithatogo/humanizer-next)

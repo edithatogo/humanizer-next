@@ -2,6 +2,8 @@
 
 Humanizer-next is a forward-maintained fork of [blader/humanizer](https://github.com/blader/humanizer). It removes signs of AI-generated writing from text while preserving meaning, tone, and technical literals.
 
+This repository is the source for an **agent skill**, not a standalone runtime library. The Node tooling here exists to compile, validate, and sync skill artifacts across adapters.
+
 ## Installation
 
 ### Recommended
@@ -12,11 +14,11 @@ cd humanizer-next
 npm install
 ```
 
-For tool-specific installation, migration, and update instructions, use [docs/install-matrix.md](docs/install-matrix.md).
+This setup is for **maintainers** working on the skill source. For tool-specific installation, migration, and update instructions, use [docs/install-matrix.md](docs/install-matrix.md).
 
 ## Usage
 
-### Sync and build (cross-platform)
+### Maintain the skill (cross-platform)
 
 The repository uses a modular fragment system to maintain consistency.
 
@@ -25,7 +27,7 @@ The repository uses a modular fragment system to maintain consistency.
 3. Compile and sync all versions: `npm run sync`
 4. Validate adapters and docs: `npm run validate`
 
-This will rebuild `SKILL.md` (Standard) and `SKILL_PROFESSIONAL.md` (Pro) from the `src/` directory and sync them to all adapter files.
+This rebuilds `SKILL.md` (Standard) and `SKILL_PROFESSIONAL.md` (Pro) from the `src/` directory and syncs them to all adapter files.
 
 ### Variants
 
@@ -55,6 +57,12 @@ AI agents (Claude Code, Cursor, Windsurf, etc.) should use [AGENTS.md](AGENTS.md
 - **VS Code:** `adapters/vscode/`
 
 Use [docs/install-matrix.md](docs/install-matrix.md) as the canonical installation source.
+
+### What this repo is not
+
+- It is not a published npm package.
+- It is not intended to be embedded as an application library.
+- It is a source-and-distribution repo for prompt/skill artifacts plus maintenance tooling.
 
 ### Sync process
 

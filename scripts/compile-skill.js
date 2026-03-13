@@ -39,7 +39,7 @@ const MODULES = {
   technical: 'src/modules/SKILL_TECHNICAL.md',
   academic: 'src/modules/SKILL_ACADEMIC.md',
   governance: 'src/modules/SKILL_GOVERNANCE.md',
-  reasoning: 'src/modules/SKILL_REASONING.md'
+  reasoning: 'src/modules/SKILL_REASONING.md',
 };
 
 /**
@@ -47,7 +47,7 @@ const MODULES = {
  */
 const OUTPUT = {
   skill: 'SKILL.md',
-  skillPro: 'SKILL_PROFESSIONAL.md'
+  skillPro: 'SKILL_PROFESSIONAL.md',
 };
 
 /**
@@ -55,7 +55,7 @@ const OUTPUT = {
  */
 function readModule(modulePath, required = false) {
   const fullPath = path.join(ROOT_DIR, modulePath);
-  
+
   if (!fs.existsSync(fullPath)) {
     if (required) {
       throw new Error(`Required module not found: ${modulePath}`);
@@ -63,7 +63,7 @@ function readModule(modulePath, required = false) {
     console.log(`⚠️  Module not found: ${modulePath} (optional)`);
     return null;
   }
-  
+
   console.log(`✓ Reading module: ${modulePath}`);
   return fs.readFileSync(fullPath, 'utf-8');
 }
@@ -75,15 +75,16 @@ function findAdapters() {
   const adapters = [];
   const adapterDirs = [
     '.agent/skills/humanizer',
-    ...fs.readdirSync(path.join(ROOT_DIR, 'adapters'))
-      .filter(d => fs.statSync(path.join(ROOT_DIR, 'adapters', d)).isDirectory())
-      .map(d => `adapters/${d}`)
+    ...fs
+      .readdirSync(path.join(ROOT_DIR, 'adapters'))
+      .filter((d) => fs.statSync(path.join(ROOT_DIR, 'adapters', d)).isDirectory())
+      .map((d) => `adapters/${d}`),
   ];
-  
+
   for (const dir of adapterDirs) {
     const fullPath = path.join(ROOT_DIR, dir);
     if (!fs.existsSync(fullPath)) continue;
-    
+
     const files = fs.readdirSync(fullPath);
     for (const file of files) {
       if (file.endsWith('.md')) {
@@ -95,7 +96,7 @@ function findAdapters() {
       }
     }
   }
-  
+
   return adapters;
 }
 
@@ -105,40 +106,40 @@ function findAdapters() {
 function extractFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---/);
   if (!match) return null;
-  
+
   const frontmatter = {};
   const lines = match[1].split('\n');
-  
+
   for (const line of lines) {
     const [key, ...valueParts] = line.split(':');
     if (key && valueParts.length > 0) {
       frontmatter[key.trim()] = valueParts.join(':').trim();
     }
   }
-  
+
   return frontmatter;
 }
 
 /**
  * Compile Standard SKILL.md from modules
- * 
+ *
  * Assembles SKILL.md from:
  * - Core patterns module (required)
  * - Reasoning module (if available)
  */
 function compileStandardSkill() {
   console.log('\n=== Compiling Standard Humanizer ===');
-  
+
   // Read required core module
   const coreModule = readModule(MODULES.core, true); // required = true
-  
+
   // Read optional reasoning module
   const reasoningModule = readModule(MODULES.reasoning);
-  
+
   // Extract version from core module
   const coreFrontmatter = extractFrontmatter(coreModule);
   const version = coreFrontmatter?.version || '3.0.0';
-  
+
   // Build standard skill frontmatter
   const frontmatter = `---
 name: humanizer
@@ -163,13 +164,13 @@ allowed-tools:
 ---
 
 `;
-  
+
   // Extract content without frontmatter from core module
-  let coreContent = coreModule.replace(/^---\s*[\s\S]*?^---\s*/m, '');
-  
+  const coreContent = coreModule.replace(/^---\s*[\s\S]*?^---\s*/m, '');
+
   // Start with frontmatter + core content
   let content = frontmatter + coreContent;
-  
+
   // Append reasoning module if available
   if (reasoningModule) {
     console.log('✓ Appending reasoning module');
@@ -177,14 +178,14 @@ allowed-tools:
     const reasoningContent = reasoningModule.replace(/^---\s*[\s\S]*?^---\s*/m, '');
     content += '\n\n---\n\n' + reasoningContent;
   }
-  
+
   console.log('✓ Standard SKILL.md compiled from modules');
   return content;
 }
 
 /**
  * Compile Professional SKILL_PROFESSIONAL.md from modules
- * 
+ *
  * Assembles from:
  * - Frontmatter (version, description, allowed-tools)
  * - Introduction & routing logic
@@ -193,26 +194,26 @@ allowed-tools:
  */
 function compileProfessionalSkill() {
   console.log('\n=== Compiling Humanizer Pro ===');
-  
+
   // Read all modules (core is required, others optional)
   const modules = {
     core: readModule(MODULES.core, true),
     technical: readModule(MODULES.technical),
     academic: readModule(MODULES.academic),
     governance: readModule(MODULES.governance),
-    reasoning: readModule(MODULES.reasoning)
+    reasoning: readModule(MODULES.reasoning),
   };
-  
+
   // Check which modules are available
   const availableModules = Object.entries(modules)
     .filter(([_, content]) => content !== null)
     .map(([key, _]) => key);
-  
+
   console.log(`✓ Available modules: ${availableModules.join(', ')}`);
-  
+
   // Build professional skill from template
-  let content = buildProfessionalTemplate(modules);
-  
+  const content = buildProfessionalTemplate(modules);
+
   return content;
 }
 
@@ -223,7 +224,7 @@ function buildProfessionalTemplate(modules) {
   // Extract version from core module
   const coreFrontmatter = extractFrontmatter(modules.core);
   const version = coreFrontmatter?.version || '3.0.0';
-  
+
   // Build frontmatter
   const frontmatter = `---
 name: humanizer-pro
@@ -322,41 +323,41 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 
   // Build module sections
   let moduleSections = '';
-  
+
   // Core patterns (always included)
   if (modules.core) {
     moduleSections += '\n## CORE PATTERNS MODULE\n\n';
     moduleSections += modules.core;
     moduleSections += '\n\n---\n';
   }
-  
+
   // Technical module
   if (modules.technical) {
     moduleSections += '\n## TECHNICAL MODULE\n\n';
     moduleSections += modules.technical;
     moduleSections += '\n\n---\n';
   }
-  
+
   // Academic module
   if (modules.academic) {
     moduleSections += '\n## ACADEMIC MODULE\n\n';
     moduleSections += modules.academic;
     moduleSections += '\n\n---\n';
   }
-  
+
   // Governance module
   if (modules.governance) {
     moduleSections += '\n## GOVERNANCE MODULE\n\n';
     moduleSections += modules.governance;
     moduleSections += '\n\n---\n';
   }
-  
+
   // Reasoning module
   if (modules.reasoning) {
     moduleSections += '\n## REASONING MODULE\n\n';
     moduleSections += modules.reasoning;
   }
-  
+
   // Assemble final content
   return frontmatter + introduction + moduleSections;
 }
@@ -366,15 +367,15 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
  */
 function updateAdapterMetadata(version) {
   console.log('\n=== Updating Adapter Metadata ===');
-  
+
   const adapters = findAdapters();
   console.log(`✓ Found ${adapters.length} adapter files`);
-  
+
   let updated = 0;
   for (const adapterPath of adapters) {
     let content = fs.readFileSync(adapterPath, 'utf-8');
     const oldVersion = content.match(/skill_version: ([\d.]+)/);
-    
+
     if (oldVersion && oldVersion[1] !== version) {
       content = content.replace(/skill_version: [\d.]+/, `skill_version: ${version}`);
       fs.writeFileSync(adapterPath, content, 'utf-8');
@@ -382,7 +383,7 @@ function updateAdapterMetadata(version) {
       updated++;
     }
   }
-  
+
   if (updated === 0) {
     console.log('✓ All adapters up to date');
   }
@@ -400,7 +401,7 @@ function compile() {
     // Compile Standard SKILL.md
     console.log('\n=== Phase 4: Assembling from Modules ===');
     const skillContent = compileStandardSkill();
-    
+
     // Write SKILL.md
     const skillPath = path.join(ROOT_DIR, OUTPUT.skill);
     fs.writeFileSync(skillPath, skillContent, 'utf-8');
@@ -408,7 +409,7 @@ function compile() {
 
     // Compile Professional SKILL_PROFESSIONAL.md
     const proContent = compileProfessionalSkill();
-    
+
     // Write SKILL_PROFESSIONAL.md
     const proPath = path.join(ROOT_DIR, OUTPUT.skillPro);
     fs.writeFileSync(proPath, proContent, 'utf-8');
@@ -427,7 +428,6 @@ function compile() {
     console.log(`\nVersion: ${version}`);
     console.log('Status: Phase 4 - Assembled from Modules');
     console.log('Next: Test compiled output and run validation');
-
   } catch (error) {
     console.error('\n❌ Compilation failed:');
     console.error(error.message);

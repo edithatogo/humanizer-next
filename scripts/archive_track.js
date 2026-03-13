@@ -42,13 +42,16 @@ if (fs.existsSync(metadataPath)) {
 let updatedContent = tracksRegistryContent;
 
 // Find the track in the active tracks section and move it to archived
-const trackRegex = new RegExp(`(### ${trackId}|## \\[ \\] Track:.*?${trackId})[\\s\\S]*?_Link: \\[(?:\\.\\/)?tracks\\/${trackId}\\/(?:\\.\\/)?\\)_\\n`, 'i');
+const trackRegex = new RegExp(
+  `(### ${trackId}|## \\[ \\] Track:.*?${trackId})[\\s\\S]*?_Link: \\[(?:\\.\\/)?tracks\\/${trackId}\\/(?:\\.\\/)?\\)_\\n`,
+  'i'
+);
 
 const trackMatch = tracksRegistryContent.match(trackRegex);
 
 if (trackMatch) {
   const matchedSection = trackMatch[0];
-  
+
   // Replace the active track status with completed [x]
   const archivedSection = matchedSection
     .replace(/## \[ \] Track:/, '## [x] Track:')
@@ -56,21 +59,21 @@ if (trackMatch) {
     .replace(/\*\*Status:\*\* new/, '**Status:** completed')
     .replace(/\*\*Status:\*\* blocked/, '**Status:** completed')
     .replace(/\*\*Status:\*\* in_progress/, '**Status:** completed');
-  
+
   // Remove the track from active section
   updatedContent = tracksRegistryContent.replace(matchedSection, '');
-  
+
   // Add the track to the archived section
   if (updatedContent.includes('## Archived Tracks')) {
     updatedContent = updatedContent.replace(
-      /(## Archived Tracks[\s\n]+)/, 
+      /(## Archived Tracks[\s\n]+)/,
       `$1${archivedSection}\n`
     );
   } else {
     // If no archived section exists, create one
     updatedContent += `\n## Archived Tracks\n\n${archivedSection}`;
   }
-  
+
   // Write the updated content back to the file
   fs.writeFileSync(tracksRegistryPath, updatedContent);
   console.log(`Moved track ${trackId} from active to archived in tracks registry`);

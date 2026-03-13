@@ -34,11 +34,7 @@ else
   echo "==> aix not installed; skipping aix validation"
 fi
 
-# Check if SKILL.md was modified
-if git diff --name-only | grep -q '^SKILL.md$'; then
-  echo "ERROR: SKILL.md was modified by the validation steps. Aborting." >&2
-  git --no-pager diff -- SKILL.md >&2
-  exit 2
-fi
+echo "==> Verifying sync outputs remain clean"
+node scripts/check-sync-clean.js
 
 echo "==> Skill validation completed successfully"
