@@ -19,7 +19,7 @@
     "test": "node --test test/*.test.js && node scripts/run-tests.js",
     "build": "node scripts/compile-skill.js",
     "install:adapters": "node scripts/install-adapters.js",
-    "prepare": "husky install",
+    "prepare": "node -e \"if (!process.env.CI) require('child_process').execSync('npx husky install', { stdio: 'inherit' })\"",
     "release": "echo 'No npm release: humanizer-next ships agent skill artifacts, not a publishable library'",
     "version": "npm run sync && git add adapters/"
   },

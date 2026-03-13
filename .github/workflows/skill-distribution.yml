@@ -23,6 +23,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Vale (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          VALE_VERSION=3.13.0
+          curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
+          tar -xzf vale.tar.gz
+          sudo mv vale /usr/local/bin/vale
+
+      - name: Install Vale (macOS)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: brew install vale
+
+      - name: Install Vale (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: choco install vale --no-progress -y
+
       - name: Lint, Typecheck and Format
         run: |
           npm run lint:all
