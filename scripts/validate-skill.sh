@@ -24,6 +24,33 @@ ensure_skillshare_ready() {
   skillshare init --no-copy --all-targets --git >/dev/null
 }
 
+add_skillshare_to_path() {
+  if command -v skillshare >/dev/null 2>&1; then
+    return 0
+  fi
+
+  local skillshare_bin=""
+
+  case "${OSTYPE:-}" in
+    msys*|cygwin*|win32*)
+      local windows_skillshare_path="${LOCALAPPDATA:-$HOME/AppData/Local}/Programs/skillshare/skillshare.exe"
+      if [ -x "$windows_skillshare_path" ]; then
+        skillshare_bin=$(dirname "$windows_skillshare_path")
+      fi
+      ;;
+    *)
+      local unix_skillshare_path="$HOME/.local/bin/skillshare"
+      if [ -x "$unix_skillshare_path" ]; then
+        skillshare_bin=$(dirname "$unix_skillshare_path")
+      fi
+      ;;
+  esac
+
+  if [ -n "$skillshare_bin" ]; then
+    export PATH="$skillshare_bin:$PATH"
+  fi
+}
+
 # Skillshare dry-run
 if command -v skillshare >/dev/null 2>&1; then
   ensure_skillshare_ready
@@ -41,7 +68,7 @@ else
       curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
       ;;
   esac
-  export PATH="$HOME/.local/bin:$PATH"
+  add_skillshare_to_path
   ensure_skillshare_ready
   if ! skillshare install . --dry-run; then
     echo "==> skillshare dry-run does not support local repo sources in this environment; skipping"
