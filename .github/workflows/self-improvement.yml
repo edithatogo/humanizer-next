@@ -42,22 +42,35 @@ jobs:
           echo "AI Pattern Count:" >> metrics-baseline.txt
           grep -c -i "stands as\|testament to\|crucial\|pivotal\|vibrant\|showcasing" SKILL.md SKILL_PROFESSIONAL.md QWEN.md >> metrics-baseline.txt || echo "0" >> metrics-baseline.txt
 
+      - name: Gather repository intelligence
+        run: |
+          node scripts/gather-repo-data.js edithatogo/humanizer-next blader/humanizer
+          node scripts/render-self-improvement-issue.js
+
       - name: Run Validation
         run: |
           npm run validate
           npm test
 
       - name: Upload Baseline Metrics
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: baseline-metrics
           path: metrics-baseline.txt
 
+      - name: Upload self-improvement data
+        uses: actions/upload-artifact@v7
+        with:
+          name: self-improvement-data
+          path: |
+            conductor/tracks/repo-self-improvement_20260303/repo-data.json
+            .github/generated/self-improvement-issue.md
+
       - name: Create Analysis Issue
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6
         with:
           title: Self-Improvement Cycle $(date +%Y-%m-%d)
-          content-filepath: .github/SELF_IMPROVEMENT_TEMPLATE.md
+          content-filepath: .github/generated/self-improvement-issue.md
           labels: |
             self-improvement
             weekly-cycle
@@ -67,4 +80,4 @@ jobs:
         run: |
           echo "::notice::Self-improvement cycle initiated. See issue created above for detailed analysis tasks."
           echo "::notice::Branch created: self-improvement-$(date +%Y-%m-%d)"
-          echo "::notice::Complete analysis manually following docs/SELF_IMPROVEMENT_WORKFLOW.md"
+          echo "::notice::Generated issue body and repo-data.json are attached as workflow artifacts."

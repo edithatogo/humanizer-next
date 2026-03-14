@@ -17,6 +17,7 @@ severity_levels:
 This module applies to governance writing: policies, risk assessments, compliance documentation, legal writing, and regulatory submissions. It maintains precision and formality while removing AI voice patterns.
 
 **When to Apply:**
+
 - Company policies
 - Risk assessments
 - Compliance documentation
@@ -25,6 +26,7 @@ This module applies to governance writing: policies, risk assessments, complianc
 - Board reports
 
 **When NOT to Apply:**
+
 - Creative writing
 - Marketing materials
 - Informal communications
@@ -48,9 +50,11 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** High
 
 **Before:**
+
 > Employees should generally endeavor to maintain appropriate security practices where feasible.
 
 **After:**
+
 > Employees must enable two-factor authentication on all company accounts.
 
 ---
@@ -62,9 +66,11 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** High
 
 **Before:**
+
 > There may potentially be some risk that data could possibly be compromised in certain circumstances.
 
 **After:**
+
 > Risk: Unencrypted data in transit may be intercepted. Likelihood: Medium. Impact: High.
 
 ---
@@ -76,14 +82,17 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** Medium
 
 **Words to watch:**
+
 - "commitment to excellence", "dedication to"
 - "best-in-class", "industry-leading"
 - "unwavering commitment", "paramount importance"
 
 **Before:**
+
 > Our unwavering commitment to data protection demonstrates our dedication to best-in-class security practices.
 
 **After:**
+
 > We comply with GDPR Article 32 (security of processing) through encryption, access controls, and regular audits.
 
 ---
@@ -95,14 +104,17 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** High
 
 **Words to watch:**
+
 - "Industry standards require"
 - "Regulations state"
 - "Experts recommend"
 
 **Before:**
+
 > Industry standards require regular security assessments.
 
 **After:**
+
 > SOC 2 Type II requires annual security assessments (AICPA, 2023).
 
 ---
@@ -114,9 +126,11 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** Low
 
 **Before:**
+
 > Looking ahead, we remain committed to continuous improvement. The future looks bright as we enhance our governance framework.
 
 **After:**
+
 > Next review date: 2027-03-03. Responsible: Chief Compliance Officer.
 
 ---
@@ -128,12 +142,14 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** Low
 
 **Before:**
+
 > **Risk Category:** Cybersecurity
 > **Likelihood:** High
 > **Impact:** Critical
 > **Mitigation:** Implement controls
 
 **After:**
+
 > Cybersecurity risk is high with critical potential impact. Mitigation: implement access controls, encryption, and monitoring.
 
 ---
@@ -145,9 +161,11 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** Medium
 
 **Before:**
+
 > In the event that an employee fails to comply with the provisions set forth herein, disciplinary action may be taken.
 
 **After:**
+
 > Employees who violate this policy face disciplinary action, up to and including termination.
 
 ---
@@ -159,10 +177,12 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** Low
 
 **Before:**
+
 > We are confident that these measures will ensure a bright and secure future for our organization.
 
 **After:**
-> This policy takes effect 2026-04-01. Questions: compliance@company.com
+
+> This policy takes effect 2026-04-01. Questions: [compliance@company.com](mailto:compliance@company.com)
 
 ---
 
@@ -175,10 +195,13 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** High
 
 **Before:**
+
 > We comply with all applicable data protection regulations.
 
 **After:**
+
 > We comply with:
+>
 > - GDPR (EU) 2016/679: Articles 5, 6, 32
 > - CCPA (California): Section 1798.100
 > - HIPAA (US): 45 CFR Part 160
@@ -192,33 +215,39 @@ This module applies to governance writing: policies, risk assessments, complianc
 **Severity:** Medium
 
 **Before:**
+
 > This policy should be followed by all employees.
 
 **After:**
+
 > **Owner:** Chief Compliance Officer
 > **Applies to:** All employees, contractors, vendors
 > **Enforcement:** HR and Legal
-> **Violations:** Report to compliance@company.com
+> **Violations:** Report to [compliance@company.com](mailto:compliance@company.com)
 
 ---
 
 ## SEVERITY CLASSIFICATION
 
 ### Critical (must fix)
+
 - None for governance module (precision varies by context)
 
 ### High (strong AI signals)
+
 - Pattern G1: Vague policy language
 - Pattern G2: Hedged risk statements
 - Pattern G4: Vague attributions in policy
 - Pattern G9: Vague regulatory references
 
 ### Medium (moderate AI signals)
+
 - Pattern G3: Promotional compliance language
 - Pattern G7: Filler in legal writing
 - Pattern G10: Missing accountability
 
 ### Low (weak AI signals)
+
 - Pattern G5: Formulaic "Future Outlook" sections
 - Pattern G6: Over-structured risk matrices
 - Pattern G8: Generic positive conclusions
@@ -246,6 +275,6 @@ This module applies to governance writing: policies, risk assessments, complianc
 
 ---
 
-*Module Version: 3.0.0*
-*Last Updated: 2026-03-03*
-*Applies to: Policies, risk assessments, compliance docs, legal writing, regulatory submissions*
+_Module Version: 3.0.0_
+_Last Updated: 2026-03-03_
+_Applies to: Policies, risk assessments, compliance docs, legal writing, regulatory submissions_

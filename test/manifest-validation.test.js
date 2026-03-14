@@ -43,52 +43,56 @@ function validateManifest(manifest) {
 }
 
 // Test 1: Valid manifest should pass
-console.log("Test 1: Valid manifest validation");
+console.log('Test 1: Valid manifest validation');
 const validManifest = JSON.parse(fs.readFileSync('./archive/sources_manifest.json', 'utf8'));
 const validationResult = validateManifest(validManifest);
 if (validationResult.valid) {
-  console.log("✓ PASS: Valid manifest passed validation");
+  console.log('✓ PASS: Valid manifest passed validation');
 } else {
-  console.log("✗ FAIL: Valid manifest failed validation");
+  console.log('✗ FAIL: Valid manifest failed validation');
   console.log(validationResult.errors);
 }
 
 // Test 2: Invalid manifest (missing required field) should fail
-console.log("\nTest 2: Invalid manifest (missing required field) validation");
+console.log('\nTest 2: Invalid manifest (missing required field) validation');
 const invalidManifest = {
-  schema_version: "1.0",
-  sources: [{
-    id: "test_source",
-    type: "paper",
-    // Missing required fields to test validation
-  }]
+  schema_version: '1.0',
+  sources: [
+    {
+      id: 'test_source',
+      type: 'paper',
+      // Missing required fields to test validation
+    },
+  ],
 };
 const invalidValidationResult = validateManifest(invalidManifest);
 if (!invalidValidationResult.valid) {
-  console.log("✓ PASS: Invalid manifest correctly failed validation");
+  console.log('✓ PASS: Invalid manifest correctly failed validation');
 } else {
-  console.log("✗ FAIL: Invalid manifest incorrectly passed validation");
+  console.log('✗ FAIL: Invalid manifest incorrectly passed validation');
 }
 
 // Test 3: Manifest with wrong status value should fail
-console.log("\nTest 3: Manifest with invalid status value validation");
+console.log('\nTest 3: Manifest with invalid status value validation');
 const invalidStatusManifest = {
-  schema_version: "1.0",
-  sources: [{
-    id: "test_source",
-    type: "paper",
-    url: "https://example.com",
-    fetched_at: "2026-02-15T00:00:00Z",
-    hash: "abc123",
-    status: "invalid_status", // This should fail
-    confidence: "high"
-  }]
+  schema_version: '1.0',
+  sources: [
+    {
+      id: 'test_source',
+      type: 'paper',
+      url: 'https://example.com',
+      fetched_at: '2026-02-15T00:00:00Z',
+      hash: 'abc123',
+      status: 'invalid_status', // This should fail
+      confidence: 'high',
+    },
+  ],
 };
 const invalidStatusValidationResult = validateManifest(invalidStatusManifest);
 if (!invalidStatusValidationResult.valid) {
-  console.log("✓ PASS: Manifest with invalid status correctly failed validation");
+  console.log('✓ PASS: Manifest with invalid status correctly failed validation');
 } else {
-  console.log("✗ FAIL: Manifest with invalid status incorrectly passed validation");
+  console.log('✗ FAIL: Manifest with invalid status incorrectly passed validation');
 }
 
-console.log("\nAll tests completed.");
+console.log('\nAll tests completed.');

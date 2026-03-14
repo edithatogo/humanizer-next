@@ -20,7 +20,7 @@ allowed-tools:
 adapter_metadata:
   skill_name: humanizer
   skill_version: 2.3.0
-  last_synced: 2026-03-04
+  last_synced: 2026-03-14
   source_path: SKILL.md
   adapter_id: antigravity-rules-workflows
   adapter_format: Antigravity rules/workflows

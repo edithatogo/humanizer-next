@@ -4,7 +4,8 @@ set -euo pipefail
 # Minimal validation script for skill distribution
 # - Runs skillshare dry-run install if available
 # - Optionally runs aix validation if available
-# - Fails if SKILL.md is modified by any command
+# - Fails if scripts/check-sync-clean.js detects drift in generated outputs
+#   such as SKILL.md, SKILL_PROFESSIONAL.md, AGENTS.md, and adapter bundles
 
 ROOT_DIR=$(cd "$(dirname "$0")/.." && pwd)
 cd "$ROOT_DIR"
@@ -15,15 +16,90 @@ echo "==> Starting skill validation"
 echo "==> Running npm run sync"
 npm run sync --silent
 
+ensure_skillshare_ready() {
+  if skillshare status >/dev/null 2>&1; then
+    return 0
+  fi
+
+  echo "==> Initializing skillshare config for CI"
+  skillshare init --no-copy --all-targets --git >/dev/null
+}
+
+add_skillshare_to_path() {
+  if command -v skillshare >/dev/null 2>&1; then
+    return 0
+  fi
+
+  local skillshare_bin=""
+
+  case "${OSTYPE:-}" in
+    msys*|cygwin*|win32*)
+      local windows_skillshare_root="${LOCALAPPDATA:-$HOME/AppData/Local}/Programs/skillshare"
+      if command -v cygpath >/dev/null 2>&1; then
+        windows_skillshare_root=$(cygpath "$windows_skillshare_root")
+      fi
+
+      local windows_skillshare_path="$windows_skillshare_root/skillshare.exe"
+      if [ -f "$windows_skillshare_path" ]; then
+        skillshare_bin="$windows_skillshare_root"
+      fi
+      ;;
+    *)
+      local unix_skillshare_path="$HOME/.local/bin/skillshare"
+      if [ -x "$unix_skillshare_path" ]; then
+        skillshare_bin=$(dirname "$unix_skillshare_path")
+      fi
+      ;;
+  esac
+
+  if [ -n "$skillshare_bin" ]; then
+    export PATH="$skillshare_bin:$PATH"
+  fi
+}
+
+run_skillshare_dry_run() {
+  echo "==> Running skillshare dry-run"
+
+  local output=""
+  local status=0
+
+  set +e
+  output=$(skillshare install . --dry-run 2>&1)
+  status=$?
+  set -e
+
+  if [ "$status" -eq 0 ]; then
+    printf '%s\n' "$output"
+    return 0
+  fi
+
+  if printf '%s\n' "$output" | grep -Eqi "local repo sources are unsupported|unrecognized source format: \."; then
+    echo "==> skillshare dry-run does not support local repo sources in this environment; skipping"
+    printf '%s\n' "$output"
+    return 0
+  fi
+
+  printf '%s\n' "$output" >&2
+  return "$status"
+}
+
 # Skillshare dry-run
 if command -v skillshare >/dev/null 2>&1; then
-  echo "==> Running skillshare dry-run"
-  skillshare install . --dry-run
+  ensure_skillshare_ready
+  run_skillshare_dry_run
 else
   echo "==> skillshare not installed; attempting quick install into /tmp"
-  curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
-  export PATH="$HOME/.local/bin:$PATH"
-  skillshare install . --dry-run
+  case "${OSTYPE:-}" in
+    msys*|cygwin*|win32*)
+      powershell -NoProfile -Command "irm https://raw.githubusercontent.com/runkids/skillshare/main/install.ps1 | iex"
+      ;;
+    *)
+      curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
+      ;;
+  esac
+  add_skillshare_to_path
+  ensure_skillshare_ready
+  run_skillshare_dry_run
 fi
 
 # Optional AIX validation
@@ -34,11 +110,7 @@ else
   echo "==> aix not installed; skipping aix validation"
 fi
 
-# Check if SKILL.md was modified
-if git diff --name-only | grep -q '^SKILL.md$'; then
-  echo "ERROR: SKILL.md was modified by the validation steps. Aborting." >&2
-  git --no-pager diff -- SKILL.md >&2
-  exit 2
-fi
+echo "==> Verifying sync outputs remain clean"
+node scripts/check-sync-clean.js
 
 echo "==> Skill validation completed successfully"

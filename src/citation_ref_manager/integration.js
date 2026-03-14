@@ -3,7 +3,14 @@
  * Integrates the citation reference management system with the humanizer skill framework
  */
 
-import { humanizeCitations, CanonicalStorage, verifyManuscriptCitations, enrichCitationWithCrossRef, calculateConfidenceScore, needsManualVerification } from './index.js';
+import {
+  humanizeCitations,
+  CanonicalStorage,
+  verifyManuscriptCitations,
+  enrichCitationWithCrossRef,
+  calculateConfidenceScore,
+  needsManualVerification,
+} from './index.js';
 
 /**
  * Skill adapter for citation verification and management
@@ -16,42 +23,42 @@ export async function citationVerificationSkill(text, options = {}) {
   try {
     // Extract citations from the text
     const citationIds = findCitationKeysInManuscript(text);
-    
+
     if (citationIds.length === 0) {
       return {
         text,
         citations: [],
         issues: [],
-        message: 'No citations found in the text'
+        message: 'No citations found in the text',
       };
     }
-    
+
     // Load the canonical reference list
     const storage = new CanonicalStorage(options.referencePath || './canonical-references.json');
     const references = await storage.load();
-    
+
     // Verify citations in the manuscript
     const verificationResult = verifyManuscriptCitations(text, references);
-    
+
     // Identify issues
     const issues = [];
-    
+
     if (verificationResult.missingCitations.length > 0) {
       issues.push({
         type: 'missing_citation',
         message: `Citations referenced in text but not found in reference list: ${verificationResult.missingCitations.join(', ')}`,
-        citations: verificationResult.missingCitations
+        citations: verificationResult.missingCitations,
       });
     }
-    
+
     if (verificationResult.unusedCitations.length > 0) {
       issues.push({
         type: 'unused_citation',
         message: `Citations in reference list but not used in text: ${verificationResult.unusedCitations.join(', ')}`,
-        citations: verificationResult.unusedCitations
+        citations: verificationResult.unusedCitations,
       });
     }
-    
+
     // Process each citation for quality and confidence
     const citationDetails = [];
     for (const ref of references) {
@@ -59,27 +66,27 @@ export async function citationVerificationSkill(text, options = {}) {
         // Calculate confidence score
         const confidence = calculateConfidenceScore(ref);
         const needsVerification = needsManualVerification(confidence);
-        
+
         citationDetails.push({
           id: ref.id,
           confidence,
           needsVerification,
           title: ref.title || 'Untitled',
-          type: ref.type
+          type: ref.type,
         });
-        
+
         // If confidence is low, suggest enrichment
         if (needsVerification) {
           issues.push({
             type: 'low_confidence_citation',
             message: `Citation "${ref.id}" has low confidence (${confidence.toFixed(2)}). Consider enriching with authoritative source.`,
             citation: ref.id,
-            confidence
+            confidence,
           });
         }
       }
     }
-    
+
     return {
       text,
       citations: citationDetails,
@@ -89,19 +96,21 @@ export async function citationVerificationSkill(text, options = {}) {
         foundCitations: verificationResult.cslCitationIds.length,
         missingCitations: verificationResult.missingCitations.length,
         unusedCitations: verificationResult.unusedCitations.length,
-        lowConfidenceCitations: citationDetails.filter(c => c.needsVerification).length
-      }
+        lowConfidenceCitations: citationDetails.filter((c) => c.needsVerification).length,
+      },
     };
   } catch (error) {
     return {
       text,
       citations: [],
-      issues: [{
-        type: 'error',
-        message: `Error processing citations: ${error.message}`,
-        error: error
-      }],
-      error: error.message
+      issues: [
+        {
+          type: 'error',
+          message: `Error processing citations: ${error.message}`,
+          error: error,
+        },
+      ],
+      error: error.message,
     };
   }
 }
@@ -118,63 +127,68 @@ export async function citationEnrichmentSkill(text, options = {}) {
     // Load the canonical reference list
     const storage = new CanonicalStorage(options.referencePath || './canonical-references.json');
     const references = await storage.load();
-    
+
     const enrichmentResults = [];
-    
+
     // Process each reference for enrichment
     for (const ref of references) {
       if (options.citationId && ref.id !== options.citationId) {
         continue; // Only process specific citation if specified
       }
-      
+
       // Try to enrich the citation using CrossRef
       const enrichmentResult = await enrichCitationWithCrossRef(ref);
-      
+
       if (enrichmentResult.confidence > 0.7) {
         // Update the reference with enriched data
         const updatedRef = {
           ...ref,
-          ...enrichmentResult.citation
+          ...enrichmentResult.citation,
         };
-        
+
         // Save the updated reference
         await storage.addCitation(updatedRef);
-        
+
         enrichmentResults.push({
           id: ref.id,
           success: true,
           confidence: enrichmentResult.confidence,
-          message: `Citation "${ref.id}" enriched with ${enrichmentResult.source} data (confidence: ${enrichmentResult.confidence})`
+          message: `Citation "${ref.id}" enriched with ${enrichmentResult.source} data (confidence: ${enrichmentResult.confidence})`,
         });
       } else {
         enrichmentResults.push({
           id: ref.id,
           success: false,
           confidence: enrichmentResult.confidence,
-          message: `Citation "${ref.id}" could not be enriched (confidence: ${enrichmentResult.confidence})`
+          message: `Citation "${ref.id}" could not be enriched (confidence: ${enrichmentResult.confidence})`,
         });
       }
     }
-    
+
     return {
       text,
       enrichmentResults,
       summary: {
         totalCitations: references.length,
-        successfullyEnriched: enrichmentResults.filter(r => r.success).length,
-        enrichmentRate: (enrichmentResults.filter(r => r.success).length / references.length * 100).toFixed(2) + '%'
-      }
+        successfullyEnriched: enrichmentResults.filter((r) => r.success).length,
+        enrichmentRate:
+          ((enrichmentResults.filter((r) => r.success).length / references.length) * 100).toFixed(
+            2
+          ) + '%',
+      },
     };
   } catch (error) {
     return {
       text,
       enrichmentResults: [],
-      issues: [{
-        type: 'error',
-        message: `Error enriching citations: ${error.message}`,
-        error: error
-      }],
-      error: error.message
+      issues: [
+        {
+          type: 'error',
+          message: `Error enriching citations: ${error.message}`,
+          error: error,
+        },
+      ],
+      error: error.message,
     };
   }
 }
@@ -189,7 +203,7 @@ export async function citationEnrichmentSkill(text, options = {}) {
 export async function referenceManagementSkill(action, options = {}) {
   try {
     const storage = new CanonicalStorage(options.referencePath || './canonical-references.json');
-    
+
     switch (action) {
       case 'add':
         if (!options.citation) {
@@ -199,22 +213,22 @@ export async function referenceManagementSkill(action, options = {}) {
         return {
           success: true,
           message: `Citation "${options.citation.id}" added to reference list`,
-          citation: options.citation
+          citation: options.citation,
         };
-        
+
       case 'list':
         const references = await storage.load();
         return {
           success: true,
           count: references.length,
-          citations: references
+          citations: references,
         };
-        
+
       case 'validate':
         const refs = await storage.load();
         const schemaErrors = validateCslJsonSchema(refs);
         const fieldErrors = validateRequiredFields(refs);
-        
+
         return {
           success: true,
           isValid: schemaErrors.length === 0 && fieldErrors.length === 0,
@@ -223,10 +237,10 @@ export async function referenceManagementSkill(action, options = {}) {
           summary: {
             totalCitations: refs.length,
             schemaErrors: schemaErrors.length,
-            fieldErrors: fieldErrors.length
-          }
+            fieldErrors: fieldErrors.length,
+          },
         };
-        
+
       default:
         throw new Error(`Unknown action: ${action}. Supported actions: add, list, validate`);
     }
@@ -235,7 +249,7 @@ export async function referenceManagementSkill(action, options = {}) {
       success: false,
       error: error.message,
       action,
-      options
+      options,
     };
   }
 }
@@ -249,19 +263,19 @@ export async function referenceManagementSkill(action, options = {}) {
 export async function integratedCitationManagement(text, options = {}) {
   // Perform citation verification
   const verificationResult = await citationVerificationSkill(text, options);
-  
+
   // Perform citation enrichment if requested
   let enrichmentResult = null;
   if (options.autoEnrich) {
     enrichmentResult = await citationEnrichmentSkill(text, options);
   }
-  
+
   // Perform reference management if requested
   let managementResult = null;
   if (options.manageReferences) {
     managementResult = await referenceManagementSkill(options.action || 'list', options);
   }
-  
+
   // Compile comprehensive result
   return {
     originalText: text,
@@ -273,8 +287,8 @@ export async function integratedCitationManagement(text, options = {}) {
       missingCitations: verificationResult.summary?.missingCitations || 0,
       lowConfidenceCitations: verificationResult.summary?.lowConfidenceCitations || 0,
       successfullyEnriched: enrichmentResult?.summary?.successfullyEnriched || 0,
-      enrichmentRate: enrichmentResult?.summary?.enrichmentRate || '0%'
-    }
+      enrichmentRate: enrichmentResult?.summary?.enrichmentRate || '0%',
+    },
   };
 }
 
@@ -285,7 +299,7 @@ export {
   verifyManuscriptCitations,
   enrichCitationWithCrossRef,
   calculateConfidenceScore,
-  needsManualVerification
+  needsManualVerification,
 };
 
 // For backward compatibility with the humanizer framework
@@ -300,5 +314,5 @@ export default {
   verifyManuscriptCitations,
   enrichCitationWithCrossRef,
   calculateConfidenceScore,
-  needsManualVerification
+  needsManualVerification,
 };

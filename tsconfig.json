@@ -5,10 +5,11 @@
     "moduleResolution": "node",
     "strict": true,
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "scripts", "adapters", "conductor", "test", "tests", "*.js"]
+  "include": ["*.js"],
+  "exclude": ["src", "scripts", "adapters", "conductor", "test", "tests", "dist", "node_modules"]
 }

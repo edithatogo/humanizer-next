@@ -19,7 +19,7 @@ allowed-tools:
 adapter_metadata:
   skill_name: humanizer-pro
   skill_version: 2.3.0
-  last_synced: 2026-03-04
+  last_synced: 2026-03-14
   source_path: SKILL_PROFESSIONAL.md
   adapter_id: humanizer-pro
   adapter_format: Antigravity skill
