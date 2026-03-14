@@ -8,12 +8,17 @@
 const fs = require('fs');
 const path = require('path');
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 if (process.argv.length !== 3) {
   console.error('Usage: node archive_track.js <track_id>');
   process.exit(1);
 }
 
 const trackId = process.argv[2];
+const escapedTrackId = escapeRegExp(trackId);
 const tracksRegistryPath = path.join(__dirname, '..', 'conductor', 'tracks.md');
 const trackPath = path.join(__dirname, '..', 'conductor', 'tracks', trackId);
 
@@ -43,7 +48,7 @@ let updatedContent = tracksRegistryContent;
 
 // Find the track in the active tracks section and move it to archived
 const trackRegex = new RegExp(
-  `(### ${trackId}|## \\[ \\] Track:.*?${trackId})[\\s\\S]*?_Link: \\[(?:\\.\\/)?tracks\\/${trackId}\\/(?:\\.\\/)?\\)_\\n`,
+  `(### ${escapedTrackId}|## \\[ \\] Track:.*?${escapedTrackId})[\\s\\S]*?_Link: \\[(?:\\.\\/)?tracks\\/${escapedTrackId}\\/(?:\\.\\/)?\\)_\\n`,
   'i'
 );
 

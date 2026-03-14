@@ -56,8 +56,17 @@ jobs:
         run: npm run sync
 
       - name: Lint, Typecheck and Format
+        if: runner.os != 'Windows'
         run: |
           npm run lint:all
+
+      - name: Lint and Typecheck (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          npm run lint
+          npm run vale
+          npm run lint:js
+          npm run typecheck
 
       - name: Validate repository docs and adapters
         run: npm run validate
