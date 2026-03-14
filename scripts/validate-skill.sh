@@ -73,7 +73,7 @@ run_skillshare_dry_run() {
     return 0
   fi
 
-  if printf '%s\n' "$output" | grep -qi "local repo sources are unsupported"; then
+  if printf '%s\n' "$output" | grep -Eqi "local repo sources are unsupported|unrecognized source format: \."; then
     echo "==> skillshare dry-run does not support local repo sources in this environment; skipping"
     printf '%s\n' "$output"
     return 0

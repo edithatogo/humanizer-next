@@ -55,11 +55,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: powershell
         run: |
-          $zipPath = Join-Path $env:RUNNER_TEMP "vale.zip"
-          $extractDir = Join-Path $env:RUNNER_TEMP "vale"
-          Invoke-WebRequest "https://github.com/errata-ai/vale/releases/download/v$env:VALE_VERSION/vale_$env:VALE_VERSION_Windows_64-bit.zip" -OutFile $zipPath
-          Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
-          "$extractDir" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          choco install vale --version $env:VALE_VERSION --no-progress -y
 
       - name: Sync generated outputs
         run: npm run sync
