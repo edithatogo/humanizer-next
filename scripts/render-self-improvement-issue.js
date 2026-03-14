@@ -18,9 +18,12 @@ function getGitHubHeaders() {
 async function fetchGitHubPullRequests(repoName, retries = 3) {
   for (let attempt = 0; attempt < retries; attempt += 1) {
     try {
-      const response = await fetch(`${GITHUB_API}/repos/${repoName}/pulls?state=open&per_page=100`, {
-        headers: getGitHubHeaders(),
-      });
+      const response = await fetch(
+        `${GITHUB_API}/repos/${repoName}/pulls?state=open&per_page=100`,
+        {
+          headers: getGitHubHeaders(),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`GitHub API returned ${response.status}`);
@@ -43,9 +46,13 @@ function dedupePullRequests(items) {
 }
 
 function isDependencyBotAuthor(author) {
-  return ['dependabot', 'dependabot[bot]', 'app/dependabot', 'renovate[bot]', 'renovate-bot'].includes(
-    author || ''
-  );
+  return [
+    'dependabot',
+    'dependabot[bot]',
+    'app/dependabot',
+    'renovate[bot]',
+    'renovate-bot',
+  ].includes(author || '');
 }
 
 function normalizePullRequest(pr) {
@@ -57,7 +64,9 @@ function normalizePullRequest(pr) {
     author: pr.author || pr.user?.login || 'unknown',
     updated_at: pr.updated_at || null,
     is_dependency_bot:
-      typeof pr.is_dependency_bot === 'boolean' ? pr.is_dependency_bot : isDependencyBotAuthor(pr.user?.login),
+      typeof pr.is_dependency_bot === 'boolean'
+        ? pr.is_dependency_bot
+        : isDependencyBotAuthor(pr.user?.login),
   };
 }
 
@@ -242,7 +251,10 @@ async function main() {
   const upstream = data.upstream_repository;
   const localSecurityPolicy = local.security?.has_security_policy ?? false;
   const upstreamSecurityPolicy = upstream.security?.has_security_policy ?? false;
-  const localCandidates = await resolveLocalDependencyCandidates(local.name, local.pull_requests.raw);
+  const localCandidates = await resolveLocalDependencyCandidates(
+    local.name,
+    local.pull_requests.raw
+  );
   const localDecisions = buildLocalDecisions(localCandidates);
   const upstreamDecisions = buildUpstreamDecisions(upstream.pull_requests.raw);
   const localBacklogAction =
