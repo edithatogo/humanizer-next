@@ -2,7 +2,7 @@
 adapter_metadata:
   skill_name: humanizer
   skill_version: 2.3.0
-  last_synced: 2026-03-13
+  last_synced: 2026-03-14
   source_path: SKILL.md
   adapter_id: codex-cli
   adapter_format: AGENTS.md
