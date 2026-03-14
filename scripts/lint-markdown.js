@@ -22,7 +22,6 @@ function collectMarkdownFiles(dir) {
 }
 
 const targets = [
-  path.join(REPO_ROOT, 'README.md'),
   path.join(REPO_ROOT, 'AGENTS.md'),
   ...collectMarkdownFiles(path.join(REPO_ROOT, 'src')),
 ];
