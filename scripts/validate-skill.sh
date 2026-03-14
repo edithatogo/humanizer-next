@@ -15,14 +15,25 @@ echo "==> Starting skill validation"
 echo "==> Running npm run sync"
 npm run sync --silent
 
+ensure_skillshare_ready() {
+  if skillshare status >/dev/null 2>&1; then
+    return 0
+  fi
+
+  echo "==> Initializing skillshare config for CI"
+  skillshare init --no-copy --all-targets --git >/dev/null
+}
+
 # Skillshare dry-run
 if command -v skillshare >/dev/null 2>&1; then
+  ensure_skillshare_ready
   echo "==> Running skillshare dry-run"
   skillshare install . --dry-run
 else
   echo "==> skillshare not installed; attempting quick install into /tmp"
   curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
   export PATH="$HOME/.local/bin:$PATH"
+  ensure_skillshare_ready
   skillshare install . --dry-run
 fi
 
