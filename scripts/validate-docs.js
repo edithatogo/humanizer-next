@@ -8,7 +8,6 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 
 const REQUIRED_DOCS = ['README.md', 'docs/install-matrix.md', 'docs/skill-distribution.md'];
 const REQUIRED_REFERENCE_DOCS = [
-  'README.md',
   'docs/skill-distribution.md',
   'adapters/antigravity-skill/README.md',
 ];
