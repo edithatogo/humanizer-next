@@ -33,9 +33,14 @@ add_skillshare_to_path() {
 
   case "${OSTYPE:-}" in
     msys*|cygwin*|win32*)
-      local windows_skillshare_path="${LOCALAPPDATA:-$HOME/AppData/Local}/Programs/skillshare/skillshare.exe"
-      if [ -x "$windows_skillshare_path" ]; then
-        skillshare_bin=$(dirname "$windows_skillshare_path")
+      local windows_skillshare_root="${LOCALAPPDATA:-$HOME/AppData/Local}/Programs/skillshare"
+      if command -v cygpath >/dev/null 2>&1; then
+        windows_skillshare_root=$(cygpath "$windows_skillshare_root")
+      fi
+
+      local windows_skillshare_path="$windows_skillshare_root/skillshare.exe"
+      if [ -f "$windows_skillshare_path" ]; then
+        skillshare_bin="$windows_skillshare_root"
       fi
       ;;
     *)
