@@ -42,9 +42,9 @@ Current adapters include Gemini CLI, Google Antigravity, Qwen CLI, GitHub Copilo
 
 ## What this repo is not
 
-- It is not a published npm package.
-- It is not intended to be consumed as an application dependency.
-- It is not a general-purpose writing toolkit monorepo.
+- Not published as an npm package.
+- Not intended to be consumed as an application dependency.
+- Not a general-purpose writing toolkit monorepo.
 
 ## Release model
 

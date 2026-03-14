@@ -1,8 +1,8 @@
 ---
 module_id: core_patterns
-version: 3.0.0
+version: 3.1.0
 description: Core AI writing pattern detection (always applied)
-patterns: 27
+patterns: 30
 severity_levels:
   - Critical
   - High

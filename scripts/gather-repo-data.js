@@ -82,21 +82,24 @@ async function getIssues(repo, state = 'open') {
   const issues = await fetchGitHub(`/repos/${repo}/issues?state=${state}&per_page=100`);
   return issues
     .filter((issue) => !issue.pull_request) // Exclude PRs
-    .map((issue) => ({
-      number: issue.number,
-      title: issue.title,
-      author: issue.user?.login || 'unknown',
-      created_at: issue.created_at,
-      updated_at: issue.updated_at,
-      state: issue.state,
-      labels: issue.labels.map((l) => l.name),
-      comments: issue.comments,
-      body: issue.body?.substring(0, 500) || '',
-      is_bug: issue.labels.includes('bug') || issue.labels.includes('🐛 Bug'),
-      is_enhancement:
-        issue.labels.includes('enhancement') || issue.labels.includes('💡 Enhancement'),
-      is_feature: issue.labels.includes('feature') || issue.labels.includes('✨ Feature Request'),
-    }));
+    .map((issue) => {
+      const labels = issue.labels.map((label) => label.name);
+
+      return {
+        number: issue.number,
+        title: issue.title,
+        author: issue.user?.login || 'unknown',
+        created_at: issue.created_at,
+        updated_at: issue.updated_at,
+        state: issue.state,
+        labels,
+        comments: issue.comments,
+        body: issue.body?.substring(0, 500) || '',
+        is_bug: labels.includes('bug') || labels.includes('🐛 Bug'),
+        is_enhancement: labels.includes('enhancement') || labels.includes('💡 Enhancement'),
+        is_feature: labels.includes('feature') || labels.includes('✨ Feature Request'),
+      };
+    });
 }
 
 /**

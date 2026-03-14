@@ -2,10 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
+const require = createRequire(import.meta.url);
 
 /**
  * @param {string} dir
@@ -21,6 +23,9 @@ function collectMarkdownFiles(dir) {
   });
 }
 
+// `lint:all` intentionally focuses on canonical skill sources and agent guidance.
+// Wider markdown surfaces like repo notes and historical track docs are still checked
+// in pre-commit paths, but the maintainer gate stays scoped to actively maintained docs.
 const targets = [
   path.join(REPO_ROOT, 'AGENTS.md'),
   ...collectMarkdownFiles(path.join(REPO_ROOT, 'src')),
@@ -36,20 +41,34 @@ if (missingTargets.length > 0) {
   process.exit(1);
 }
 
-const markdownlintEntry = path.join(
-  REPO_ROOT,
-  'node_modules',
-  'markdownlint-cli',
-  'markdownlint.js'
-);
-
 const relativeTargets = targets.map((target) =>
   path.relative(REPO_ROOT, target).replaceAll('\\', '/')
 );
 console.log(`Linting markdown from ${REPO_ROOT}`);
 console.log(relativeTargets.join('\n'));
 
-execFileSync(process.execPath, [markdownlintEntry, ...targets], {
-  cwd: REPO_ROOT,
-  stdio: 'inherit',
-});
+function runMarkdownlint() {
+  try {
+    const markdownlintEntry = require.resolve('markdownlint-cli/markdownlint.js');
+    execFileSync(process.execPath, [markdownlintEntry, ...targets], {
+      cwd: REPO_ROOT,
+      stdio: 'inherit',
+    });
+    return;
+  } catch (error) {
+    console.warn(`Falling back to npx markdownlint: ${error.message}`);
+  }
+
+  try {
+    execFileSync('npx', ['markdownlint', ...targets], {
+      cwd: REPO_ROOT,
+      stdio: 'inherit',
+      shell: process.platform === 'win32',
+    });
+  } catch (error) {
+    console.error(`Failed to run markdownlint via npx: ${error.message}`);
+    process.exit(error.status || 1);
+  }
+}
+
+runMarkdownlint();

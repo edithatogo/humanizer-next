@@ -4,7 +4,8 @@ set -euo pipefail
 # Minimal validation script for skill distribution
 # - Runs skillshare dry-run install if available
 # - Optionally runs aix validation if available
-# - Fails if SKILL.md is modified by any command
+# - Fails if scripts/check-sync-clean.js detects drift in generated outputs
+#   such as SKILL.md, SKILL_PROFESSIONAL.md, AGENTS.md, and adapter bundles
 
 ROOT_DIR=$(cd "$(dirname "$0")/.." && pwd)
 cd "$ROOT_DIR"
@@ -56,13 +57,36 @@ add_skillshare_to_path() {
   fi
 }
 
+run_skillshare_dry_run() {
+  echo "==> Running skillshare dry-run"
+
+  local output=""
+  local status=0
+
+  set +e
+  output=$(skillshare install . --dry-run 2>&1)
+  status=$?
+  set -e
+
+  if [ "$status" -eq 0 ]; then
+    printf '%s\n' "$output"
+    return 0
+  fi
+
+  if printf '%s\n' "$output" | grep -qi "local repo sources are unsupported"; then
+    echo "==> skillshare dry-run does not support local repo sources in this environment; skipping"
+    printf '%s\n' "$output"
+    return 0
+  fi
+
+  printf '%s\n' "$output" >&2
+  return "$status"
+}
+
 # Skillshare dry-run
 if command -v skillshare >/dev/null 2>&1; then
   ensure_skillshare_ready
-  echo "==> Running skillshare dry-run"
-  if ! skillshare install . --dry-run; then
-    echo "==> skillshare dry-run does not support local repo sources in this environment; skipping"
-  fi
+  run_skillshare_dry_run
 else
   echo "==> skillshare not installed; attempting quick install into /tmp"
   case "${OSTYPE:-}" in
@@ -75,9 +99,7 @@ else
   esac
   add_skillshare_to_path
   ensure_skillshare_ready
-  if ! skillshare install . --dry-run; then
-    echo "==> skillshare dry-run does not support local repo sources in this environment; skipping"
-  fi
+  run_skillshare_dry_run
 fi
 
 # Optional AIX validation

@@ -7,6 +7,8 @@ on:
 
 jobs:
   validate-skill:
+    env:
+      VALE_VERSION: 3.13.0
     strategy:
       fail-fast: false
       matrix:
@@ -37,7 +39,6 @@ jobs:
         if: runner.os == 'Linux'
         shell: bash
         run: |
-          VALE_VERSION=3.13.0
           curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
           tar -xzf vale.tar.gz
           sudo mv vale /usr/local/bin/vale
@@ -45,12 +46,20 @@ jobs:
       - name: Install Vale (macOS)
         if: runner.os == 'macOS'
         shell: bash
-        run: brew install vale
+        run: |
+          curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_macOS_64-bit.tar.gz" -o vale.tar.gz
+          tar -xzf vale.tar.gz
+          sudo mv vale /usr/local/bin/vale
 
       - name: Install Vale (Windows)
         if: runner.os == 'Windows'
         shell: powershell
-        run: choco install vale --no-progress -y
+        run: |
+          $zipPath = Join-Path $env:RUNNER_TEMP "vale.zip"
+          $extractDir = Join-Path $env:RUNNER_TEMP "vale"
+          Invoke-WebRequest "https://github.com/errata-ai/vale/releases/download/v$env:VALE_VERSION/vale_$env:VALE_VERSION_Windows_64-bit.zip" -OutFile $zipPath
+          Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
+          "$extractDir" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Sync generated outputs
         run: npm run sync
