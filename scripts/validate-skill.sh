@@ -33,7 +33,14 @@ if command -v skillshare >/dev/null 2>&1; then
   fi
 else
   echo "==> skillshare not installed; attempting quick install into /tmp"
-  curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
+  case "${OSTYPE:-}" in
+    msys*|cygwin*|win32*)
+      powershell -NoProfile -Command "irm https://raw.githubusercontent.com/runkids/skillshare/main/install.ps1 | iex"
+      ;;
+    *)
+      curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
+      ;;
+  esac
   export PATH="$HOME/.local/bin:$PATH"
   ensure_skillshare_ready
   if ! skillshare install . --dry-run; then
