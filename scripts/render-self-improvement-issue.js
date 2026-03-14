@@ -70,19 +70,22 @@ function normalizePullRequest(pr) {
   };
 }
 
-function getActionableDependencyPullRequests(prs) {
+function getOpenPullRequests(prs) {
   return dedupePullRequests(prs.map(normalizePullRequest))
-    .filter((pr) => pr.state === 'open' && pr.is_dependency_bot)
+    .filter((pr) => pr.state === 'open')
     .sort((left, right) => new Date(right.updated_at || 0) - new Date(left.updated_at || 0));
 }
 
-async function resolveLocalDependencyCandidates(repoName, fallbackPrs) {
+function getActionableDependencyPullRequests(prs) {
+  return getOpenPullRequests(prs).filter((pr) => pr.is_dependency_bot);
+}
+
+async function resolveLocalPullRequests(repoName, fallbackPrs) {
   try {
-    const livePrs = await fetchGitHubPullRequests(repoName);
-    return getActionableDependencyPullRequests(livePrs);
+    return getOpenPullRequests(await fetchGitHubPullRequests(repoName));
   } catch (error) {
     console.warn(`Falling back to snapshot data for ${repoName}: ${error.message}`);
-    return getActionableDependencyPullRequests(fallbackPrs);
+    return getOpenPullRequests(fallbackPrs);
   }
 }
 
@@ -251,10 +254,8 @@ async function main() {
   const upstream = data.upstream_repository;
   const localSecurityPolicy = local.security?.has_security_policy ?? false;
   const upstreamSecurityPolicy = upstream.security?.has_security_policy ?? false;
-  const localCandidates = await resolveLocalDependencyCandidates(
-    local.name,
-    local.pull_requests.raw
-  );
+  const localPullRequests = await resolveLocalPullRequests(local.name, local.pull_requests.raw);
+  const localCandidates = getActionableDependencyPullRequests(localPullRequests);
   const localDecisions = buildLocalDecisions(localCandidates);
   const upstreamDecisions = buildUpstreamDecisions(upstream.pull_requests.raw);
   const localBacklogAction =
@@ -275,15 +276,15 @@ Generated from \`scripts/gather-repo-data.js\` on ${data.gathered_at}.
 ## Local Repository
 
 - Repository: \`${local.name}\`
-- Open PRs: ${local.pull_requests.analysis.total}
+- Open PRs: ${localPullRequests.length}
 - Automated dependency PRs: ${localCandidates.length}
-- Human-authored PRs: ${local.pull_requests.analysis.human_authored}
+- Human-authored PRs: ${localPullRequests.filter((pr) => !pr.is_dependency_bot).length}
 - Open issues: ${local.issues.analysis.total}
 - Security policy detected by GitHub: ${localSecurityPolicy ? 'Yes' : 'No'}
 
 ### Top Local PRs
 
-${summarizeTopTitles(local.pull_requests.raw)}
+${summarizeTopTitles(localPullRequests)}
 
 ## Upstream Repository
 
@@ -413,4 +414,9 @@ ${formatDecisionItems(upstreamDecisions)}
   console.log(`Updated track decision record at ${trackDecisionLogPath}`);
 }
 
-main();
+main().catch((error) => {
+  console.error('Failed to render self-improvement outputs.');
+  console.error(`Input: ${process.argv[2] || 'default repo-data.json'}`);
+  console.error(error);
+  process.exit(1);
+});
