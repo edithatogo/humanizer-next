@@ -28,8 +28,7 @@ function formatCandidateLinks(repoName, items) {
 
   return items
     .map(
-      (item) =>
-        `- [#${item.number} ${item.title}](${formatPullRequestUrl(repoName, item.number)})`
+      (item) => `- [#${item.number} ${item.title}](${formatPullRequestUrl(repoName, item.number)})`
     )
     .join('\n');
 }
@@ -152,7 +151,10 @@ function main() {
     /self-improvement-issue\.md$/,
     'self-improvement-decisions.md'
   );
-  const prBodyPath = outputPath.replace(/self-improvement-issue\.md$/, 'self-improvement-pr-body.md');
+  const prBodyPath = outputPath.replace(
+    /self-improvement-issue\.md$/,
+    'self-improvement-pr-body.md'
+  );
   const trackDecisionLogPath = path.join(
     REPO_ROOT,
     'conductor',
