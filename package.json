@@ -10,7 +10,7 @@
     "validate": "node scripts/validate-adapters.js && node scripts/validate-docs.js",
     "validate:docs": "node scripts/validate-docs.js",
     "vale": "vale --minAlertLevel=error docs/install-matrix.md docs/skill-distribution.md",
-    "lint": "npx markdownlint-cli src/*.md README.md AGENTS.md",
+    "lint": "node scripts/lint-markdown.js",
     "lint:js": "eslint . --ext .js,.mjs --max-warnings=0",
     "format:check": "prettier --check \"README.md\" \"AGENTS.md\" \"package.json\" \"tsconfig.json\" \"src/**/*.{js,json,md,mdx,css,scss,ts,tsx}\" \"scripts/**/*.{js,json,md,mdx,css,scss,ts,tsx}\" \"test/**/*.{js,json,md,mdx,css,scss,ts,tsx}\"",
     "format:fix": "prettier --write \"README.md\" \"AGENTS.md\" \"package.json\" \"tsconfig.json\" \"src/**/*.{js,json,md,mdx,css,scss,ts,tsx}\" \"scripts/**/*.{js,json,md,mdx,css,scss,ts,tsx}\" \"test/**/*.{js,json,md,mdx,css,scss,ts,tsx}\"",

@@ -598,15 +598,19 @@ function add(a, b) {
 
 **Before:**
 
-> ## Performance
->
-> Speed matters. The system processes requests in under 100ms.
+```md
+## Performance
+
+Speed matters. The system processes requests in under 100ms.
+```
 
 **After:**
 
-> ## Performance
->
-> The system processes requests in under 100ms.
+```md
+## Performance
+
+The system processes requests in under 100ms.
+```
 
 **Not a problem when:** Used in legitimate contexts like op-eds or persuasive writing.
 

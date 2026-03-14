@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "20"
+          cache: "npm"
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -36,6 +37,9 @@ jobs:
           curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
           tar -xzf vale.tar.gz
           sudo mv vale /usr/local/bin/vale
+
+      - name: Sync generated outputs
+        run: npm run sync
 
       - name: Run maintainer validation
         run: npm run lint:all && npm run validate

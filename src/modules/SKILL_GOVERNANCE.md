@@ -182,7 +182,7 @@ This module applies to governance writing: policies, risk assessments, complianc
 
 **After:**
 
-> This policy takes effect 2026-04-01. Questions: compliance@company.com
+> This policy takes effect 2026-04-01. Questions: [compliance@company.com](mailto:compliance@company.com)
 
 ---
 
@@ -223,7 +223,7 @@ This module applies to governance writing: policies, risk assessments, complianc
 > **Owner:** Chief Compliance Officer
 > **Applies to:** All employees, contractors, vendors
 > **Enforcement:** HR and Legal
-> **Violations:** Report to compliance@company.com
+> **Violations:** Report to [compliance@company.com](mailto:compliance@company.com)
 
 ---
 
