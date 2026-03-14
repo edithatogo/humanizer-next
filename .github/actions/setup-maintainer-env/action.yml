@@ -1,0 +1,84 @@
+name: Setup Maintainer Environment
+description: Set up the shared Node, Python, dependency, and Vale toolchain for repo maintenance workflows.
+
+inputs:
+  node-version:
+    description: Node.js version to install.
+    required: false
+    default: '20'
+  python-version:
+    description: Optional Python version to install.
+    required: false
+    default: ''
+  install-python-test-deps:
+    description: Install pytest and pytest-cov when Python is enabled.
+    required: false
+    default: 'false'
+  install-vale:
+    description: Install Vale for docs/style validation.
+    required: false
+    default: 'true'
+  vale-version:
+    description: Vale version to install.
+    required: false
+    default: '3.13.0'
+  npm-ci:
+    description: Run npm ci after Node.js setup.
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: npm
+
+    - name: Set up Python
+      if: ${{ inputs.python-version != '' }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install Node dependencies
+      if: ${{ inputs.npm-ci == 'true' }}
+      shell: bash
+      run: npm ci
+
+    - name: Install Python test dependencies
+      if: ${{ inputs.python-version != '' && inputs.install-python-test-deps == 'true' && runner.os != 'Windows' }}
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pytest pytest-cov
+
+    - name: Install Python test dependencies (Windows)
+      if: ${{ inputs.python-version != '' && inputs.install-python-test-deps == 'true' && runner.os == 'Windows' }}
+      shell: powershell
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pytest pytest-cov
+
+    - name: Install Vale (Linux)
+      if: ${{ inputs.install-vale == 'true' && runner.os == 'Linux' }}
+      shell: bash
+      run: |
+        curl -sSL "https://github.com/errata-ai/vale/releases/download/v${{ inputs.vale-version }}/vale_${{ inputs.vale-version }}_Linux_64-bit.tar.gz" -o vale.tar.gz
+        tar -xzf vale.tar.gz
+        sudo mv vale /usr/local/bin/vale
+
+    - name: Install Vale (macOS)
+      if: ${{ inputs.install-vale == 'true' && runner.os == 'macOS' }}
+      shell: bash
+      run: |
+        curl -sSL "https://github.com/errata-ai/vale/releases/download/v${{ inputs.vale-version }}/vale_${{ inputs.vale-version }}_macOS_64-bit.tar.gz" -o vale.tar.gz
+        tar -xzf vale.tar.gz
+        sudo mv vale /usr/local/bin/vale
+
+    - name: Install Vale (Windows)
+      if: ${{ inputs.install-vale == 'true' && runner.os == 'Windows' }}
+      shell: powershell
+      run: |
+        choco install vale --version ${{ inputs.vale-version }} --no-progress -y

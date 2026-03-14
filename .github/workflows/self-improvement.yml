@@ -7,6 +7,11 @@ on:
   workflow_dispatch:
     # Allow manual triggering
 
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
 jobs:
   self-improvement:
     name: Self-Improvement Analysis
@@ -17,19 +22,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Set up shared maintainer toolchain
+        uses: ./.github/actions/setup-maintainer-env
         with:
           node-version: '20'
+          install-vale: 'false'
+          npm-ci: 'true'
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Create Working Branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b self-improvement-$(date +%Y-%m-%d)
+      - name: Capture run date
+        id: run_date
+        shell: bash
+        run: echo "value=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
 
       - name: Gather Baseline Metrics
         run: |
@@ -68,10 +71,39 @@ jobs:
             .github/generated/self-improvement-issue.md
             .github/generated/self-improvement-decisions.md
 
+      - name: Create or update decision record draft PR
+        id: decision_pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/self-improvement-decision-record
+          delete-branch: true
+          title: 'chore: refresh self-improvement decision record'
+          commit-message: 'chore: refresh self-improvement decision record'
+          body: |
+            ## Summary
+            - refresh the self-improvement decision record from the latest scheduled analysis
+            - keep the maintainer-facing Adopt / Reject / Defer state in version control
+
+            ## Source
+            - `.github/workflows/self-improvement.yml`
+            - `scripts/gather-repo-data.js`
+            - `scripts/render-self-improvement-issue.js`
+
+            ## Notes
+            - repo intelligence artifacts remain attached to the workflow run
+            - this PR is intentionally draft-only for human review
+          labels: |
+            self-improvement
+            weekly-cycle
+            automated
+          draft: true
+          add-paths: |
+            conductor/tracks/repo-self-improvement_20260303/upstream-decision-log.md
+
       - name: Create Analysis Issue
         uses: peter-evans/create-issue-from-file@v6
         with:
-          title: Self-Improvement Cycle $(date +%Y-%m-%d)
+          title: Self-Improvement Cycle ${{ steps.run_date.outputs.value }}
           content-filepath: .github/generated/self-improvement-issue.md
           labels: |
             self-improvement
@@ -81,6 +113,6 @@ jobs:
       - name: Output Instructions
         run: |
           echo "::notice::Self-improvement cycle initiated. See issue created above for detailed analysis tasks and Adopt/Reject/Defer suggestions."
-          echo "::notice::Branch created: self-improvement-$(date +%Y-%m-%d)"
+          echo "::notice::Draft PR number: ${{ steps.decision_pr.outputs.pull-request-number }}"
           echo "::notice::The track-owned decision record at conductor/tracks/repo-self-improvement_20260303/upstream-decision-log.md has been refreshed from live data."
           echo "::notice::Generated issue body, decision logs, and repo-data.json are attached as workflow artifacts."

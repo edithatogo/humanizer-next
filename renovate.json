@@ -27,11 +27,21 @@
       "matchManagers": ["github-actions"],
       "groupName": "github-actions dependencies",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": false
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
     },
     {
       "matchDepTypes": ["devDependencies"],
       "schedule": ["before 4am on monday"]
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchPackageNames": ["@types/node", "eslint-config-prettier", "prettier"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
     },
     {
       "matchUpdateTypes": ["major"],

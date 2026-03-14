@@ -12,31 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Set up Node
-        uses: actions/setup-node@v6
+      - name: Set up shared maintainer toolchain
+        uses: ./.github/actions/setup-maintainer-env
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.13"
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install pytest pytest-cov
-
-      - name: Install Vale
-        run: |
-          VALE_VERSION=3.13.0
-          curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
-          tar -xzf vale.tar.gz
-          sudo mv vale /usr/local/bin/vale
+          node-version: '20'
+          python-version: '3.13'
+          install-python-test-deps: 'true'
+          install-vale: 'true'
+          npm-ci: 'true'
 
       - name: Sync generated outputs
         run: npm run sync
