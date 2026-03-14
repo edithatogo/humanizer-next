@@ -1,8 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":dependencyDashboard", ":semanticCommits"],
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":maintainLockFilesWeekly"
+  ],
+  "timezone": "Australia/Sydney",
   "labels": ["dependencies"],
   "rangeStrategy": "replace",
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 5,
+  "schedule": ["before 4am on monday"],
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["before 4am on monday"]
@@ -10,17 +19,30 @@
   "packageRules": [
     {
       "matchManagers": ["npm"],
-      "groupName": "npm dependencies",
+      "groupName": "npm non-major dependencies",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": false
     },
     {
       "matchManagers": ["github-actions"],
       "groupName": "github-actions dependencies",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": false
     },
     {
       "matchDepTypes": ["devDependencies"],
       "schedule": ["before 4am on monday"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "major-update"],
+      "dependencyDashboardApproval": true,
+      "automerge": false
+    },
+    {
+      "matchPackageNames": ["@changesets/cli"],
+      "enabled": false,
+      "description": "This repo ships skill artifacts via GitHub, not package releases."
     }
   ]
 }

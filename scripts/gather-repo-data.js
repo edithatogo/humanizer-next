@@ -108,6 +108,21 @@ async function hasPublishedSecurityPolicy(repo) {
 }
 
 /**
+ * Determine whether a PR author is an automated dependency update bot.
+ * @param {string | undefined} login
+ * @returns {boolean}
+ */
+function isDependencyBotLogin(login) {
+  return [
+    'dependabot',
+    'dependabot[bot]',
+    'app/dependabot',
+    'renovate[bot]',
+    'renovate-bot',
+  ].includes(login || '');
+}
+
+/**
  * Fetch pull requests from a repository
  */
 async function getPullRequests(repo, state = 'open') {
@@ -129,7 +144,7 @@ async function getPullRequests(repo, state = 'open') {
     mergeable: pr.mergeable,
     mergeable_state: pr.mergeable_state,
     body: pr.body?.substring(0, 500) || '',
-    is_dependabot: pr.user?.login === 'dependabot' || pr.user?.login === 'dependabot[bot]',
+    is_dependency_bot: isDependencyBotLogin(pr.user?.login),
   }));
 }
 
@@ -209,8 +224,8 @@ async function getSecurityAdvisories(repo) {
 function analyzePRs(prs) {
   const analysis = {
     total: prs.length,
-    dependabot: prs.filter((pr) => pr.is_dependabot).length,
-    human_authored: prs.filter((pr) => !pr.is_dependabot).length,
+    automated_dependency_prs: prs.filter((pr) => pr.is_dependency_bot).length,
+    human_authored: prs.filter((pr) => !pr.is_dependency_bot).length,
     drafts: prs.filter((pr) => pr.draft).length,
     mergeable: prs.filter((pr) => pr.mergeable === true).length,
     has_conflicts: prs.filter((pr) => pr.mergeable_state === 'dirty').length,
@@ -338,9 +353,9 @@ async function main() {
     };
 
     // Generate recommendations
-    if (localPRAnalysis.dependabot > 0) {
+    if (localPRAnalysis.automated_dependency_prs > 0) {
       report.recommendations.immediate_actions.push(
-        `Review and merge ${localPRAnalysis.dependabot} Dependabot PR(s)`
+        `Review and merge ${localPRAnalysis.automated_dependency_prs} automated dependency PR(s)`
       );
     }
 
@@ -370,7 +385,7 @@ async function main() {
     console.log('=== Summary ===\n');
     console.log(`Local Repository (${LOCAL_REPO}):`);
     console.log(
-      `  - Open PRs: ${localPRAnalysis.total} (${localPRAnalysis.dependabot} Dependabot, ${localPRAnalysis.human_authored} human)`
+      `  - Open PRs: ${localPRAnalysis.total} (${localPRAnalysis.automated_dependency_prs} automated dependency, ${localPRAnalysis.human_authored} human)`
     );
     console.log(
       `  - Open Issues: ${localIssueAnalysis.total} (${localIssueAnalysis.by_type.bugs} bugs, ${localIssueAnalysis.by_type.enhancements} enhancements)`
@@ -379,7 +394,7 @@ async function main() {
 
     console.log(`\nUpstream Repository (${UPSTREAM_REPO}):`);
     console.log(
-      `  - Open PRs: ${upstreamPRAnalysis.total} (${upstreamPRAnalysis.dependabot} Dependabot, ${upstreamPRAnalysis.human_authored} human)`
+      `  - Open PRs: ${upstreamPRAnalysis.total} (${upstreamPRAnalysis.automated_dependency_prs} automated dependency, ${upstreamPRAnalysis.human_authored} human)`
     );
     console.log(
       `  - Open Issues: ${upstreamIssueAnalysis.total} (${upstreamIssueAnalysis.by_type.bugs} bugs, ${upstreamIssueAnalysis.by_type.enhancements} enhancements)`

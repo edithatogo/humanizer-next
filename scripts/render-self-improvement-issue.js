@@ -110,7 +110,7 @@ function classifyDecision(pr, scope, rules) {
 
 function buildLocalDecisions(localPrs) {
   return localPrs
-    .filter((pr) => pr.is_dependabot)
+    .filter((pr) => pr.is_dependency_bot)
     .slice(0, 10)
     .map((pr) => classifyDecision(pr, 'local', LOCAL_DECISION_RULES));
 }
@@ -157,7 +157,7 @@ Generated from \`scripts/gather-repo-data.js\` on ${data.gathered_at}.
 
 - Repository: \`${local.name}\`
 - Open PRs: ${local.pull_requests.analysis.total}
-- Dependabot PRs: ${local.pull_requests.analysis.dependabot}
+- Automated dependency PRs: ${local.pull_requests.analysis.automated_dependency_prs}
 - Human-authored PRs: ${local.pull_requests.analysis.human_authored}
 - Open issues: ${local.issues.analysis.total}
 - Security policy detected by GitHub: ${localSecurityPolicy ? 'Yes' : 'No'}
@@ -194,7 +194,7 @@ ${formatDecisionItems(upstreamDecisions)}
 
 ## Recommended Actions
 
-1. Review and merge the current Dependabot backlog if validation passes.
+1. Review and merge the current automated dependency backlog if validation passes.
 2. Convert the automated Adopt / Reject / Defer suggestions above into explicit maintainer decisions on the active conductor track.
 3. Keep the repo skill-focused: validate adapter sync and distribution first, not npm publishing.
 4. Keep experimental subsystems outside the maintained skill surface; the citation manager now lives under \`experiments/citation_ref_manager/\`.
