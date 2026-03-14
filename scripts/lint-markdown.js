@@ -60,11 +60,47 @@ function runMarkdownlint() {
   }
 
   try {
-    execFileSync('npx', ['markdownlint', ...targets], {
-      cwd: REPO_ROOT,
-      stdio: 'inherit',
-      shell: process.platform === 'win32',
-    });
+    const localMarkdownlint = path.join(
+      REPO_ROOT,
+      'node_modules',
+      '.bin',
+      process.platform === 'win32' ? 'markdownlint.cmd' : 'markdownlint'
+    );
+
+    if (fs.existsSync(localMarkdownlint)) {
+      execFileSync(localMarkdownlint, targets, {
+        cwd: REPO_ROOT,
+        stdio: 'inherit',
+      });
+      return;
+    }
+
+    if (process.platform === 'win32') {
+      const escapedTargets = targets.map((target) => `"${target.replaceAll('"', '\\"')}"`);
+      execFileSync(
+        process.env.comspec || 'cmd.exe',
+        [
+          '/d',
+          '/s',
+          '/c',
+          `npm exec --yes --package=markdownlint-cli -- markdownlint ${escapedTargets.join(' ')}`,
+        ],
+        {
+          cwd: REPO_ROOT,
+          stdio: 'inherit',
+        }
+      );
+      return;
+    }
+
+    execFileSync(
+      'npm',
+      ['exec', '--yes', '--package=markdownlint-cli', '--', 'markdownlint', ...targets],
+      {
+        cwd: REPO_ROOT,
+        stdio: 'inherit',
+      }
+    );
   } catch (error) {
     console.error(`Failed to run markdownlint via npx: ${error.message}`);
     process.exit(error.status || 1);

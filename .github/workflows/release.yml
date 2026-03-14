@@ -18,21 +18,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Set up shared maintainer toolchain
+        uses: ./.github/actions/setup-maintainer-env
         with:
           node-version: '20'
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Install Vale
-        run: |
-          VALE_VERSION=3.13.0
-          curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
-          tar -xzf vale.tar.gz
-          sudo mv vale /usr/local/bin/vale
+          install-vale: 'true'
+          npm-ci: 'true'
 
       - name: Sync generated outputs
         run: npm run sync
@@ -56,6 +47,18 @@ jobs:
           cp -R adapters release-artifacts/adapters
           tar -czf humanizer-next-skill-artifacts.tar.gz -C release-artifacts .
           (cd release-artifacts && zip -r ../humanizer-next-skill-artifacts.zip .)
+
+      - name: Verify packaged artifact surface
+        run: |
+          test -f humanizer-next-skill-artifacts.tar.gz
+          test -f humanizer-next-skill-artifacts.zip
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^SKILL\.md$'
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^SKILL_PROFESSIONAL\.md$'
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^README\.md$'
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^AGENTS\.md$'
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^docs/install-matrix\.md$'
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^docs/skill-distribution\.md$'
+          tar -tzf humanizer-next-skill-artifacts.tar.gz | grep -E '^adapters/'
 
       - name: Upload release artifacts
         uses: actions/upload-artifact@v7

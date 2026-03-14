@@ -3,12 +3,10 @@ name: Skill distribution validation
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   validate-skill:
-    env:
-      VALE_VERSION: 3.13.0
     strategy:
       fail-fast: false
       matrix:
@@ -27,35 +25,11 @@ jobs:
           git reset --hard HEAD
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: ./.github/actions/setup-maintainer-env
         with:
           node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Vale (Linux)
-        if: runner.os == 'Linux'
-        shell: bash
-        run: |
-          curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
-          tar -xzf vale.tar.gz
-          sudo mv vale /usr/local/bin/vale
-
-      - name: Install Vale (macOS)
-        if: runner.os == 'macOS'
-        shell: bash
-        run: |
-          curl -sSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_macOS_64-bit.tar.gz" -o vale.tar.gz
-          tar -xzf vale.tar.gz
-          sudo mv vale /usr/local/bin/vale
-
-      - name: Install Vale (Windows)
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: |
-          choco install vale --version $env:VALE_VERSION --no-progress -y
+          install-vale: 'true'
+          npm-ci: 'true'
 
       - name: Sync generated outputs
         run: npm run sync
