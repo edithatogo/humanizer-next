@@ -72,6 +72,17 @@ jobs:
             conductor/tracks/repo-self-improvement_20260303/upstream-decision-log.md
             .github/generated/self-improvement-issue.md
             .github/generated/self-improvement-decisions.md
+            .github/generated/self-improvement-pr-body.md
+
+      - name: Capture generated draft PR body
+        id: pr_body
+        shell: bash
+        run: |
+          {
+            echo 'body<<EOF'
+            cat .github/generated/self-improvement-pr-body.md
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create or update decision record draft PR
         id: decision_pr
@@ -81,19 +92,7 @@ jobs:
           delete-branch: true
           title: 'chore: refresh self-improvement decision record'
           commit-message: 'chore: refresh self-improvement decision record'
-          body: |
-            ## Summary
-            - refresh the self-improvement decision record from the latest scheduled analysis
-            - keep the maintainer-facing Adopt / Reject / Defer state in version control
-
-            ## Source
-            - `.github/workflows/self-improvement.yml`
-            - `scripts/gather-repo-data.js`
-            - `scripts/render-self-improvement-issue.js`
-
-            ## Notes
-            - repo intelligence artifacts remain attached to the workflow run
-            - this PR is intentionally draft-only for human review
+          body: ${{ steps.pr_body.outputs.body }}
           labels: |
             self-improvement
             weekly-cycle

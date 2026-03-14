@@ -13,6 +13,26 @@ function summarizeTopTitles(items, limit = 5) {
     .join('\n');
 }
 
+function formatPullRequestUrl(repoName, number) {
+  return `https://github.com/${repoName}/pull/${number}`;
+}
+
+function formatBlobUrl(repoName, branchName, filePath) {
+  return `https://github.com/${repoName}/blob/${branchName}/${filePath}`;
+}
+
+function formatCandidateLinks(repoName, items) {
+  if (items.length === 0) {
+    return '- None';
+  }
+
+  return items
+    .map(
+      (item) => `- [#${item.number} ${item.title}](${formatPullRequestUrl(repoName, item.number)})`
+    )
+    .join('\n');
+}
+
 function formatDecisionItems(items) {
   if (items.length === 0) {
     return '- None';
@@ -131,6 +151,10 @@ function main() {
     /self-improvement-issue\.md$/,
     'self-improvement-decisions.md'
   );
+  const prBodyPath = outputPath.replace(
+    /self-improvement-issue\.md$/,
+    'self-improvement-pr-body.md'
+  );
   const trackDecisionLogPath = path.join(
     REPO_ROOT,
     'conductor',
@@ -148,6 +172,12 @@ function main() {
   const upstreamSecurityPolicy = upstream.security?.has_security_policy ?? false;
   const localDecisions = buildLocalDecisions(local.pull_requests.raw);
   const upstreamDecisions = buildUpstreamDecisions(upstream.pull_requests.raw);
+  const decisionRecordBranch = 'automation/self-improvement-decision-record';
+  const decisionRecordPath =
+    'conductor/tracks/repo-self-improvement_20260303/upstream-decision-log.md';
+  const planPath = 'conductor/tracks/repo-self-improvement_20260303/plan.md';
+  const generatedIssuePath = '.github/generated/self-improvement-issue.md';
+  const generatedDecisionsPath = '.github/generated/self-improvement-decisions.md';
 
   const body = `# Weekly Self-Improvement Report
 
@@ -213,6 +243,41 @@ ${formatDecisionItems(localDecisions)}
 ${formatDecisionItems(upstreamDecisions)}
 `;
 
+  const prBody = `## Summary
+
+- refresh the self-improvement decision record from the latest scheduled analysis
+- keep the maintainer-facing Adopt / Reject / Defer state in version control
+- preserve the supporting issue and generated artifacts for longer-form review
+
+## Maintainer Checklist
+
+- [ ] Review the refreshed [decision record](${formatBlobUrl(local.name, decisionRecordBranch, decisionRecordPath)})
+- [ ] Confirm the current local dependency candidates still match repo policy
+- [ ] Confirm upstream candidates still fit the evidence, overlap, and false-positive rubric
+- [ ] Edit any final Adopt / Reject / Defer calls directly in the decision record before merging
+- [ ] Merge only if the decision record reflects the maintainer's final call for this cycle
+
+## Current Local Candidates
+
+${formatCandidateLinks(local.name, local.pull_requests.raw.filter((pr) => pr.is_dependency_bot).slice(0, 10))}
+
+## Current Upstream Candidates
+
+${formatCandidateLinks(upstream.name, upstream.pull_requests.raw.slice(0, 8))}
+
+## Supporting Files
+
+- [Track decision record](${formatBlobUrl(local.name, decisionRecordBranch, decisionRecordPath)})
+- [Track plan](${formatBlobUrl(local.name, decisionRecordBranch, planPath)})
+- [Generated issue body](${formatBlobUrl(local.name, decisionRecordBranch, generatedIssuePath)})
+- [Generated decision log](${formatBlobUrl(local.name, decisionRecordBranch, generatedDecisionsPath)})
+
+## Notes
+
+- repo intelligence artifacts remain attached to the workflow run
+- this PR is intentionally draft-only for human review
+`;
+
   const trackDecisionLogBody = `# Self-Improvement Decision Record
 
 **Track:** \`repo-self-improvement_20260303\`
@@ -251,9 +316,11 @@ ${formatDecisionItems(upstreamDecisions)}
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, body, 'utf8');
   fs.writeFileSync(decisionsPath, decisionsBody, 'utf8');
+  fs.writeFileSync(prBodyPath, prBody, 'utf8');
   fs.writeFileSync(trackDecisionLogPath, trackDecisionLogBody, 'utf8');
   console.log(`Wrote self-improvement issue body to ${outputPath}`);
   console.log(`Wrote self-improvement decision log to ${decisionsPath}`);
+  console.log(`Wrote self-improvement PR body to ${prBodyPath}`);
   console.log(`Updated track decision record at ${trackDecisionLogPath}`);
 }
 
