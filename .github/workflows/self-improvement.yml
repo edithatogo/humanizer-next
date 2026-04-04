@@ -43,9 +43,24 @@ jobs:
             echo "File Sizes:"
             wc -l SKILL.md SKILL_PROFESSIONAL.md QWEN.md
             echo ""
-            echo "AI Pattern Count:"
+            echo "AI Pattern Count in Skill:"
             grep -c -i "stands as\|testament to\|crucial\|pivotal\|vibrant\|showcasing" SKILL.md SKILL_PROFESSIONAL.md QWEN.md || echo "0"
           } | tee metrics-baseline.txt
+
+      - name: Pattern Drift Detection
+        run: |
+          echo "=== Pattern Drift Detection ==="
+          echo "Checking for new AI patterns that may need addition to skill..."
+          echo ""
+          # Common 2025-2026 AI tells to monitor
+          NEW_TELLS="intricate|commendable|meticulous|profoundly|deliberately|thoughtfully crafted"
+          DRIFT_COUNT=$(grep -ci -E "$NEW_TELLS" SKILL.md | head -5)
+          if [ "$DRIFT_COUNT" -gt 0 ]; then
+            echo "::warning::Potential pattern drift detected: Found $DRIFT_COUNT instances of emerging AI vocabulary"
+            echo "Consider reviewing if these should be added as patterns"
+          else
+            echo "No pattern drift detected - skill is current"
+          fi
 
       - name: Gather repository intelligence and decision support
         run: |
