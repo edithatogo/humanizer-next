@@ -39,6 +39,41 @@ This setup is for maintainers working on the skill source. End-user install path
 - Agents manifest: `AGENTS.md`
 - Adapter bundles under `adapters/`
 
+## Installation (SOTA - Generated Locally)
+
+Adapters are generated locally from the canonical `SKILL.md`. This ensures you always have the latest version.
+
+```bash
+# Generate all adapters locally
+npm run sync
+
+# Or convert a specific platform to a custom path
+node scripts/convert-adapter.js --platform claude --target ~/.claude/skills/humanizer/
+
+# Install directly to common platforms
+npm run install:claude    # Claude Desktop
+npm run install:opencode  # OpenCode
+npm run install:zed       # Zed
+npm run install:cursor    # Cursor
+npm run install:windsurf  # Windsurf
+npm run install:cline    # Cline
+npm run install:kilo      # Kilo
+npm run install:amp       # Amp
+```
+
+**Note:** The `adapters/` directory is in `.gitignore` - adapters are generated locally, not stored in git.
+
+## Self-improvement workflow
+
+The repository runs a weekly self-improvement cycle (Monday 9 AM UTC) that:
+
+- Checks for upstream additions from blader/humanizer
+- Detects pattern drift in AI writing (new vocabulary tells)
+- Generates decision records for adopting upstream changes
+- Creates automated PRs for review
+
+Run manually: `npm run sync && npm test`
+
 Current adapters include Gemini CLI, Google Antigravity, Qwen CLI, GitHub Copilot, VS Code, and related wrapper formats used by downstream tools.
 
 ## What this repo is not

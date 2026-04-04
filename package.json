@@ -8,6 +8,7 @@
     "sync": "node scripts/sync-adapters.js",
     "check:sync": "node scripts/check-sync-clean.js",
     "convert": "node scripts/convert-adapter.js",
+    "check:upstream": "node scripts/check-upstream.js",
     "validate": "node scripts/validate-adapters.js && node scripts/validate-docs.js",
     "validate:docs": "node scripts/validate-docs.js",
     "vale": "vale --minAlertLevel=error docs/install-matrix.md docs/skill-distribution.md",
