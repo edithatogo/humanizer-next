@@ -44,7 +44,7 @@ jobs:
             wc -l SKILL.md SKILL_PROFESSIONAL.md QWEN.md
             echo ""
             echo "AI Pattern Count in Skill:"
-            grep -c -i "stands as\|testament to\|crucial\|pivotal\|vibrant\|showcasing" SKILL.md SKILL_PROFESSIONAL.md QWEN.md || echo "0"
+            grep -c -i "stands as\|testament to\|crucial\|pivotal\|vibrant\|showcasing" SKILL.md SKILL_PROFESSIONAL.md || echo "0"
           } | tee metrics-baseline.txt
 
       - name: Pattern Drift Detection

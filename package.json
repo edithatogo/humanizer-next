@@ -7,6 +7,7 @@
   "scripts": {
     "sync": "node scripts/sync-adapters.js",
     "check:sync": "node scripts/check-sync-clean.js",
+    "convert": "node scripts/convert-adapter.js",
     "validate": "node scripts/validate-adapters.js && node scripts/validate-docs.js",
     "validate:docs": "node scripts/validate-docs.js",
     "vale": "vale --minAlertLevel=error docs/install-matrix.md docs/skill-distribution.md",
@@ -19,6 +20,14 @@
     "test": "node scripts/run-node-tests.js && node scripts/run-tests.js",
     "build": "node scripts/compile-skill.js",
     "install:adapters": "node scripts/install-adapters.js",
+    "install:claude": "node scripts/convert-adapter.js --platform claude --target ~/.claude/skills/humanizer/",
+    "install:opencode": "node scripts/convert-adapter.js --platform opencode --target ~/.opencode/skills/humanizer/",
+    "install:zed": "node scripts/convert-adapter.js --platform zed --target ~/.zed/plugins/humanizer/",
+    "install:cursor": "node scripts/convert-adapter.js --platform cursor --target ~/.cursor/extensions/humanizer/",
+    "install:windsurf": "node scripts/convert-adapter.js --platform windsurf --target ~/.windsurf/extensions/humanizer/",
+    "install:cline": "node scripts/convert-adapter.js --platform cline --target ~/.cline/skills/humanizer/",
+    "install:kilo": "node scripts/convert-adapter.js --platform kilo --target ~/.kilo/skills/humanizer/",
+    "install:amp": "node scripts/convert-adapter.js --platform amp --target ~/.amp/skills/humanizer/",
     "prepare": "node -e \"if (!process.env.CI) require('child_process').execSync('npx husky install', { stdio: 'inherit' })\"",
     "release": "echo 'No npm release: humanizer-next ships agent skill artifacts, not a publishable library'",
     "version": "npm run sync && git add adapters/"
