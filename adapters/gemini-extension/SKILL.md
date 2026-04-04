@@ -22,8 +22,8 @@ adapter_metadata:
   skill_version: 2.3.0
   last_synced: 2026-04-04
   source_path: SKILL.md
-  adapter_id: qwen-cli
-  adapter_format: Qwen CLI context
+  adapter_id: gemini-extension
+  adapter_format: Gemini extension
 ---
 
 

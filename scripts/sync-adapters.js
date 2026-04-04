@@ -100,7 +100,7 @@ const adapters = [
   },
   {
     name: 'Gemini Extension Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'GEMINI.md'),
+    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'SKILL.md'),
     source: standardContent,
     id: 'gemini-extension',
     format: 'Gemini extension',
@@ -108,7 +108,7 @@ const adapters = [
   },
   {
     name: 'Gemini Extension Pro',
-    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'GEMINI_PRO.md'),
+    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'SKILL_PROFESSIONAL.md'),
     source: proContent,
     id: 'gemini-extension-pro',
     format: 'Gemini extension',
@@ -120,30 +120,6 @@ const adapters = [
     source: standardContent,
     id: 'antigravity-rules-workflows',
     format: 'Antigravity rules/workflows',
-    base: 'SKILL.md',
-  },
-  {
-    name: 'Qwen CLI Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'qwen-cli', 'QWEN.md'),
-    source: standardContent,
-    id: 'qwen-cli',
-    format: 'Qwen CLI context',
-    base: 'SKILL.md',
-  },
-  {
-    name: 'Copilot Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'copilot', 'COPILOT.md'),
-    source: standardContent,
-    id: 'copilot',
-    format: 'Copilot instructions',
-    base: 'SKILL.md',
-  },
-  {
-    name: 'VSCode Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'vscode', 'HUMANIZER.md'),
-    source: standardContent,
-    id: 'vscode',
-    format: 'VSCode markdown',
     base: 'SKILL.md',
   },
   {
