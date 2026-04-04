@@ -186,6 +186,30 @@ const adapters = [
     format: 'OpenCode skill',
     base: 'SKILL.md',
   },
+  {
+    name: 'Cursor Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'cursor', 'SKILL.md'),
+    source: standardContent,
+    id: 'cursor',
+    format: 'Cursor skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Windsurf Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'windsurf', 'SKILL.md'),
+    source: standardContent,
+    id: 'windsurf',
+    format: 'Windsurf skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Zed Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'zed', 'SKILL.md'),
+    source: standardContent,
+    id: 'zed',
+    format: 'Zed skill',
+    base: 'SKILL.md',
+  },
 ];
 
 // Optional: Global Home Directory Sync (SOTA approach)
