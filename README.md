@@ -1,29 +1,49 @@
-# Humanizer-next
+# Humanizer-next (V4 Modular Architecture)
 
-Humanizer-next is the source repository for an agent skill that removes common signs of AI-generated writing while preserving meaning, tone, and technical literals.
+Humanizer-next is the source repository for a modular, MCP-compatible agent skill suite that removes common signs of AI-generated writing while preserving meaning, tone, and technical literals.
 
-This repo is not a standalone runtime library. It exists to maintain canonical skill content, compile generated artifacts, validate adapters, and distribute synced outputs to multiple agent environments.
+## V4 Architecture
 
-## Repo role
+The V4 architecture decomposes the monolithic humanizer into 8 independent, specialized skills exposed via a global **Model Context Protocol (MCP)** server:
 
-- Canonical skill sources live under `src/`.
-- Experimental prototypes and extraction candidates live under `experiments/`.
-- Generated root artifacts are `SKILL.md` and `SKILL_PROFESSIONAL.md`.
-- Adapter outputs live under `adapters/`.
-- Repository guidance for agent environments lives in `AGENTS.md`.
-- Installation and platform support guidance lives in `docs/install-matrix.md`.
+- **humanizer-next**: Core personality and soul injectors.
+- **humanizer-logic**: Reasoning failure remediation & Self-Critique.
+- **humanizer-cite**: Citation and reference normalization.
+- **humanizer-read**: Statistical prose analysis & Academic benchmarking.
+- **humanizer-structure**: Flow and hierarchy integrity.
+- **humanizer-factcheck**: Claim grounding and verification.
+- **humanizer-inclusive**: Bias and diversity normalization.
+- **humanizer-orchestrate**: Parallel swarming and agent orchestration.
 
-## Maintainer setup
+## MCP Installation
+
+Install the Humanizer MCP Server to your host agent:
 
 ```bash
-git clone https://github.com/edithatogo/humanizer-next.git
-cd humanizer-next
-npm install
+npm run install:mcp-server
 ```
 
-This setup is for maintainers working on the skill source. End-user install paths for Gemini, Antigravity, Copilot, VS Code, and other adapters are documented in `docs/install-matrix.md`.
+This registers all 8 skills as distinct tools, allowing your agent to "swarm" complex requests across specialized modules.
 
-## Maintainer workflow
+## Swarming Logic
+
+The orchestrator allows parallel execution:
+
+```javascript
+// Example swarm dispatch
+await orchestrator.swarm({
+  tools: ['humanizer-next', 'humanizer-logic'],
+  args: { text: "..." }
+});
+```
+
+## Maintenance & Validation
+
+- **Self-Critique Loop**: Automated quality verification before final output.
+- **Glossary Protection**: `.humanizer-ignore` file support for brand terminology.
+- **Academic Benchmarking**: Integrated TuringBench and Ghostbuster metrics.
+
+## SOTA Maintainer Workflow
 
 1. Update source fragments in `src/`.
 2. Rebuild and sync generated outputs with `npm run sync`.
