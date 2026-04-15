@@ -87,7 +87,12 @@ cp -r adapters/antigravity-rules-workflows/ <workspace>/.agent/rules/humanizer/
 git pull && npm run sync
 ```
 
+### Uninstall
+
+- Remove copied Humanizer rule/workflow files from Antigravity directories.
+
 ---
+
 
 ## Claude
 
@@ -180,6 +185,10 @@ npm run install:cursor
 git pull && npm run sync && npm run install:cursor
 ```
 
+### Uninstall
+
+- Remove `~/.cursor/extensions/humanizer/`.
+
 ---
 
 ## Windsurf
@@ -192,6 +201,19 @@ Status: Officially supported
 npm run install:windsurf
 # Copies to ~/.windsurf/extensions/humanizer/SKILL.md
 ```
+### Verify
+
+- Open Windsurf and confirm the Humanizer skill is available.
+
+### Update
+
+```bash
+git pull && npm run sync && npm run install:windsurf
+```
+
+### Uninstall
+
+- Remove `~/.windsurf/extensions/humanizer/`.
 
 ---
 
@@ -201,10 +223,24 @@ Status: Officially supported
 
 ### Install
 
+
 ```bash
 npm run install:cline
 # Copies to ~/.cline/skills/humanizer/SKILL.md
 ```
+### Verify
+
+- Invoke the Humanizer skill in Cline and confirm the output format.
+
+### Update
+
+```bash
+git pull && npm run sync && npm run install:cline
+```
+
+### Uninstall
+
+- Remove `~/.cline/skills/humanizer/`.
 
 ---
 
@@ -218,6 +254,19 @@ Status: Officially supported
 npm run install:kilo
 # Copies to ~/.kilo/skills/humanizer/SKILL.md
 ```
+### Verify
+
+- Invoke the Humanizer skill in Kilo and confirm the output format.
+
+### Update
+
+```bash
+git pull && npm run sync && npm run install:kilo
+```
+
+### Uninstall
+
+- Remove `~/.kilo/skills/humanizer/`.
 
 ---
 
@@ -232,6 +281,20 @@ npm run install:amp
 # Copies to ~/.amp/skills/humanizer/SKILL.md
 ```
 
+### Verify
+
+- Invoke the Humanizer skill in Amp and confirm rewrite + bullet-summary output.
+
+### Update
+
+```bash
+git pull && npm run sync && npm run install:amp
+```
+
+### Uninstall
+
+- Remove `~/.amp/skills/humanizer/`.
+
 ---
 
 ## OpenCode
@@ -244,6 +307,20 @@ Status: Officially supported
 npm run install:opencode
 # Copies to ~/.opencode/skills/humanizer/SKILL.md
 ```
+
+### Verify
+
+- Invoke the skill in OpenCode and confirm the output format.
+
+### Update
+
+```bash
+git pull && npm run sync && npm run install:opencode
+```
+
+### Uninstall
+
+- Remove `~/.opencode/skills/humanizer/`.
 
 ---
 
@@ -258,6 +335,20 @@ npm run install:zed
 # Copies to ~/.zed/plugins/humanizer/SKILL.md
 ```
 
+### Verify
+
+- Open Zed and confirm the Humanizer plugin is available.
+
+### Update
+
+```bash
+git pull && npm run sync && npm run install:zed
+```
+
+### Uninstall
+
+- Remove `~/.zed/plugins/humanizer/`.
+
 ---
 
 ## Gemini CLI / Extension
@@ -270,7 +361,23 @@ Status: Officially supported
 cp adapters/gemini-extension/SKILL.md <your-gemini-extension-path>/
 ```
 
+### Verify
+
+- Trigger the Humanizer behavior in Gemini and confirm rewrite + change-summary output.
+
+### Update
+
+```bash
+git pull && npm run sync
+# Recopy updated adapter files.
+```
+
+### Uninstall
+
+- Remove the copied Gemini adapter files.
+
 ---
+
 
 ## Any markdown-capable agent
 

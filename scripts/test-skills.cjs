@@ -12,6 +12,7 @@ const SKILL_TESTS = [
     'skills/humanizer-next/test/cli.test.js',
     'skills/humanizer-next/test/fixes.test.js',
     'skills/humanizer-next/test/isolation.test.js',
+    'skills/humanizer-next/test/tone.test.js',
     // humanizer-orchestrate (Phase 4)
     'skills/humanizer-orchestrate/test/mcp-server.test.js',
     'skills/humanizer-orchestrate/test/swarmer.test.js',
@@ -20,11 +21,13 @@ const SKILL_TESTS = [
     'skills/humanizer-logic/test/critique.test.js',
     'skills/humanizer-logic/test/glossary.test.js',
     'skills/humanizer-logic/test/telemetry.test.js',
+    'skills/humanizer-logic/test/reasoning.test.js',
     // humanizer-read (Phase 6)
     'skills/humanizer-read/test/bench.test.js',
     'skills/humanizer-read/test/similarity.test.js',
     // Stub skills
     'skills/humanizer-cite/test/stub.test.js',
+    'skills/humanizer-cite/test/formatting.test.js',
     'skills/humanizer-factcheck/test/stub.test.js',
     'skills/humanizer-inclusive/test/stub.test.js',
     'skills/humanizer-structure/test/stub.test.js',

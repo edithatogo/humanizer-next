@@ -94,7 +94,7 @@ The repository runs a weekly self-improvement cycle (Monday 9 AM UTC) that:
 
 Run manually: `npm run sync && npm test`
 
-Current adapters include Gemini CLI, Google Antigravity, Qwen CLI, GitHub Copilot, VS Code, and related wrapper formats used by downstream tools.
+Current adapters include Antigravity, Claude, Copilot, Cursor, Windsurf, Cline, Kilo, Amp, OpenCode, Zed, and Gemini. Run `npm run sync` to regenerate all adapters after pulling updates.
 
 ## What this repo is not
 

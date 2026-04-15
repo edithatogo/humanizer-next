@@ -12,16 +12,18 @@ const REQUIRED_REFERENCE_DOCS = [
   'adapters/antigravity-skill/README.md',
 ];
 const TOOL_SECTIONS = [
-  '## Codex CLI',
-  '## Gemini CLI',
-  '## VS Code',
-  '## Qwen CLI',
-  '## GitHub Copilot',
   '## Antigravity (skill)',
   '## Antigravity (rules/workflows)',
-  '## Skillshare',
-  '## npx skills',
-  '## AIX validation',
+  '## Claude',
+  '## GitHub Copilot',
+  '## Cursor',
+  '## Windsurf',
+  '## Cline',
+  '## Kilo',
+  '## Amp',
+  '## OpenCode',
+  '## Zed',
+  '## Gemini CLI / Extension',
 ];
 const REQUIRED_SUBSECTIONS = ['### Install', '### Verify', '### Update', '### Uninstall'];
 
