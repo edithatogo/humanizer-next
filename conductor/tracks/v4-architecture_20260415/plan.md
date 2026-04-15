@@ -8,7 +8,7 @@
 
 ## Phase 2: Upstream Triage Workflow
 - [x] Task: Triage existing upstream PRs/Issues referencing formatting/citations and port logic to the `humanizer-cite` test suite. 7079dd0
-- [ ] Task: Triage upstream PRs/Issues referencing logic/reasoning and port logic to the `humanizer-logic` test suite.
+- [x] Task: Triage upstream PRs/Issues referencing logic/reasoning and port logic to the `humanizer-logic` test suite. 79599ce
 - [ ] Task: Triage upstream PRs/Issues referencing general tone/slop and port to `humanizer-next`.
 - [ ] Task: Bulk-close remaining obsolete/duplicate upstream PRs and Issues in `blader/humanizer` context with a V4 architectural transition notice.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Upstream Triage Workflow' (Protocol in workflow.md)
