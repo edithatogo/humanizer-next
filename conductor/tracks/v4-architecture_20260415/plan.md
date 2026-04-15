@@ -13,13 +13,13 @@
 - [x] Task: Bulk-close remaining obsolete/duplicate upstream PRs and Issues in `blader/humanizer` context with a V4 architectural transition notice. 4e48fe0
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Upstream Triage Workflow' (Protocol in workflow.md) 2a8e9fd
 
-## Phase 3: Skill Implementation & Standardization (TDD)
+## Phase 3: Skill Implementation & Standardization (TDD) [checkpoint: 324b260]
 - [x] Task: Write failing tests for Dual-Mode execution (`--assess` vs `--fix`) standard CLI flag parsing. 6c7cc28
 - [x] Task: Implement standardized input parsing in core utilities to make tests pass. 10e4b93
 - [x] Task: Write failing tests for Ruff-style risk tolerance logic (`--safe_only` vs `--unsafe`). 0548e2b
 - [x] Task: Implement risk categorization tags on all default fixes. 0a7aff2
 - [x] Task: Implement AST-aware logic mapping in core shared utilities (ignoring URLs/CodeBlocks/JSON). e546d65
-- [~] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 4.
+- [x] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 4. 324b260
 
 ## Phase 4: Model Context Protocol (MCP) & Orchestrator
 - [ ] Task: Write unit tests for the MCP Server initialization and message handling.
