@@ -19,23 +19,24 @@
 - [ ] Task: Write failing tests for Ruff-style risk tolerance logic (`--safe_only` vs `--unsafe`).
 - [ ] Task: Implement risk categorization tags on all default fixes.
 - [ ] Task: Implement AST-aware logic mapping in core shared utilities (ignoring URLs/CodeBlocks/JSON).
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Skill Implementation & Standardization' (Protocol in workflow.md)
+- [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 4.
 
 ## Phase 4: Model Context Protocol (MCP) & Orchestrator
 - [ ] Task: Write unit tests for the MCP Server initialization and message handling.
 - [ ] Task: Implement the global MCP server exposing all 7 independent skills as distinct tools.
 - [ ] Task: Implement `humanizer-orchestrate` swarming logic (agent-agnostic parallel execution) to call multiple sub-skills concurrently.
 - [ ] Task: Enforce JSON/XML structured outputs for all "Assess" mode responses.
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Model Context Protocol & Orchestrator' (Protocol in workflow.md)
+- [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 5.
 
 ## Phase 5: SOTA Advanced Features
 - [ ] Task: Implement the "Self-Critique Loop" logic: routing outputs through an LLM verification pass before finalizing.
 - [ ] Task: Implement the Local Glossary / RAG Context loader (reading a `.humanizer-ignore` file to protect brand terminology).
 - [ ] Task: Implement the local SQLite Telemetry Logger to record "Reverted" or manually tweaked fixes.
-- [ ] Task: Conductor - User Manual Verification 'Phase 5: SOTA Advanced Features' (Protocol in workflow.md)
+- [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 6.
 
 ## Phase 6: Academic Benchmarking & Launch
 - [ ] Task: Integrate TuringBench/Ghostbuster dataset loader into the test suite.
 - [ ] Task: Write a CI benchmark script that mathematically evaluates "Meaning Preservation" across generated changes.
 - [ ] Task: Update the primary `product.md` and `README.md` to formally document the V4 architecture and MCP installation method.
-- [ ] Task: Conductor - User Manual Verification 'Phase 6: Academic Benchmarking & Launch' (Protocol in workflow.md)
+- [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and conclude Phase 6.
+- [ ] Task: Final Track Auto-Review - Execute `conductor-review` across the entire track, applying any final cross-phase fixes.
