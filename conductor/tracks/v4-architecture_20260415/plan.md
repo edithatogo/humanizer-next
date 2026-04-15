@@ -4,7 +4,7 @@
 - [x] Task: Remove `.github/dependabot.yml` and all legacy Dependabot configurations. 6072907
 - [x] Task: Create `renovate.json` configured for a monorepo workspace to manage multiple independent skill packages. 7e5b15d
 - [x] Task: Scaffold the directory structure for 8 new domains (`skills/humanizer-next`, `skills/humanizer-logic`, `skills/humanizer-cite`, `skills/humanizer-read`, `skills/humanizer-structure`, `skills/humanizer-factcheck`, `skills/humanizer-inclusive`, `skills/humanizer-orchestrate`). 8483cff
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Dependency Modernization & Scaffolding' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Dependency Modernization & Scaffolding' (Protocol in workflow.md) b095ed3
 
 ## Phase 2: Upstream Triage Workflow
 - [ ] Task: Triage existing upstream PRs/Issues referencing formatting/citations and port logic to the `humanizer-cite` test suite.
