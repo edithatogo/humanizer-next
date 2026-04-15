@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Dependency Modernization & Scaffolding' (Protocol in workflow.md) b095ed3
 
 ## Phase 2: Upstream Triage Workflow
-- [ ] Task: Triage existing upstream PRs/Issues referencing formatting/citations and port logic to the `humanizer-cite` test suite.
+- [x] Task: Triage existing upstream PRs/Issues referencing formatting/citations and port logic to the `humanizer-cite` test suite. 7079dd0
 - [ ] Task: Triage upstream PRs/Issues referencing logic/reasoning and port logic to the `humanizer-logic` test suite.
 - [ ] Task: Triage upstream PRs/Issues referencing general tone/slop and port to `humanizer-next`.
 - [ ] Task: Bulk-close remaining obsolete/duplicate upstream PRs and Issues in `blader/humanizer` context with a V4 architectural transition notice.
