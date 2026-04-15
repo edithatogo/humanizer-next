@@ -39,147 +39,16 @@ npm run validate
 | Any markdown-capable agent    | Community/best effort | `SKILL.md` (direct use)                          |
 
 
-## Codex CLI
-
-Status: Officially supported
-
-### Install
-
-1. Clone this repository.
-2. Keep `AGENTS.md` and `SKILL.md` in-repo for Codex sessions opened in this repo.
-3. Optional: reference `adapters/codex/CODEX.md` in team docs for shared behavior.
-
-### Verify
-
-- Open a Codex session from this repository root.
-- Confirm Codex sees `AGENTS.md` and can apply Humanizer instructions.
-
-### Update
-
-```bash
-git pull
-npm run sync
-npm run validate
-```
-
-### Uninstall
-
-- Remove the local clone directory.
-
-## Gemini CLI
-
-Status: Officially supported
-
-### Install
-
-1. Clone this repository.
-2. Copy the adapter file into your Gemini extension location according to your Gemini setup:
-   - `adapters/gemini-extension/GEMINI.md`
-
-### Verify
-
-- Trigger the Humanizer behavior in Gemini and confirm rewrite + change-summary output format.
-
-### Update
-
-- Replace adapter files after pulling latest changes.
-
-```bash
-git pull
-npm run sync
-npm run validate
-```
-
-### Uninstall
-
-- Remove the copied Gemini adapter files.
-
-## VS Code
-
-Status: Officially supported
-
-### Install
-
-1. Clone this repository.
-2. Copy `adapters/vscode/HUMANIZER.md` into your VS Code prompt and instructions location.
-3. Optionally install snippets from `adapters/vscode/humanizer.code-snippets`.
-
-### Verify
-
-- Invoke the Humanizer prompt flow in VS Code and validate output style.
-
-### Update
-
-```bash
-git pull
-npm run sync
-npm run validate
-```
-
-### Uninstall
-
-- Remove copied `HUMANIZER.md` and optional snippet file from VS Code config.
-
-## Qwen CLI
-
-Status: Officially supported
-
-### Install
-
-1. Clone this repository.
-2. Copy `adapters/qwen-cli/QWEN.md` to your Qwen skills/instructions location.
-
-### Verify
-
-- Run a test rewrite with Qwen and confirm Humanizer output contract.
-
-### Update
-
-```bash
-git pull
-npm run sync
-npm run validate
-```
-
-### Uninstall
-
-- Remove copied Qwen adapter file.
-
-## GitHub Copilot
-
-Status: Officially supported
-
-### Install
-
-1. Clone this repository.
-2. Copy `adapters/copilot/COPILOT.md` to your Copilot custom instructions location.
-
-### Verify
-
-- Run a sample rewrite and confirm it follows Humanizer rules.
-
-### Update
-
-```bash
-git pull
-npm run sync
-npm run validate
-```
-
-### Uninstall
-
-- Remove copied Copilot instructions file.
-
 ## Antigravity (skill)
 
 Status: Officially supported
 
 ### Install
 
-Copy adapter folder into workspace skills:
-
-- `<workspace>/.agent/skills/humanizer/`
-- Source: `adapters/antigravity-skill/`
+```bash
+# Copy skill adapter into your workspace
+cp -r adapters/antigravity-skill/ <workspace>/.agent/skills/humanizer/
+```
 
 ### Verify
 
@@ -188,16 +57,15 @@ Copy adapter folder into workspace skills:
 ### Update
 
 ```bash
-git pull
-npm run sync
-npm run validate
+git pull && npm run sync
+# Recopy updated adapter files
 ```
-
-Then recopy updated adapter files.
 
 ### Uninstall
 
 - Remove `<workspace>/.agent/skills/humanizer/`.
+
+---
 
 ## Antigravity (rules/workflows)
 
@@ -205,11 +73,9 @@ Status: Officially supported
 
 ### Install
 
-Copy the rules/workflows adapter files from:
-
-- `adapters/antigravity-rules-workflows/`
-
-into the corresponding Antigravity rules/workflows folders for your workspace.
+```bash
+cp -r adapters/antigravity-rules-workflows/ <workspace>/.agent/rules/humanizer/
+```
 
 ### Verify
 
@@ -218,105 +84,211 @@ into the corresponding Antigravity rules/workflows folders for your workspace.
 ### Update
 
 ```bash
-git pull
-npm run sync
-npm run validate
+git pull && npm run sync
 ```
 
-Then recopy updated rules/workflow files.
+---
 
-### Uninstall
+## Claude
 
-- Remove copied Humanizer rule/workflow files from Antigravity directories.
+Status: Officially supported
 
-## Skillshare
-
-Status: Community/best effort
-
-### Install
+### Install (Claude Desktop — MCP)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh
-skillshare install . --dry-run
+npm run install:mcp-server
+```
+
+This registers the Humanizer MCP Server in `~/AppData/Roaming/Claude/claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS).
+
+### Install (Claude Code — skill)
+
+```bash
+npm run install:claude
+# Copies to ~/.claude/skills/humanizer/SKILL.md
 ```
 
 ### Verify
 
-```bash
-skillshare sync --dry-run
-```
+- In Claude Desktop: the Humanizer tool should appear in the MCP tools list.
+- In Claude Code: invoke the skill by name.
 
 ### Update
 
 ```bash
-git pull
-npm run sync
-skillshare install . --dry-run
+git pull && npm run sync && npm run install:claude
 ```
 
 ### Uninstall
 
-- Remove the installed Skillshare package according to your Skillshare environment.
+- Remove `~/.claude/skills/humanizer/`.
+- For MCP: remove the `humanizer` entry from `claude_desktop_config.json`.
 
-## npx skills
+---
 
-Status: Community/best effort
+## GitHub Copilot
+
+Status: Officially supported
 
 ### Install
 
 ```bash
-npx skills install https://github.com/edithatogo/humanizer-next
+# Install to the current repo (creates .github/copilot-instructions.md)
+npm run install:copilot
+
+# Install to a different repo
+node scripts/install-copilot.js --target /path/to/your/repo
 ```
+
+Copilot reads custom instructions from `.github/copilot-instructions.md` automatically in VS Code.
 
 ### Verify
 
-```bash
-npx skills list
-```
-
-Confirm `humanizer` (or repository-linked entry) appears in the installed skills list.
+- Open VS Code with Copilot enabled in the target repo.
+- The Humanizer rules load automatically as custom instructions.
 
 ### Update
 
 ```bash
-npx skills update humanizer
+git pull && npm run sync && npm run install:copilot
 ```
 
 ### Uninstall
 
-```bash
-npx skills remove humanizer
-```
+- Delete `.github/copilot-instructions.md` from the target repo.
 
-## AIX validation
+---
 
-Status: Community/best effort
+## Cursor
+
+Status: Officially supported
 
 ### Install
 
 ```bash
-brew install thoreinstein/tap/aix
+npm run install:cursor
+# Copies to ~/.cursor/extensions/humanizer/SKILL.md
 ```
 
 ### Verify
 
-```bash
-aix skill validate ./
-```
+- Open Cursor and confirm the skill is discoverable.
 
 ### Update
 
 ```bash
-git pull
-npm run sync
-aix skill validate ./
+git pull && npm run sync && npm run install:cursor
 ```
 
-### Uninstall
+---
+
+## Windsurf
+
+Status: Officially supported
+
+### Install
 
 ```bash
-brew uninstall aix
+npm run install:windsurf
+# Copies to ~/.windsurf/extensions/humanizer/SKILL.md
 ```
+
+---
+
+## Cline
+
+Status: Officially supported
+
+### Install
+
+```bash
+npm run install:cline
+# Copies to ~/.cline/skills/humanizer/SKILL.md
+```
+
+---
+
+## Kilo
+
+Status: Officially supported
+
+### Install
+
+```bash
+npm run install:kilo
+# Copies to ~/.kilo/skills/humanizer/SKILL.md
+```
+
+---
+
+## Amp
+
+Status: Officially supported
+
+### Install
+
+```bash
+npm run install:amp
+# Copies to ~/.amp/skills/humanizer/SKILL.md
+```
+
+---
+
+## OpenCode
+
+Status: Officially supported
+
+### Install
+
+```bash
+npm run install:opencode
+# Copies to ~/.opencode/skills/humanizer/SKILL.md
+```
+
+---
+
+## Zed
+
+Status: Officially supported
+
+### Install
+
+```bash
+npm run install:zed
+# Copies to ~/.zed/plugins/humanizer/SKILL.md
+```
+
+---
+
+## Gemini CLI / Extension
+
+Status: Officially supported
+
+### Install
+
+```bash
+cp adapters/gemini-extension/SKILL.md <your-gemini-extension-path>/
+```
+
+---
+
+## Any markdown-capable agent
+
+Status: Community/best effort
+
+Point the agent at `SKILL.md` directly — it is fully self-contained. No install script needed.
+
+---
+
+## MCP Server (all compatible agents)
+
+```bash
+npm run install:mcp-server
+```
+
+Registers the Humanizer V4 orchestrator as an MCP tool server. Auto-detects Claude Desktop and Cursor. Prints the JSON config block for any other MCP-compatible agent.
+
+---
 
 ## Migration from upstream clone URL
 

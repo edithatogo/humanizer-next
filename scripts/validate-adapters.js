@@ -20,6 +20,7 @@ const adapters = [
   { path: 'adapters/cursor/SKILL.md', base: 'SKILL.md' },
   { path: 'adapters/windsurf/SKILL.md', base: 'SKILL.md' },
   { path: 'adapters/zed/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/copilot/SKILL.md', base: 'SKILL.md' },
 ];
 
 let failed = false;

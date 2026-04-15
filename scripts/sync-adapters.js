@@ -186,6 +186,14 @@ const adapters = [
     format: 'Zed skill',
     base: 'SKILL.md',
   },
+  {
+    name: 'Copilot Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'copilot', 'SKILL.md'),
+    source: standardContent,
+    id: 'copilot',
+    format: 'GitHub Copilot custom instructions',
+    base: 'SKILL.md',
+  },
 ];
 
 // Optional: Global Home Directory Sync (SOTA approach)
@@ -198,6 +206,7 @@ if (SYNC_GLOBAL) {
     { tool: 'amp', dir: '.amp/skills' },
     { tool: 'opencode', dir: '.opencode/skills' },
     { tool: 'claude', dir: '.claude/skills' },
+    { tool: 'copilot', dir: '.github' },
     { tool: 'qwen', dir: '.qwen/skills' },
     { tool: 'codex', dir: '.codex/skills' },
   ].forEach(({ tool, dir }) => {

@@ -29,6 +29,9 @@
     "install:cline": "node scripts/convert-adapter.js --platform cline --target ~/.cline/skills/humanizer/",
     "install:kilo": "node scripts/convert-adapter.js --platform kilo --target ~/.kilo/skills/humanizer/",
     "install:amp": "node scripts/convert-adapter.js --platform amp --target ~/.amp/skills/humanizer/",
+    "install:copilot": "node scripts/install-copilot.js",
+    "install:mcp-server": "node scripts/install-mcp-server.js",
+    "test:skills": "node scripts/test-skills.cjs",
     "prepare": "node -e \"if (!process.env.CI) require('child_process').execSync('npx husky install', { stdio: 'inherit' })\"",
     "release": "echo 'No npm release: humanizer-next ships agent skill artifacts, not a publishable library'",
     "version": "npm run sync && git add adapters/"

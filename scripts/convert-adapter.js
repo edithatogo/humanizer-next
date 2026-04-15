@@ -52,6 +52,10 @@ const PLATFORM_CONFIGS = {
     file: 'README.md',
     metadata: { adapter_id: 'antigravity-rules-workflows', adapter_format: 'Antigravity workflow' },
   },
+  copilot: {
+    file: 'SKILL.md',
+    metadata: { adapter_id: 'copilot', adapter_format: 'GitHub Copilot custom instructions' },
+  },
   'gemini-extension': {
     file: 'SKILL.md',
     metadata: { adapter_id: 'gemini-extension', adapter_format: 'Gemini extension' },
