@@ -24,6 +24,18 @@ try {
     const conflictArgs = parseArgs(['--assess', '--fix']);
     assert.strictEqual(conflictArgs.mode, 'fix', "Conflicting flags should resolve to the last one provided");
 
+    console.log("- Testing default risk tolerance (should be safe)");
+    const defaultRiskArgs = parseArgs([]);
+    assert.strictEqual(defaultRiskArgs.riskTolerance, 'safe', "Default risk tolerance should be 'safe'");
+
+    console.log("- Testing --safe_only flag");
+    const safeOnlyArgs = parseArgs(['--safe_only']);
+    assert.strictEqual(safeOnlyArgs.riskTolerance, 'safe', "--safe_only flag should set riskTolerance to 'safe'");
+
+    console.log("- Testing --unsafe flag");
+    const unsafeArgs = parseArgs(['--unsafe']);
+    assert.strictEqual(unsafeArgs.riskTolerance, 'unsafe', "--unsafe flag should set riskTolerance to 'unsafe'");
+
     console.log("All CLI flag parsing tests passed!");
 } catch (error) {
     if (error.code === 'MODULE_NOT_FOUND') {
