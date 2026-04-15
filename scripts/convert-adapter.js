@@ -152,9 +152,15 @@ for (let i = 0; i < args.length; i++) {
 if (args.includes('--help')) {
   console.log('Usage:');
   console.log('  node convert-adapter.js                           Convert all adapters locally');
-  console.log('  node convert-adapter.js --platform <name>         Convert specific platform locally');
-  console.log('  node convert-adapter.js --target <path>           Convert all to target directory');
-  console.log('  node convert-adapter.js --platform <name> --target <path>  Convert specific to target');
+  console.log(
+    '  node convert-adapter.js --platform <name>         Convert specific platform locally'
+  );
+  console.log(
+    '  node convert-adapter.js --target <path>           Convert all to target directory'
+  );
+  console.log(
+    '  node convert-adapter.js --platform <name> --target <path>  Convert specific to target'
+  );
   console.log('\nAvailable platforms:', Object.keys(PLATFORM_CONFIGS).join(', '));
   console.log('\nExample:');
   console.log('  node convert-adapter.js --platform claude --target ~/.claude/skills/');
@@ -166,64 +172,4 @@ if (args.includes('--platform') && args[args.indexOf('--platform') + 1]) {
   convertAdapter(platform, targetDir);
 } else {
   convertAll(targetDir);
-}
-
-  const config = PLATFORM_CONFIGS[platform];
-  const adapterDir = path.join(ADAPTERS_DIR, platform);
-
-  if (!fs.existsSync(adapterDir)) {
-    fs.mkdirSync(adapterDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(SKILL_PATH)) {
-    console.error('SKILL.md not found. Run sync-adapters.js first.');
-    process.exit(1);
-  }
-
-  const skillContent = fs.readFileSync(SKILL_PATH, 'utf8');
-  const convertedContent = updateMetadata(
-    skillContent,
-    config.metadata.adapter_id,
-    config.metadata.adapter_format
-  );
-
-  const outputPath = path.join(adapterDir, config.file);
-  fs.writeFileSync(outputPath, convertedContent);
-  console.log(`✓ Converted ${platform} → ${config.file}`);
-
-  if (config.proFile) {
-    const proPath = path.join(REPO_ROOT, 'SKILL_PROFESSIONAL.md');
-    if (fs.existsSync(proPath)) {
-      const proContent = fs.readFileSync(proPath, 'utf8');
-      const proConverted = updateMetadata(
-        proContent,
-        `${config.metadata.adapter_id}-pro`,
-        `${config.metadata.adapter_format} Pro`
-      );
-      fs.writeFileSync(path.join(adapterDir, config.proFile), proConverted);
-      console.log(`✓ Converted ${platform} → ${config.proFile}`);
-    }
-  }
-}
-
-function convertAll() {
-  console.log('Converting all adapters to standard format...\n');
-  for (const platform of Object.keys(PLATFORM_CONFIGS)) {
-    convertAdapter(platform);
-  }
-  console.log('\n✓ All adapters converted');
-}
-
-const args = process.argv.slice(2);
-if (args.length === 0) {
-  convertAll();
-} else if (args[0] === '--platform' && args[1]) {
-  convertAdapter(args[1]);
-} else if (args[0] === '--help') {
-  console.log('Usage:');
-  console.log('  node convert-adapter.js              Convert all adapters');
-  console.log('  node convert-adapter.js --platform <name>  Convert specific platform');
-  console.log('\nAvailable platforms:', Object.keys(PLATFORM_CONFIGS).join(', '));
-} else {
-  convertAll();
 }

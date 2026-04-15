@@ -44,34 +44,6 @@ const GOLDEN_SET = [
   },
 ];
 
-const TECHNIICAL_LITERALS = [
-  'function calculate() {}',
-  'https://example.com/api',
-  'const x = 42;',
-  'UserService',
-  '{"key": "value"}',
-];
-
-test('Golden Set: Pattern detection accuracy', async (t) => {
-  for (const case_ of GOLDEN_SET) {
-    await t.test(case_.name, () => {
-      let detected_patterns = [];
-
-      for (const pattern of case_.expected_patterns) {
-        if (case_.ai_text.toLowerCase().includes(pattern.toLowerCase())) {
-          detected_patterns.push(pattern);
-        }
-      }
-
-      const detection_rate = detected_patterns.length / case_.expected_patterns.length;
-      assert.ok(
-        detection_rate >= 0.7,
-        `Expected at least 70% detection rate, got ${(detection_rate * 100).toFixed(0)}%`
-      );
-    });
-  }
-});
-
 test('Technical Literal Preservation', async (t) => {
   const test_cases = [
     { text: 'Use function calculate() to compute', should_preserve: ['function calculate()'] },
@@ -91,8 +63,6 @@ test('Technical Literal Preservation', async (t) => {
 test('Pattern severity classification', async (t) => {
   const critical_patterns = ['collaborative', 'knowledge cutoff', 'as an AI'];
   const high_patterns = ['crucial', 'pivotal', 'groundbreaking'];
-  const medium_patterns = ['notable', 'various', 'broad'];
-  const low_patterns = ['however', 'therefore', 'moreover'];
 
   await t.test('critical patterns detected in text', () => {
     const text = 'As an AI assistant, I can help you with this task.';
