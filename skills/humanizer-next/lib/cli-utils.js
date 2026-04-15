@@ -20,6 +20,10 @@ function parseArgs(args) {
             config.mode = 'fix';
         } else if (arg === '--assess') {
             config.mode = 'assess';
+        } else if (arg === '--safe_only') {
+            config.riskTolerance = 'safe';
+        } else if (arg === '--unsafe') {
+            config.riskTolerance = 'unsafe';
         }
     });
 
