@@ -26,7 +26,7 @@
 - [x] Task: Implement the global MCP server exposing all 7 independent skills as distinct tools. b6bf0a6
 - [x] Task: Implement `humanizer-orchestrate` swarming logic (agent-agnostic parallel execution) to call multiple sub-skills concurrently. 86609be
 - [x] Task: Enforce JSON/XML structured outputs for all "Assess" mode responses. 3e636a5
-- [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 5.
+- [~] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 5.
 
 ## Phase 5: SOTA Advanced Features
 - [ ] Task: Implement the "Self-Critique Loop" logic: routing outputs through an LLM verification pass before finalizing.
