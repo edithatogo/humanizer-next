@@ -117,14 +117,6 @@ Archive includes:
 
 ---
 
-## Active Tracks
-
-**1 Active Track:**
-
-- `repo-self-improvement_20260303` - Repository self-improvement, upstream alignment, and Ralph Loop integration (see above)
-
----
-
 ## Key Deliverables
 
 ### Skills
