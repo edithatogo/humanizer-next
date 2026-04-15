@@ -35,7 +35,7 @@
 - [x] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 6. 34a3fc9
 
 ## Phase 6: Academic Benchmarking & Launch
-- [ ] Task: Integrate TuringBench/Ghostbuster dataset loader into the test suite.
+- [x] Task: Integrate TuringBench/Ghostbuster dataset loader into the test suite. d00c098
 - [ ] Task: Write a CI benchmark script that mathematically evaluates "Meaning Preservation" across generated changes.
 - [ ] Task: Update the primary `product.md` and `README.md` to formally document the V4 architecture and MCP installation method.
 - [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and conclude Phase 6.
