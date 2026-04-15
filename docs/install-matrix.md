@@ -20,18 +20,24 @@ npm run validate
 
 ## Support matrix
 
-| Tool                          | Status                | Primary artifact                        |
-| ----------------------------- | --------------------- | --------------------------------------- |
-| Codex CLI                     | Officially supported  | `AGENTS.md`, `adapters/codex/CODEX.md`  |
-| Gemini CLI                    | Officially supported  | `adapters/gemini-extension/GEMINI.md`   |
-| VS Code                       | Officially supported  | `adapters/vscode/HUMANIZER.md`          |
-| Qwen CLI                      | Officially supported  | `adapters/qwen-cli/QWEN.md`             |
-| GitHub Copilot                | Officially supported  | `adapters/copilot/COPILOT.md`           |
-| Antigravity (skill)           | Officially supported  | `adapters/antigravity-skill/SKILL.md`   |
-| Antigravity (rules/workflows) | Officially supported  | `adapters/antigravity-rules-workflows/` |
-| Skillshare                    | Community/best effort | `SKILL.md`                              |
-| npx skills                    | Community/best effort | `SKILL.md`                              |
-| AIX validation                | Community/best effort | `SKILL.md`                              |
+| Tool                          | Status                | Primary artifact                                |
+| ----------------------------- | --------------------- | ----------------------------------------------- |
+| Antigravity (skill)           | Officially supported  | `adapters/antigravity-skill/SKILL.md`            |
+| Antigravity (rules/workflows) | Officially supported  | `adapters/antigravity-rules-workflows/`           |
+| Claude                        | Officially supported  | `adapters/claude/SKILL.md`                       |
+| Cline                         | Officially supported  | `adapters/cline/SKILL.md`                        |
+| Cursor                        | Officially supported  | `adapters/cursor/SKILL.md`                       |
+| Gemini CLI / Extension        | Officially supported  | `adapters/gemini-extension/SKILL.md`             |
+| Kilo                          | Officially supported  | `adapters/kilo/SKILL.md`                         |
+| Amp                           | Officially supported  | `adapters/amp/SKILL.md`                          |
+| OpenCode                      | Officially supported  | `adapters/opencode/SKILL.md`                     |
+| Windsurf                      | Officially supported  | `adapters/windsurf/SKILL.md`                     |
+| Zed                           | Officially supported  | `adapters/zed/SKILL.md`                          |
+| Skillshare                    | Community/best effort | `SKILL.md`                                       |
+| npx skills                    | Community/best effort | `SKILL.md`                                       |
+| AIX validation                | Community/best effort | `SKILL.md`                                       |
+| Any markdown-capable agent    | Community/best effort | `SKILL.md` (direct use)                          |
+
 
 ## Codex CLI
 
