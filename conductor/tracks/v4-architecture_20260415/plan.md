@@ -23,7 +23,7 @@
 
 ## Phase 4: Model Context Protocol (MCP) & Orchestrator
 - [x] Task: Write unit tests for the MCP Server initialization and message handling. 8474840
-- [ ] Task: Implement the global MCP server exposing all 7 independent skills as distinct tools.
+- [x] Task: Implement the global MCP server exposing all 7 independent skills as distinct tools. b6bf0a6
 - [ ] Task: Implement `humanizer-orchestrate` swarming logic (agent-agnostic parallel execution) to call multiple sub-skills concurrently.
 - [ ] Task: Enforce JSON/XML structured outputs for all "Assess" mode responses.
 - [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 5.
