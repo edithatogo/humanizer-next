@@ -10,7 +10,7 @@
 - [x] Task: Triage existing upstream PRs/Issues referencing formatting/citations and port logic to the `humanizer-cite` test suite. 7079dd0
 - [x] Task: Triage upstream PRs/Issues referencing logic/reasoning and port logic to the `humanizer-logic` test suite. 79599ce
 - [x] Task: Triage upstream PRs/Issues referencing general tone/slop and port to `humanizer-next`. cffcd8f
-- [ ] Task: Bulk-close remaining obsolete/duplicate upstream PRs and Issues in `blader/humanizer` context with a V4 architectural transition notice.
+- [x] Task: Bulk-close remaining obsolete/duplicate upstream PRs and Issues in `blader/humanizer` context with a V4 architectural transition notice. 4e48fe0
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Upstream Triage Workflow' (Protocol in workflow.md)
 
 ## Phase 3: Skill Implementation & Standardization (TDD)
