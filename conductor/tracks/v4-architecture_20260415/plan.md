@@ -15,7 +15,7 @@
 
 ## Phase 3: Skill Implementation & Standardization (TDD)
 - [x] Task: Write failing tests for Dual-Mode execution (`--assess` vs `--fix`) standard CLI flag parsing. 6c7cc28
-- [ ] Task: Implement standardized input parsing in core utilities to make tests pass.
+- [x] Task: Implement standardized input parsing in core utilities to make tests pass. 10e4b93
 - [ ] Task: Write failing tests for Ruff-style risk tolerance logic (`--safe_only` vs `--unsafe`).
 - [ ] Task: Implement risk categorization tags on all default fixes.
 - [ ] Task: Implement AST-aware logic mapping in core shared utilities (ignoring URLs/CodeBlocks/JSON).
