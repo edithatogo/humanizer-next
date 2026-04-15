@@ -18,7 +18,7 @@
 - [x] Task: Implement standardized input parsing in core utilities to make tests pass. 10e4b93
 - [x] Task: Write failing tests for Ruff-style risk tolerance logic (`--safe_only` vs `--unsafe`). 0548e2b
 - [x] Task: Implement risk categorization tags on all default fixes. 0a7aff2
-- [ ] Task: Implement AST-aware logic mapping in core shared utilities (ignoring URLs/CodeBlocks/JSON).
+- [x] Task: Implement AST-aware logic mapping in core shared utilities (ignoring URLs/CodeBlocks/JSON). e546d65
 - [ ] Task: Auto-Review - Execute `conductor-review` skill, apply fixes, and progress to Phase 4.
 
 ## Phase 4: Model Context Protocol (MCP) & Orchestrator
