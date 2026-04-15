@@ -14,7 +14,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Upstream Triage Workflow' (Protocol in workflow.md) 2a8e9fd
 
 ## Phase 3: Skill Implementation & Standardization (TDD)
-- [ ] Task: Write failing tests for Dual-Mode execution (`--assess` vs `--fix`) standard CLI flag parsing.
+- [x] Task: Write failing tests for Dual-Mode execution (`--assess` vs `--fix`) standard CLI flag parsing. 6c7cc28
 - [ ] Task: Implement standardized input parsing in core utilities to make tests pass.
 - [ ] Task: Write failing tests for Ruff-style risk tolerance logic (`--safe_only` vs `--unsafe`).
 - [ ] Task: Implement risk categorization tags on all default fixes.
