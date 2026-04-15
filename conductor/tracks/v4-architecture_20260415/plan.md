@@ -1,0 +1,41 @@
+# Implementation Plan: Modular V4 Architecture
+
+## Phase 1: Dependency Modernization & Scaffolding
+- [ ] Task: Remove `.github/dependabot.yml` and all legacy Dependabot configurations.
+- [ ] Task: Create `renovate.json` configured for a monorepo workspace to manage multiple independent skill packages.
+- [ ] Task: Scaffold the directory structure for 8 new domains (`skills/humanizer-next`, `skills/humanizer-logic`, `skills/humanizer-cite`, `skills/humanizer-read`, `skills/humanizer-structure`, `skills/humanizer-factcheck`, `skills/humanizer-inclusive`, `skills/humanizer-orchestrate`).
+- [ ] Task: Conductor - User Manual Verification 'Phase 1: Dependency Modernization & Scaffolding' (Protocol in workflow.md)
+
+## Phase 2: Upstream Triage Workflow
+- [ ] Task: Triage existing upstream PRs/Issues referencing formatting/citations and port logic to the `humanizer-cite` test suite.
+- [ ] Task: Triage upstream PRs/Issues referencing logic/reasoning and port logic to the `humanizer-logic` test suite.
+- [ ] Task: Triage upstream PRs/Issues referencing general tone/slop and port to `humanizer-next`.
+- [ ] Task: Bulk-close remaining obsolete/duplicate upstream PRs and Issues in `blader/humanizer` context with a V4 architectural transition notice.
+- [ ] Task: Conductor - User Manual Verification 'Phase 2: Upstream Triage Workflow' (Protocol in workflow.md)
+
+## Phase 3: Skill Implementation & Standardization (TDD)
+- [ ] Task: Write failing tests for Dual-Mode execution (`--assess` vs `--fix`) standard CLI flag parsing.
+- [ ] Task: Implement standardized input parsing in core utilities to make tests pass.
+- [ ] Task: Write failing tests for Ruff-style risk tolerance logic (`--safe_only` vs `--unsafe`).
+- [ ] Task: Implement risk categorization tags on all default fixes.
+- [ ] Task: Implement AST-aware logic mapping in core shared utilities (ignoring URLs/CodeBlocks/JSON).
+- [ ] Task: Conductor - User Manual Verification 'Phase 3: Skill Implementation & Standardization' (Protocol in workflow.md)
+
+## Phase 4: Model Context Protocol (MCP) & Orchestrator
+- [ ] Task: Write unit tests for the MCP Server initialization and message handling.
+- [ ] Task: Implement the global MCP server exposing all 7 independent skills as distinct tools.
+- [ ] Task: Implement `humanizer-orchestrate` swarming logic (agent-agnostic parallel execution) to call multiple sub-skills concurrently.
+- [ ] Task: Enforce JSON/XML structured outputs for all "Assess" mode responses.
+- [ ] Task: Conductor - User Manual Verification 'Phase 4: Model Context Protocol & Orchestrator' (Protocol in workflow.md)
+
+## Phase 5: SOTA Advanced Features
+- [ ] Task: Implement the "Self-Critique Loop" logic: routing outputs through an LLM verification pass before finalizing.
+- [ ] Task: Implement the Local Glossary / RAG Context loader (reading a `.humanizer-ignore` file to protect brand terminology).
+- [ ] Task: Implement the local SQLite Telemetry Logger to record "Reverted" or manually tweaked fixes.
+- [ ] Task: Conductor - User Manual Verification 'Phase 5: SOTA Advanced Features' (Protocol in workflow.md)
+
+## Phase 6: Academic Benchmarking & Launch
+- [ ] Task: Integrate TuringBench/Ghostbuster dataset loader into the test suite.
+- [ ] Task: Write a CI benchmark script that mathematically evaluates "Meaning Preservation" across generated changes.
+- [ ] Task: Update the primary `product.md` and `README.md` to formally document the V4 architecture and MCP installation method.
+- [ ] Task: Conductor - User Manual Verification 'Phase 6: Academic Benchmarking & Launch' (Protocol in workflow.md)
