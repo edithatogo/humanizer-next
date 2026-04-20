@@ -2,7 +2,7 @@
 
 **Track:** `repo-self-improvement_20260303`
 
-**Generated:** 2026-03-14T02:52:56.747Z
+**Generated:** 2026-04-20T10:27:37.802Z
 
 **Local Repository:** edithatogo/humanizer-next
 
@@ -26,31 +26,33 @@
 
 ## Local Repository Decisions
 
-- None
+- local #42: build(deps-dev): bump flatted from 3.3.3 to 3.4.2 in the npm_and_yarn group across 1 directory
+  Decision: DEFER
+  Why: No repo-specific automation rule exists for this PR yet. Review manually.
 
 ## Upstream Repository Decisions
 
-- upstream #58: docs: add MIT LICENSE file (#7)
-  Decision: DEFER
-  Why: Reasonable repo hygiene improvement, but lower priority than dependency maintenance and evidence-backed skill changes.
-- upstream #57: fix: remove horizontal rule separators from SKILL.md (#35)
+- upstream #96: feat: enforce absolute ban on em dashes and en dashes
   Decision: DEFER
   Why: No automation rule matched. Review manually.
-- upstream #56: feat: add hyphenated word pair overuse pattern (#42)
+- upstream #94: feat: add quality scoring, core principles, and 3 wiki-sourced patterns
   Decision: DEFER
   Why: Potentially useful, but it needs evidence review against the repo rubric: evidence quality, overlap with existing patterns, false-positive risk, and adapter impact.
-- upstream #52: feat: improve skill review score from 17% to 89%
+- upstream #91: Test
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #90: Updaed readme file
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #89: Improve README setup instructions for Claude Code skill detection
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #88: docs: add CHANGELOG.md
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #85: Add patterns 30-31, expand rules 9 and 14 (v2.6.0)
   Decision: DEFER
   Why: Potentially useful, but it needs evidence review against the repo rubric: evidence quality, overlap with existing patterns, false-positive risk, and adapter impact.
-- upstream #51: feat: Claude-specific humanizer rewrite — 34 patterns, severity ranking, mode system
+- upstream #84: fix: add content preservation rule and strengthen em dash handling
   Decision: DEFER
-  Why: Potentially useful, but it needs evidence review against the repo rubric: evidence quality, overlap with existing patterns, false-positive risk, and adapter impact.
-- upstream #49: fix: Claude compatibility
-  Decision: REJECT
-  Why: Compatibility fixes should be evaluated against the local adapter architecture, not cherry-picked blindly from the upstream single-skill format.
-- upstream #47: feat: add OpenCode support
-  Decision: REJECT
-  Why: OpenCode support is already implemented locally through the adapter distribution path, so this is not a missing capability in humanizer-next.
-- upstream #44: feat: live Wikipedia sync for auto-updating AI patterns (v2.3.0)
-  Decision: REJECT
-  Why: Live upstream fetches add runtime dependencies and instability to a skill-source repo that should stay deterministic and artifact-driven.
+  Why: No automation rule matched. Review manually.
