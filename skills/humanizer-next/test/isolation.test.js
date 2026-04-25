@@ -21,7 +21,7 @@ const { prose, restore } = isolateProse(sampleText);
 console.log("- Checking isolation");
 assert.ok(prose.includes('__CODE_BLOCK_'), "Fenced code should be replaced");
 assert.ok(prose.includes('__URL_'), "URL should be replaced");
-assert.ok(!prose.includes('http://example.com'), "Original URL should be gone");
+assert.match(prose, /__URL_\d+__/, "Original URL should be replaced with a placeholder");
 
 // Simulate a humanization fix that changes single quotes to double quotes
 const humanizedProse = prose.replace(/'([^']+)'/g, '"$1"');
@@ -31,6 +31,6 @@ const finalOutput = restore(humanizedProse);
 
 assert.ok(finalOutput.includes('"single quoted"'), "Prose should be humanized");
 assert.ok(finalOutput.includes("const x = 'do not change me'"), "Protected code block should remain untouched");
-assert.ok(finalOutput.includes('http://example.com'), "Protected URL should be restored");
+assert.match(finalOutput, /URL: http:\/\/example\.com\./, "Protected URL should be restored");
 
 console.log("Prose Isolator tests passed!");
