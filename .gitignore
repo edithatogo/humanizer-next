@@ -25,6 +25,9 @@ talk_raw.txt
 conductor/tracks/*/repo-data.json
 .github/generated/
 
+# Generated adapters (use npm run install:<platform>)
+adapters/
+
 # Test and debug files
 simple_test.js
 test_*.txt

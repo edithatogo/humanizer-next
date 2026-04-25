@@ -1,58 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":dependencyDashboard",
-    ":semanticCommits",
-    ":maintainLockFilesWeekly"
+    "config:base",
+    "group:monorepos"
   ],
-  "timezone": "Australia/Sydney",
-  "labels": ["dependencies"],
-  "rangeStrategy": "replace",
-  "prHourlyLimit": 0,
-  "prConcurrentLimit": 5,
-  "schedule": ["before 4am on monday"],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["before 4am on monday"]
-  },
   "packageRules": [
     {
-      "matchManagers": ["npm"],
-      "groupName": "npm non-major dependencies",
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": false
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
     },
     {
-      "matchManagers": ["github-actions"],
-      "groupName": "github-actions dependencies",
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "automergeType": "pr",
-      "platformAutomerge": true
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
-      "schedule": ["before 4am on monday"]
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
-      "matchPackageNames": ["@types/node", "eslint-config-prettier", "prettier"],
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-      "automergeType": "pr",
-      "platformAutomerge": true
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "labels": ["dependencies", "major-update"],
-      "dependencyDashboardApproval": true,
-      "automerge": false
-    },
-    {
-      "matchPackageNames": ["@changesets/cli"],
-      "enabled": false,
-      "description": "This repo ships skill artifacts via GitHub, not package releases."
+      "matchPaths": ["skills/**/package.json"],
+      "groupName": "humanizer-skills-dependencies",
+      "commitMessagePrefix": "chore(deps-skills):"
     }
   ]
 }

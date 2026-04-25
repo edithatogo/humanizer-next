@@ -1,31 +1,44 @@
+---
+module_id: reasoning
+version: 1.0.0
+description: Module for detecting and addressing LLM reasoning failures
+severity_levels:
+  - Critical
+  - High
+  - Medium
+  - Low
+---
+
 # Humanizer Reasoning Module: LLM Reasoning Failures
 
 This module identifies and addresses reasoning failures in Large Language Model (LLM) outputs that manifest as detectable patterns in the generated text.
 
-## DESCRIPTION
+## Description
 
-LLMs can exhibit various types of reasoning failures that affect the quality and reliability of their outputs. These failures often manifest in the generated text through specific patterns that can be identified and addressed.
+## Reasoning Failure Categories
 
-## REASONING FAILURE CATEGORIES
+### Pattern R1: Depth-Dependent Reasoning Failures
 
-### 1. Depth-Dependent Reasoning Failures
-
-- **Sign:** Accuracy decreases as reasoning chain lengthens
+- **Problem:** Accuracy decreases as reasoning chain lengthens
+- **Severity:** Medium
 - **Action:** Simplify complex explanations, remove tangential content, ensure focus
 
-### 2. Context-Switching Failures
+### Pattern R2: Context-Switching Failures
 
-- **Sign:** Difficulty maintaining coherence across different knowledge domains
+- **Problem:** Difficulty maintaining coherence across different knowledge domains
+- **Severity:** High
 - **Action:** Smooth transitions between topics, maintain consistent register and tone
 
-### 3. Temporal Reasoning Limitations
+### Pattern R3: Temporal Reasoning Limitations
 
-- **Sign:** Errors in temporal sequence or causal reasoning tasks
+- **Problem:** Errors in temporal sequence or causal reasoning tasks
+- **Severity:** Medium
 - **Action:** Clarify chronological order, strengthen causal connections
 
-### 4. Abstraction-Level Mismatches
+### Pattern R4: Abstraction-Level Mismatches
 
-- **Sign:** Difficulty maintaining appropriate level of abstraction
+- **Problem:** Difficulty maintaining appropriate level of abstraction
+- **Severity:** Medium
 - **Action:** Bridge abstraction gaps with clear connections
 
 ### 5. Logical Fallacy Susceptibility

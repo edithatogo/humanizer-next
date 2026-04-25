@@ -19,7 +19,7 @@ allowed-tools:
 adapter_metadata:
   skill_name: humanizer-pro
   skill_version: 2.3.0
-  last_synced: 2026-03-14
+  last_synced: 2026-04-25
   source_path: SKILL_PROFESSIONAL.md
   adapter_id: antigravity-skill-pro
   adapter_format: Antigravity skill
@@ -868,6 +868,8 @@ This skill is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/
 Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the mostො statistically likely result that applies to the widest variety of cases."
 
 ## RESEARCH AND EXTERNAL SOURCES
+
+> **Note:** Academic research in AI detection evolves rapidly. Recent 2025-2026 findings from ACL/EMNLP show 98-100% accuracy with new features (Terçon et al.). This section requires updating with current literature.
 
 While Wikipedia's "Signs of AI writing" remains a primary community-maintained source, the following academic and technical resources provide additional patterns and grounding for detection and humanization:
 

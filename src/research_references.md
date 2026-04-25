@@ -1,5 +1,7 @@
 ## RESEARCH AND EXTERNAL SOURCES
 
+> **Note:** Academic research in AI detection evolves rapidly. Recent 2025-2026 findings from ACL/EMNLP show 98-100% accuracy with new features (Terçon et al.). This section requires updating with current literature.
+
 While Wikipedia's "Signs of AI writing" remains a primary community-maintained source, the following academic and technical resources provide additional patterns and grounding for detection and humanization:
 
 ### 1. Academic Studies on Detection Unreliability

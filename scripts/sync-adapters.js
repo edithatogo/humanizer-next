@@ -100,7 +100,7 @@ const adapters = [
   },
   {
     name: 'Gemini Extension Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'GEMINI.md'),
+    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'SKILL.md'),
     source: standardContent,
     id: 'gemini-extension',
     format: 'Gemini extension',
@@ -108,7 +108,7 @@ const adapters = [
   },
   {
     name: 'Gemini Extension Pro',
-    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'GEMINI_PRO.md'),
+    path: path.join(REPO_ROOT, 'adapters', 'gemini-extension', 'SKILL_PROFESSIONAL.md'),
     source: proContent,
     id: 'gemini-extension-pro',
     format: 'Gemini extension',
@@ -120,30 +120,6 @@ const adapters = [
     source: standardContent,
     id: 'antigravity-rules-workflows',
     format: 'Antigravity rules/workflows',
-    base: 'SKILL.md',
-  },
-  {
-    name: 'Qwen CLI Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'qwen-cli', 'QWEN.md'),
-    source: standardContent,
-    id: 'qwen-cli',
-    format: 'Qwen CLI context',
-    base: 'SKILL.md',
-  },
-  {
-    name: 'Copilot Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'copilot', 'COPILOT.md'),
-    source: standardContent,
-    id: 'copilot',
-    format: 'Copilot instructions',
-    base: 'SKILL.md',
-  },
-  {
-    name: 'VSCode Standard',
-    path: path.join(REPO_ROOT, 'adapters', 'vscode', 'HUMANIZER.md'),
-    source: standardContent,
-    id: 'vscode',
-    format: 'VSCode markdown',
     base: 'SKILL.md',
   },
   {
@@ -186,6 +162,38 @@ const adapters = [
     format: 'OpenCode skill',
     base: 'SKILL.md',
   },
+  {
+    name: 'Cursor Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'cursor', 'SKILL.md'),
+    source: standardContent,
+    id: 'cursor',
+    format: 'Cursor skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Windsurf Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'windsurf', 'SKILL.md'),
+    source: standardContent,
+    id: 'windsurf',
+    format: 'Windsurf skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Zed Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'zed', 'SKILL.md'),
+    source: standardContent,
+    id: 'zed',
+    format: 'Zed skill',
+    base: 'SKILL.md',
+  },
+  {
+    name: 'Copilot Standard',
+    path: path.join(REPO_ROOT, 'adapters', 'copilot', 'SKILL.md'),
+    source: standardContent,
+    id: 'copilot',
+    format: 'GitHub Copilot custom instructions',
+    base: 'SKILL.md',
+  },
 ];
 
 // Optional: Global Home Directory Sync (SOTA approach)
@@ -198,6 +206,7 @@ if (SYNC_GLOBAL) {
     { tool: 'amp', dir: '.amp/skills' },
     { tool: 'opencode', dir: '.opencode/skills' },
     { tool: 'claude', dir: '.claude/skills' },
+    { tool: 'copilot', dir: '.github' },
     { tool: 'qwen', dir: '.qwen/skills' },
     { tool: 'codex', dir: '.codex/skills' },
   ].forEach(({ tool, dir }) => {
