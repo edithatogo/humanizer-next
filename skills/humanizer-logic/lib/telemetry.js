@@ -4,7 +4,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 
 class TelemetryLogger {
     constructor(logPath = '.humanizer-telemetry.json') {
@@ -20,7 +19,7 @@ class TelemetryLogger {
 
     /**
      * Logs a telemetry event.
-     * 
+     *
      * @param {Object} event { type: 'revert'|'manual_tweak', patternId: string, original: string, modified: string }
      */
     log(event) {

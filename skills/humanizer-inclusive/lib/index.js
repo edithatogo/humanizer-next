@@ -9,7 +9,7 @@ class InclusiveChecker {
      * @param {string} text
      * @returns {Object} { status: 'stub', flags: [] }
      */
-    assess(text) {
+    assess(_text) {
         return {
             status: 'stub',
             message: 'humanizer-inclusive is not yet fully implemented',

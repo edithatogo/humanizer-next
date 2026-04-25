@@ -6,7 +6,7 @@
 class BenchmarkLoader {
     /**
      * Parses a benchmark dataset sample.
-     * 
+     *
      * @param {string} rawData - Mocked raw data string (CSV/JSON)
      * @returns {Object[]} Normalized samples { text: string, label: 'ai'|'human' }
      */
@@ -29,7 +29,7 @@ class BenchmarkLoader {
      * Ghostbuster typically uses log-likelihood features.
      * We'll simulate loading these for our internal 'Read' score comparisons.
      */
-    loadGhostbusterFeatures(text) {
+    loadGhostbusterFeatures(_text) {
         return {
             perplexity: Math.random() * 100,
             burstiness: Math.random() * 50

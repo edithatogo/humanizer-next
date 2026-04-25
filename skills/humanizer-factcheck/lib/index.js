@@ -9,7 +9,7 @@ class FactChecker {
      * @param {string} text
      * @returns {Object} { status: 'stub', claims: [] }
      */
-    assess(text) {
+    assess(_text) {
         return {
             status: 'stub',
             message: 'humanizer-factcheck is not yet fully implemented',

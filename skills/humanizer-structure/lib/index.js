@@ -9,7 +9,7 @@ class StructureChecker {
      * @param {string} text
      * @returns {Object} { status: 'stub', issues: [] }
      */
-    assess(text) {
+    assess(_text) {
         return {
             status: 'stub',
             message: 'humanizer-structure is not yet fully implemented',

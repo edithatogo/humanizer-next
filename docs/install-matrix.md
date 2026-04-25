@@ -98,7 +98,7 @@ git pull && npm run sync
 
 Status: Officially supported
 
-### Install (Claude Desktop — MCP)
+### Install (Claude Desktop MCP)
 
 ```bash
 npm run install:mcp-server
@@ -106,7 +106,7 @@ npm run install:mcp-server
 
 This registers the Humanizer MCP Server in `~/AppData/Roaming/Claude/claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS).
 
-### Install (Claude Code — skill)
+### Install (Claude Code skill)
 
 ```bash
 npm run install:claude
@@ -383,7 +383,7 @@ git pull && npm run sync
 
 Status: Community/best effort
 
-Point the agent at `SKILL.md` directly — it is fully self-contained. No install script needed.
+Point the agent at `SKILL.md` directly. It's fully self-contained. No install script needed.
 
 ---
 
@@ -393,7 +393,7 @@ Point the agent at `SKILL.md` directly — it is fully self-contained. No instal
 npm run install:mcp-server
 ```
 
-Registers the Humanizer V4 orchestrator as an MCP tool server. Auto-detects Claude Desktop and Cursor. Prints the JSON config block for any other MCP-compatible agent.
+Registers the Humanizer V4 orchestrator as an MCP tool server. Detects Claude Desktop and Cursor automatically. Prints the JSON config block for any other MCP-compatible agent.
 
 ---
 

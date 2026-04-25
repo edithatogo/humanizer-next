@@ -33,7 +33,7 @@ The orchestrator allows parallel execution:
 // Example swarm dispatch
 await orchestrator.swarm({
   tools: ['humanizer-next', 'humanizer-logic'],
-  args: { text: "..." }
+  args: { text: '...' },
 });
 ```
 

@@ -62,7 +62,7 @@ class HumanizerMCPServer {
     /**
      * Simulation of message handling (callTool)
      */
-    async handleRequest(request) {
+    async handleRequest(_request) {
         // Standard MCP request handling logic
         return {
             content: [{ type: "text", text: "Successfully called tool" }]

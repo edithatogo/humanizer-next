@@ -38,5 +38,7 @@ if (!fs.existsSync(destDir)) {
 
 fs.copyFileSync(sourceAdapter, destFile);
 console.log(`✓ Humanizer installed as Copilot instructions → ${destFile}`);
-console.log(`\nTo activate: open VS Code with GitHub Copilot and the instructions will be auto-loaded.`);
+console.log(
+  `\nTo activate: open VS Code with GitHub Copilot and the instructions will be auto-loaded.`
+);
 console.log(`Docs: https://code.visualstudio.com/docs/copilot/copilot-customization`);

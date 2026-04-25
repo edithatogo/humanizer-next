@@ -21,18 +21,24 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
-const MCP_SERVER_PATH = path.join(REPO_ROOT, 'skills', 'humanizer-orchestrate', 'lib', 'mcp-server.js');
+const MCP_SERVER_PATH = path.join(
+  REPO_ROOT,
+  'skills',
+  'humanizer-orchestrate',
+  'lib',
+  'mcp-server.js'
+);
 
 const MCP_ENTRY = {
-  "humanizer": {
-    "command": "node",
-    "args": [MCP_SERVER_PATH],
-    "description": "Humanizer V4 - 8-skill modular humanization suite"
-  }
+  humanizer: {
+    command: 'node',
+    args: [MCP_SERVER_PATH],
+    description: 'Humanizer V4 - 8-skill modular humanization suite',
+  },
 };
 
-console.log("=== Humanizer MCP Server Installer ===\n");
-console.log("MCP Server path:", MCP_SERVER_PATH);
+console.log('=== Humanizer MCP Server Installer ===\n');
+console.log('MCP Server path:', MCP_SERVER_PATH);
 
 // --- Claude Desktop ---
 const claudeConfigPaths = [
@@ -59,7 +65,7 @@ for (const configPath of claudeConfigPaths) {
 }
 
 if (!claudeInstalled) {
-  console.log("ℹ Claude Desktop config not found (not installed or different path).");
+  console.log('ℹ Claude Desktop config not found (not installed or different path).');
 }
 
 // --- Cursor ---
@@ -75,7 +81,7 @@ if (fs.existsSync(path.dirname(cursorConfig))) {
 }
 
 // --- Manual fallback ---
-console.log("\n--- Manual installation (any MCP-compatible agent) ---");
+console.log('\n--- Manual installation (any MCP-compatible agent) ---');
 console.log("Add this to your agent's MCP config file:\n");
 console.log(JSON.stringify({ mcpServers: MCP_ENTRY }, null, 2));
-console.log("\nDocs: https://modelcontextprotocol.io/docs/concepts/clients");
+console.log('\nDocs: https://modelcontextprotocol.io/docs/concepts/clients');

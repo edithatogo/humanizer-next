@@ -18,4 +18,5 @@ function fixFragmentedHeaders(text) {
 console.log("Running humanizer-cite tests...");
 assert.strictEqual(fixSingleQuotes("'Hello'"), '"Hello"');
 assert.strictEqual(fixCurlyQuotes("“Hello”"), '"Hello"');
+assert.strictEqual(fixFragmentedHeaders("## Heading"), "Heading");
 console.log("humanizer-cite tests passed!");

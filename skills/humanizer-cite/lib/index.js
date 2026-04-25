@@ -9,7 +9,7 @@ class CitationNormalizer {
      * @param {string} text
      * @returns {Object} { status: 'stub', issues: [] }
      */
-    assess(text) {
+    assess(_text) {
         return {
             status: 'stub',
             message: 'humanizer-cite is not yet fully implemented',

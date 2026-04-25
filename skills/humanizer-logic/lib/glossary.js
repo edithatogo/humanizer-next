@@ -4,7 +4,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 
 class GlossaryLoader {
     constructor(ignoreFilePath = '.humanizer-ignore') {
@@ -27,8 +26,8 @@ class GlossaryLoader {
 
     /**
      * Protects glossary terms in the text by wrapping them or returning a regex.
-     * 
-     * @param {string} text 
+     *
+     * @param {string} text
      * @returns {string} Text with protected terms
      */
     protect(text) {

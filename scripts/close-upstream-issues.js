@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const closeMessage = `
 Thank you for your contribution!
 
@@ -10,6 +8,6 @@ Your feedback/logic has either been ported into the V4 test suites or is natural
 We are bulk-closing open issues to finalize the transition. Please open a new issue on the V4 repository if the problem persists under the new MCP infrastructure.
 `;
 
-console.log("simulating bulk closing of obsolete PRs and issues...");
-console.log("Message to be posted:\n", closeMessage);
-console.log("Issues closed successfully (Simulation).");
+console.log('simulating bulk closing of obsolete PRs and issues...');
+console.log('Message to be posted:\n', closeMessage);
+console.log('Issues closed successfully (Simulation).');
