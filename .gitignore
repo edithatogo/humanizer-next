@@ -18,6 +18,7 @@ pnpm-debug.log*
 *.tmp
 *.temp
 *.log
+tsconfig.tsbuildinfo
 hist.html
 page_raw.txt
 talk_headings.txt
