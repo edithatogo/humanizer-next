@@ -2,7 +2,7 @@
 
 **Track:** `repo-self-improvement_20260303`
 
-**Generated:** 2026-04-20T10:27:37.802Z
+**Generated:** 2026-04-26T01:04:53.065Z
 
 **Local Repository:** edithatogo/humanizer-next
 
@@ -26,12 +26,22 @@
 
 ## Local Repository Decisions
 
-- local #42: build(deps-dev): bump flatted from 3.3.3 to 3.4.2 in the npm_and_yarn group across 1 directory
-  Decision: DEFER
-  Why: No repo-specific automation rule exists for this PR yet. Review manually.
+- None
 
 ## Upstream Repository Decisions
 
+- upstream #103: feat: add content-aware first-person experiential voice mode
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #102: feat(integrations): add Streamlit UI wrapper for the humanizer skill
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #99: Add optional Positive Voice Guide section
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
+- upstream #98: feat: AI-iness density pre-check for adaptive pass strength (v2.6.0)
+  Decision: DEFER
+  Why: No automation rule matched. Review manually.
 - upstream #96: feat: enforce absolute ban on em dashes and en dashes
   Decision: DEFER
   Why: No automation rule matched. Review manually.
@@ -42,17 +52,5 @@
   Decision: DEFER
   Why: No automation rule matched. Review manually.
 - upstream #90: Updaed readme file
-  Decision: DEFER
-  Why: No automation rule matched. Review manually.
-- upstream #89: Improve README setup instructions for Claude Code skill detection
-  Decision: DEFER
-  Why: No automation rule matched. Review manually.
-- upstream #88: docs: add CHANGELOG.md
-  Decision: DEFER
-  Why: No automation rule matched. Review manually.
-- upstream #85: Add patterns 30-31, expand rules 9 and 14 (v2.6.0)
-  Decision: DEFER
-  Why: Potentially useful, but it needs evidence review against the repo rubric: evidence quality, overlap with existing patterns, false-positive risk, and adapter impact.
-- upstream #84: fix: add content preservation rule and strengthen em dash handling
   Decision: DEFER
   Why: No automation rule matched. Review manually.
