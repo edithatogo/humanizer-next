@@ -8,7 +8,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
-**None** - All tracks complete! ✓
+## [~] Track: Modular V4 Architecture & Ecosystem Overhaul
+*Link: [./conductor/tracks/v4-architecture_20260415/](./conductor/tracks/v4-architecture_20260415/)*
 
 **Latest Completion:** self-improvement-cycle2_20260304, upstream-pr-adoption_20260304 (2026-03-04)
 
@@ -114,14 +115,6 @@ Archive includes:
 - 16 completed tracks
 - Full implementation history
 - All spec.md, plan.md, metadata.json files
-
----
-
-## Active Tracks
-
-**1 Active Track:**
-
-- `repo-self-improvement_20260303` - Repository self-improvement, upstream alignment, and Ralph Loop integration (see above)
 
 ---
 

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2021",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "allowJs": true,
     "checkJs": false,

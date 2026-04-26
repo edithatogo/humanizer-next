@@ -33,8 +33,15 @@ if (!run('node scripts/validate-adapters.js')) success = false;
 console.log('\n[3/3] Verifying generated artifacts...');
 const expectedAdapters = [
   'adapters/antigravity-skill/SKILL.md',
-  'adapters/gemini-extension/GEMINI_PRO.md',
-  'adapters/vscode/HUMANIZER.md',
+  'adapters/gemini-extension/SKILL_PROFESSIONAL.md',
+  'adapters/amp/SKILL.md',
+  'adapters/claude/SKILL.md',
+  'adapters/cursor/SKILL.md',
+  'adapters/cline/SKILL.md',
+  'adapters/kilo/SKILL.md',
+  'adapters/opencode/SKILL.md',
+  'adapters/windsurf/SKILL.md',
+  'adapters/zed/SKILL.md',
 ];
 
 expectedAdapters.forEach((p) => {

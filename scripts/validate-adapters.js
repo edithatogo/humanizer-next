@@ -9,12 +9,18 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 const adapters = [
   { path: 'adapters/antigravity-skill/SKILL.md', base: 'SKILL.md' },
   { path: 'adapters/antigravity-skill/SKILL_PROFESSIONAL.md', base: 'SKILL_PROFESSIONAL.md' },
-  { path: 'adapters/gemini-extension/GEMINI.md', base: 'SKILL.md' },
-  { path: 'adapters/gemini-extension/GEMINI_PRO.md', base: 'SKILL_PROFESSIONAL.md' },
+  { path: 'adapters/gemini-extension/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/gemini-extension/SKILL_PROFESSIONAL.md', base: 'SKILL_PROFESSIONAL.md' },
   { path: 'adapters/antigravity-rules-workflows/README.md', base: 'SKILL.md' },
-  { path: 'adapters/qwen-cli/QWEN.md', base: 'SKILL.md' },
-  { path: 'adapters/copilot/COPILOT.md', base: 'SKILL.md' },
-  { path: 'adapters/vscode/HUMANIZER.md', base: 'SKILL.md' },
+  { path: 'adapters/claude/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/cline/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/kilo/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/amp/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/opencode/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/cursor/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/windsurf/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/zed/SKILL.md', base: 'SKILL.md' },
+  { path: 'adapters/copilot/SKILL.md', base: 'SKILL.md' },
 ];
 
 let failed = false;

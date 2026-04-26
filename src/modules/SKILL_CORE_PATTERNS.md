@@ -1,8 +1,8 @@
 ---
 module_id: core_patterns
-version: 3.1.0
+version: 3.2.0
 description: Core AI writing pattern detection (always applied)
-patterns: 30
+patterns: 34
 severity_levels:
   - Critical
   - High
@@ -631,6 +631,7 @@ The system processes requests in under 100ms.
 - Pattern 1: Undue emphasis on significance
 - Pattern 3: Superficial -ing analyses
 - Pattern 4: Promotional language
+- Pattern 31: Extended thinking tags
 
 ### Medium (moderate AI signals)
 
@@ -640,6 +641,8 @@ The system processes requests in under 100ms.
 - Pattern 7: Overused AI vocabulary
 - Pattern 8: Copula avoidance
 - Pattern 11: Elegant variation
+- Pattern 32: JSON mode artifacts
+- Pattern 33: Tool use documentation
 
 ### Low (weak AI signals)
 
@@ -659,10 +662,110 @@ The system processes requests in under 100ms.
 - Pattern 28: Persuasive tropes
 - Pattern 29: Signposting
 - Pattern 30: Fragmented headers
+- Pattern 34: Over-polished conclusions
+- Pattern 14: Overuse of boldface
+- Pattern 15: Inline-header lists
+- Pattern 16: Title case in headings
+- Pattern 17: Emojis
+- Pattern 18: Quotation mark issues
+- Pattern 22: Filler phrases
+- Pattern 23: Excessive hedging
+- Pattern 24: Generic positive conclusions
+- Pattern 26: Over-structuring
+- Pattern 28: Persuasive tropes
+- Pattern 29: Signposting
+- Pattern 30: Fragmented headers
 
 ---
 
 _Module Version: 3.1.0_
-_Last Updated: 2026-03-04_
-_Patterns: 30 (27 original + 3 from upstream PR #39)_
-_Source: Wikipedia "Signs of AI writing" + Humanizer community contributions_
+_Last Updated: 2026-04-04_
+_Patterns: 34 (30 original + 4 new for 2025-2026 LLM variants)_
+_Source: Wikipedia "Signs of AI writing" + Humanizer community contributions + 2025-2026 LLM analysis_
+
+---
+
+### Pattern 31: Extended Thinking Tags
+
+**Problem:** Modern reasoning models (GPT-4.5, Claude 4, DeepSeek) produce visible `<thinking>`, `<reflection>`, or `<analysis>` tags in output. These are model introspection artifacts, not user content.
+
+**Severity:** High
+
+**Words to watch:** `<thinking>`, `</thinking>`, `<reflection>`, `<reflection>`, `<analysis>`, `</analysis>`, `<reasoning>`, `</reasoning>`
+
+**Before:**
+
+> The solution involves... `<thinking>`I need to consider the edge cases...`</thinking>` Let me explain.
+
+**After:**
+
+> The solution involves several key factors. Let me explain.
+
+**Not a problem when:** Model is explicitly asked to show its reasoning in structured format.
+
+---
+
+### Pattern 32: JSON Mode Artifacts
+
+**Problem:** Models forced into JSON output often produce overly structured responses with explicit JSON schema comments, "Here is the JSON" preambles, or unnecessary escaping.
+
+**Severity:** Medium
+
+**Words to watch:** `"Here is the"`, `"```json"`, `"```"`, `"JSON:"`, `"as requested"`
+
+**Before:**
+
+> Here's the JSON as you requested:
+>
+> ```json
+> { "name": "example", "value": 123 }
+> ```
+
+**After:**
+
+> ```json
+> { "name": "example", "value": 123 }
+> ```
+
+**Not a problem when:** Actual API responses or configuration files.
+
+---
+
+### Pattern 33: Tool Use Documentation
+
+**Problem:** Models with tool-use capabilities add verbose "I will use tool X" preambles before executing actions, especially in agentic workflows.
+
+**Severity:** Medium
+
+**Words to watch:** `"I will use"`, `"I am going to use"`, `"Calling function"`, `"Executing"`, `"Running"`, `"invoking"`
+
+**Before:**
+
+> I will use the file read tool to access the configuration.
+> Let me read the file now.
+
+**After:**
+
+> Reading the configuration file now.
+
+**Not a problem when:** Explicit tutorials or documentation about tool usage.
+
+---
+
+### Pattern 34: Over-Polished Conclusions
+
+**Problem:** Newer models produce excessively diplomatic conclusions with "hope this helps", "please let me know if you need anything else", and other service-industry language that feels inhuman.
+
+**Severity:** Low
+
+**Words to watch:** `"hope this helps"`, `"let me know if"`, `"happy to help"`, `"feel free to"`, `"don't hesitate to"`, `"anytime"`
+
+**Before:**
+
+> That should solve your issue! Let me know if you run into anything else. Happy to help!
+
+**After:**
+
+> That should solve your issue.
+
+**Not a problem when:** Genuine customer service contexts.

@@ -1,0 +1,2 @@
+startCommand: node skills/humanizer-orchestrate/lib/mcp-server.js
+build: npm install
