@@ -1,23 +1,42 @@
-import { execSync } from 'child_process';
+import fs from 'fs';
+import { spawnSync } from 'child_process';
 
-function run(command) {
-  return execSync(command, { encoding: 'utf8' }).trim();
+const TARGET_FILES = ['SKILL.md', 'SKILL_PROFESSIONAL.md', 'AGENTS.md', 'README.md'];
+
+function readTargets() {
+  const snapshot = new Map();
+  for (const file of TARGET_FILES) {
+    snapshot.set(file, fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null);
+  }
+  return snapshot;
+}
+
+function runNode(scriptPath) {
+  const result = spawnSync(process.execPath, [scriptPath], {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+  });
+
+  if (result.status !== 0) {
+    process.exit(result.status ?? 1);
+  }
 }
 
 function main() {
-  const targetPaths = 'SKILL.md SKILL_PROFESSIONAL.md AGENTS.md README.md adapters .agent/skills';
-  const before = run(`git diff --name-only -- ${targetPaths}`);
+  const before = readTargets();
 
-  run('node scripts/sync-adapters.js');
+  runNode('scripts/compile-skill.js');
 
-  const after = run(`git diff --name-only -- ${targetPaths}`);
-  if (after === before) {
+  const after = readTargets();
+  const drifted = TARGET_FILES.filter((file) => before.get(file) !== after.get(file));
+
+  if (drifted.length === 0) {
     console.log('Sync outputs are up to date.');
     return;
   }
 
   console.error('Sync drift detected in generated skill artifacts:');
-  console.error(after);
+  console.error(drifted.join('\n'));
   process.exit(1);
 }
 

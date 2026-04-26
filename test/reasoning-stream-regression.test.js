@@ -1,6 +1,5 @@
 /**
- * Regression and Compatibility Tests for Humanizer Reasoning Stream
- * These tests ensure that adding the reasoning stream doesn't break existing humanizer behavior
+ * Regression tests for Humanizer reasoning and source coverage
  */
 
 import fs from 'fs';
@@ -134,36 +133,5 @@ for (const sourcePath of sourceFilesToCheck) {
 }
 
 console.log(`Source files tests: ${sourcesExist}/${sourceFilesToCheck.length} passed`);
-
-// Test 5: Verify that adapters include reasoning module reference
-console.log('\nTest 5: Verifying adapters include reasoning module reference');
-
-const adapterFilesToCheck = [
-  './SKILL.md',
-  './SKILL_PROFESSIONAL.md',
-  './adapters/antigravity-skill/SKILL.md',
-  './adapters/antigravity-skill/SKILL_PROFESSIONAL.md',
-  './adapters/gemini-extension/GEMINI.md',
-  './adapters/gemini-extension/GEMINI_PRO.md',
-];
-
-let adaptersUpdated = 0;
-for (const adapterPath of adapterFilesToCheck) {
-  if (fs.existsSync(adapterPath)) {
-    const content = fs.readFileSync(adapterPath, 'utf8');
-    if (content.includes('Reasoning Module') || content.includes('SKILL_REASONING')) {
-      console.log(`✓ ${adapterPath}: Contains reasoning module reference`);
-      adaptersUpdated++;
-    } else {
-      console.log(`⚠ ${adapterPath}: May not contain reasoning module reference`);
-    }
-  } else {
-    console.log(`✗ ${adapterPath}: File does not exist`);
-  }
-}
-
-console.log(
-  `Adapter updates: ${adaptersUpdated}/${adapterFilesToCheck.length} with reasoning module reference`
-);
 
 console.log('\nAll regression and compatibility tests completed.');

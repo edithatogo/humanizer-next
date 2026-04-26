@@ -69,38 +69,6 @@ function readModule(modulePath, required = false) {
 }
 
 /**
- * Find all adapter files dynamically
- */
-function findAdapters() {
-  const adapters = [];
-  const adapterDirs = [
-    '.agent/skills/humanizer',
-    ...fs
-      .readdirSync(path.join(ROOT_DIR, 'adapters'))
-      .filter((d) => fs.statSync(path.join(ROOT_DIR, 'adapters', d)).isDirectory())
-      .map((d) => `adapters/${d}`),
-  ];
-
-  for (const dir of adapterDirs) {
-    const fullPath = path.join(ROOT_DIR, dir);
-    if (!fs.existsSync(fullPath)) continue;
-
-    const files = fs.readdirSync(fullPath);
-    for (const file of files) {
-      if (file.endsWith('.md')) {
-        const filePath = path.join(fullPath, file);
-        const content = fs.readFileSync(filePath, 'utf-8');
-        if (content.includes('skill_version:') || content.includes('skill_name:')) {
-          adapters.push(filePath);
-        }
-      }
-    }
-  }
-
-  return adapters;
-}
-
-/**
  * Extract frontmatter from module
  */
 function extractFrontmatter(content) {
@@ -363,33 +331,6 @@ Vary sentence rhythm by mixing short and long lines. Use specific details instea
 }
 
 /**
- * Update adapter frontmatter with new version
- */
-function updateAdapterMetadata(version) {
-  console.log('\n=== Updating Adapter Metadata ===');
-
-  const adapters = findAdapters();
-  console.log(`✓ Found ${adapters.length} adapter files`);
-
-  let updated = 0;
-  for (const adapterPath of adapters) {
-    let content = fs.readFileSync(adapterPath, 'utf-8');
-    const oldVersion = content.match(/skill_version: ([\d.]+)/);
-
-    if (oldVersion && oldVersion[1] !== version) {
-      content = content.replace(/skill_version: [\d.]+/, `skill_version: ${version}`);
-      fs.writeFileSync(adapterPath, content, 'utf-8');
-      console.log(`✓ Updated ${adapterPath}: ${oldVersion[1]} → ${version}`);
-      updated++;
-    }
-  }
-
-  if (updated === 0) {
-    console.log('✓ All adapters up to date');
-  }
-}
-
-/**
  * Main compilation process
  */
 function compile() {
@@ -415,17 +356,10 @@ function compile() {
     fs.writeFileSync(proPath, proContent, 'utf-8');
     console.log(`✓ Written: ${OUTPUT.skillPro}`);
 
-    // Extract version for adapter updates
-    const versionMatch = proContent.match(/version: ([\d.]+)/);
-    const version = versionMatch ? versionMatch[1] : '3.0.0';
-
-    // Update adapter metadata
-    updateAdapterMetadata(version);
-
     console.log('\n╔════════════════════════════════════════╗');
     console.log('║  ✓ Compilation Complete              ║');
     console.log('╚════════════════════════════════════════╝');
-    console.log(`\nVersion: ${version}`);
+    console.log(`\nVersion: ${proContent.match(/version: ([\d.]+)/)?.[1] ?? '3.0.0'}`);
     console.log('Status: Phase 4 - Assembled from Modules');
     console.log('Next: Test compiled output and run validation');
   } catch (error) {

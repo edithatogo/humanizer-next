@@ -1,57 +1,36 @@
-import { execSync } from 'child_process';
-import fs from 'fs';
+import { spawnSync } from 'child_process';
 
 console.log('--- Integration Testing Start ---');
 
 /**
- * Run a shell command and inherit stdio
- * @param {string} cmd
+ * Run a Node script and inherit stdio
+ * @param {string} scriptPath
  * @returns {boolean}
  */
-function run(cmd) {
-  console.log(`Running: ${cmd}`);
-  try {
-    execSync(cmd, { stdio: 'inherit' });
-    return true;
-  } catch {
-    console.error(`Command failed: ${cmd}`);
+function run(scriptPath) {
+  console.log(`Running: ${scriptPath}`);
+  const result = spawnSync(process.execPath, [scriptPath], {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+  });
+
+  if (result.status !== 0) {
+    console.error(`Command failed: ${scriptPath}`);
     return false;
   }
+
+  return true;
 }
 
 let success = true;
 
-// 1. Build Test
-console.log('\n[1/3] Verifying sync logic...');
-if (!run('node scripts/sync-adapters.js')) success = false;
+// 1. Build and sync check
+console.log('\n[1/2] Verifying core sync logic...');
+if (!run('scripts/check-sync-clean.js')) success = false;
 
-// 2. Validation Test
-console.log('\n[2/3] Verifying metadata validation...');
-if (!run('node scripts/validate-adapters.js')) success = false;
-
-// 3. Artifact verification
-console.log('\n[3/3] Verifying generated artifacts...');
-const expectedAdapters = [
-  'adapters/antigravity-skill/SKILL.md',
-  'adapters/gemini-extension/SKILL_PROFESSIONAL.md',
-  'adapters/amp/SKILL.md',
-  'adapters/claude/SKILL.md',
-  'adapters/cursor/SKILL.md',
-  'adapters/cline/SKILL.md',
-  'adapters/kilo/SKILL.md',
-  'adapters/opencode/SKILL.md',
-  'adapters/windsurf/SKILL.md',
-  'adapters/zed/SKILL.md',
-];
-
-expectedAdapters.forEach((p) => {
-  if (fs.existsSync(p)) {
-    console.log(`  OK: ${p}`);
-  } else {
-    console.error(`  MISSING: ${p}`);
-    success = false;
-  }
-});
+// 2. Docs validation
+console.log('\n[2/2] Verifying documentation validation...');
+if (!run('scripts/validate-docs.js')) success = false;
 
 if (!success) {
   console.error('\n--- INTEGRATION TESTS FAILED ---');

@@ -133,21 +133,16 @@ Archive includes:
 - `SKILL_PROFESSIONAL.md` - Router with reasoning module
 - `SKILL_REASONING.md` - Reasoning failures module
 
-### Adapters (12 platforms)
-- Qwen CLI, Copilot, VS Code, Claude, Cline, Kilo, Amp, OpenCode
-- Antigravity Skill, Antigravity Rules/Workflows
-- Gemini Extension, Codex
-
 ### Documentation
 - `docs/llm-reasoning-failures-humanizer.md`
 - `docs/reasoning-failures-taxonomy.md`
 - `docs/TAXONOMY_CHANGELOG.md`
-- `docs/install-matrix.md`
 - `docs/skill-distribution.md`
 
 ### Scripts
-- `scripts/sync-adapters.js` - Adapter synchronization
-- `scripts/validate-adapters.js` - Adapter validation
+- `scripts/compile-skill.js` - Skill compilation
+- `scripts/check-sync-clean.js` - Sync drift check
+- `scripts/validate-docs.js` - Documentation validation
 - `scripts/run-tests.js` - Test runner
 - `scripts/research/citation-normalize.js` - Citation helper
 

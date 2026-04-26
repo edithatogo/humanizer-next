@@ -6,26 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 
-const REQUIRED_DOCS = ['README.md', 'docs/install-matrix.md', 'docs/skill-distribution.md'];
-const REQUIRED_REFERENCE_DOCS = [
-  'docs/skill-distribution.md',
-  'adapters/antigravity-skill/README.md',
-];
-const TOOL_SECTIONS = [
-  '## Antigravity (skill)',
-  '## Antigravity (rules/workflows)',
-  '## Claude',
-  '## GitHub Copilot',
-  '## Cursor',
-  '## Windsurf',
-  '## Cline',
-  '## Kilo',
-  '## Amp',
-  '## OpenCode',
-  '## Zed',
-  '## Gemini CLI / Extension',
-];
-const REQUIRED_SUBSECTIONS = ['### Install', '### Verify', '### Update', '### Uninstall'];
+const REQUIRED_DOCS = ['README.md', 'AGENTS.md', 'docs/skill-distribution.md'];
+const REQUIRED_REFERENCE_DOCS = ['docs/skill-distribution.md'];
 
 let failed = false;
 
@@ -90,38 +72,13 @@ for (const doc of REQUIRED_DOCS) {
   }
 }
 
-if (fileExists('docs/install-matrix.md')) {
-  const matrix = readFile('docs/install-matrix.md');
-
-  for (const section of TOOL_SECTIONS) {
-    if (!matrix.includes(section)) {
-      fail(`Missing tool section in docs/install-matrix.md: ${section}`);
-    }
-  }
-
-  for (const subsection of REQUIRED_SUBSECTIONS) {
-    const count = (
-      matrix.match(new RegExp(subsection.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g')) || []
-    ).length;
-    if (count < TOOL_SECTIONS.length) {
-      fail(
-        `Expected at least ${TOOL_SECTIONS.length} occurrences of '${subsection}', found ${count}`
-      );
-    }
-  }
-}
-
 for (const doc of REQUIRED_REFERENCE_DOCS) {
   if (!fileExists(doc)) {
     continue;
   }
-  const content = readFile(doc);
-  if (!content.includes('docs/install-matrix.md')) {
-    fail(`Missing canonical install-matrix reference in ${doc}`);
-  }
 }
 
-for (const doc of REQUIRED_DOCS.concat(['adapters/antigravity-skill/README.md'])) {
+for (const doc of REQUIRED_DOCS) {
   if (fileExists(doc)) {
     checkInternalLinks(doc);
   }

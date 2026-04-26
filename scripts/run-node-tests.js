@@ -19,7 +19,7 @@ if (testFiles.length === 0) {
   process.exit(1);
 }
 
-const result = spawnSync(process.execPath, ['--test', ...testFiles], {
+const result = spawnSync(process.execPath, ['--test', '--test-isolation=none', ...testFiles], {
   cwd: REPO_ROOT,
   stdio: 'inherit',
 });
