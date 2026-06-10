@@ -12,12 +12,12 @@ Workflow: each task gets its own commit; the task line gets the 7-char SHA appen
 - [x] Task: Port upstream Detection Guidance (false positives, human-writing signs, LLM idiolects) into `src/modules/` [708908c]
 - [x] Task: Add `LICENSE` at repo root (match upstream license family) [7079494]
 - [x] Task: Evaluate upstream issues #137, #130, #93 and record adopt/defer decisions in `conductor/tracks/modernization_20260610/upstream-decisions.md` [50a9994]
-- [~] Task: Recompile (`npm run sync`), update pattern counts in README/docs, run `npm run validate`
-- [ ] Task: Conductor - Phase Verification and Review of Phase 1
+- [x] Task: Recompile (`npm run sync`), update pattern counts in README/docs, run `npm run validate` [d8fb560]
+- [x] Task: Conductor - Phase Verification and Review of Phase 1
 
 ## Phase 2: Sourceright Extraction
 
-- [ ] Task: Remove `humanizer-cite` registration from `skills/humanizer-orchestrate/lib/mcp-server.js` and update orchestrate tests (8 tools to 7)
+- [~] Task: Remove `humanizer-cite` registration from `skills/humanizer-orchestrate/lib/mcp-server.js` and update orchestrate tests (8 tools to 7)
 - [ ] Task: Delete `skills/humanizer-cite/` (package.json, lib, tests)
 - [ ] Task: Delete `experiments/citation_ref_manager/` (entire tree)
 - [ ] Task: Delete `scripts/research/citation-normalize.js` and remove its listing from `conductor/tracks.md` key deliverables
