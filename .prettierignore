@@ -1,0 +1,5 @@
+# Generated skill outputs are produced by scripts/compile-skill.js.
+# They are committed after `npm run sync` and must match compiler emission exactly for check-sync-clean.js.
+# Prettier is run on source (src/, scripts/, tests/, etc) but we do not reformat the concat outputs (to avoid spurious drift in the sync check during pre-commit hooks).
+SKILL.md
+SKILL_PROFESSIONAL.md

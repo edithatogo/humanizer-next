@@ -2,7 +2,7 @@
 module_id: core_patterns
 version: 3.2.0
 description: Core AI writing pattern detection (always applied)
-patterns: 34
+patterns: 37
 severity_levels:
   - Critical
   - High
@@ -663,6 +663,9 @@ The system processes requests in under 100ms.
 - Pattern 29: Signposting
 - Pattern 30: Fragmented headers
 - Pattern 34: Over-polished conclusions
+- Pattern 35: Manufactured punchlines and staccato drama (Upstream #31)
+- Pattern 36: Aphorism formulas (Upstream #32)
+- Pattern 37: Conversational rhetorical openers (Upstream #33)
 - Pattern 14: Overuse of boldface
 - Pattern 15: Inline-header lists
 - Pattern 16: Title case in headings
@@ -680,7 +683,7 @@ The system processes requests in under 100ms.
 
 _Module Version: 3.1.0_
 _Last Updated: 2026-04-04_
-_Patterns: 34 (30 original + 4 new for 2025-2026 LLM variants)_
+_Patterns: 37 (30 core + 4 local LLM variants + 3 upstream v2.8.0 style cadence: 35-37)_
 _Source: Wikipedia "Signs of AI writing" + Humanizer community contributions + 2025-2026 LLM analysis_
 
 ---
@@ -769,3 +772,57 @@ _Source: Wikipedia "Signs of AI writing" + Humanizer community contributions + 2
 > That should solve your issue.
 
 **Not a problem when:** Genuine customer service contexts.
+
+---
+
+### Pattern 35: Manufactured Punchlines and Staccato Drama (Upstream #31)
+
+**Problem:** LLMs often make every sentence land like a quotable closer, then stack short declarative fragments to manufacture drama. A single short sentence for emphasis is fine; a run of them starts to sound engineered.
+
+**Severity:** Low
+
+**Before:**
+
+> Then AlphaEvolve arrived. It had no preference for symmetry. No aesthetic prior. No nostalgia for human taste. The old rules were gone.
+
+**After:**
+
+> AlphaEvolve changed the search because it did not favor symmetry or human-looking designs. That made some of the older assumptions less useful.
+
+---
+
+### Pattern 36: Aphorism Formulas (Upstream #32)
+
+**Words to watch:** X is the Y of Z, X becomes a trap, X is not a tool but a mirror, the language of, the currency of, the architecture of
+
+**Problem:** LLMs turn ordinary claims into reusable aphorisms that sound profound without adding precision. Replace the formula with the concrete claim it is gesturing at.
+
+**Severity:** Low
+
+**Before:**
+
+> Symmetry is the language of trust. Efficiency becomes a trap when teams forget the human layer.
+
+**After:**
+
+> Symmetric layouts often feel more predictable to users. Teams can over-optimize workflows and miss how people actually use them.
+
+---
+
+### Pattern 37: Conversational Rhetorical Openers (Upstream #33)
+
+**Phrases to watch:** Honestly?, Look, Here's the thing, The thing is, Let's be honest, Real talk (when used as standalone hooks or fake-candid pauses before an ordinary point).
+
+**Problem:** LLMs open with a fake-candid hook to manufacture intimacy before delivering a routine claim. The tell is the theatrical pause-and-reveal: a one-word question or aside, then the "real" answer. A person being honest usually just says the thing.
+
+**Severity:** Low
+
+**Before:**
+
+> Is it worth the price? Honestly? It depends on how often you'll use it.
+
+**After:**
+
+> Whether it's worth the price depends on how often you'll use it.
+
+**Not a problem when:** Genuine conversational speech or quoted dialogue.
