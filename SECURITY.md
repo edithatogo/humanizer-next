@@ -2,12 +2,13 @@
 
 ## Reporting a Vulnerability
 
-We take the security of Humanizer seriously. If you believe you've found a security vulnerability, please follow these guidelines:
+We take the security of Authentext seriously. If you believe you've found a security vulnerability, please follow these guidelines:
 
 ### How to Report
 
 **Preferred Method:** Use GitHub's private vulnerability reporting feature:
-1. Go to the [Security tab](https://github.com/edithatogo/humanizer-next/security)
+
+1. Go to the [Security tab](https://github.com/edithatogo/authentext-next/security)
 2. Click "Report a vulnerability"
 3. Provide details about the vulnerability
 
@@ -16,6 +17,7 @@ We take the security of Humanizer seriously. If you believe you've found a secur
 ### What to Include
 
 Please provide as much information as possible:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Affected versions
@@ -31,7 +33,7 @@ Please provide as much information as possible:
 ### Severity Levels
 
 | Severity | Response Time | Resolution Target |
-|----------|---------------|-------------------|
+| :--- | :--- | :--- |
 | Critical | 24 hours | 7 days |
 | High | 48 hours | 14 days |
 | Medium | 5 days | 30 days |
@@ -54,7 +56,7 @@ Please provide as much information as possible:
 
 ### Security Best Practices for Users
 
-While we work to keep Humanizer secure, please also follow these best practices:
+While we work to keep Authentext secure, please also follow these best practices:
 
 1. **Keep Updated:** Always use the latest version
 2. **Review Permissions:** Only grant necessary tool access
@@ -63,7 +65,8 @@ While we work to keep Humanizer secure, please also follow these best practices:
 
 ### Security Research
 
-We welcome responsible security research. If you're conducting security research on Humanizer:
+We welcome responsible security research. If you're conducting security research on Authentext:
+
 - Please coordinate with us first
 - Avoid testing on production systems
 - Respect user privacy and data
